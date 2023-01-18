@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "530d5188db06660a",
+        "id": "a8aa5584edab8968",
         "type": "tabs",
         "children": [
           {
-            "id": "4ec5177b4c7f89b8",
+            "id": "6a47e78a190183d3",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -138,7 +138,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "4ec5177b4c7f89b8",
+  "active": "6a47e78a190183d3",
   "lastOpenFiles": [
     "熔断器模式.md",
     "Pasted image 20230118160339.png",
