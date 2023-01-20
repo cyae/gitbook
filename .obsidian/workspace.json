@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "a8aa5584edab8968",
+        "id": "37c9875c5fd1ac07",
         "type": "tabs",
         "children": [
           {
-            "id": "6a47e78a190183d3",
+            "id": "d8e80af96ac52082",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -65,7 +65,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "c617cbd17e3b9b56",
@@ -109,7 +110,7 @@
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true
+                "useHierarchy": false
               }
             }
           },
@@ -134,7 +135,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 223.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -148,8 +149,14 @@
   },
   "active": "2354696360fce6b1",
   "lastOpenFiles": [
-    "熔断器模式.md",
-    "Pasted image 20230118160339.png",
-    "闭包.md"
+    "未命名.canvas",
+    "设计模式/熔断器模式.md",
+    "函数式编程/闭包.md",
+    "Godis/核心概念.md",
+    "Godis/Redis 1.0.md",
+    "Godis/核心流程.md",
+    "Godis/img/Pasted image 20230119175504.png",
+    "Godis/img/Pasted image 20230119161725.png",
+    "设计模式/img/Pasted image 20230118160339.png"
   ]
 }

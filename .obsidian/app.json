@@ -1,4 +1,15 @@
 {
   "vimMode": true,
-  "showLineNumber": true
+  "showLineNumber": true,
+  "promptDelete": false,
+  "readableLineLength": true,
+  "strictLineBreaks": false,
+  "showFrontmatter": false,
+  "foldHeading": true,
+  "rightToLeft": false,
+  "spellcheck": true,
+  "autoPairMarkdown": false,
+  "autoPairBrackets": false,
+  "trashOption": "local",
+  "newFileLocation": "root"
 }
