@@ -2,14 +2,12 @@
     animation: none !important;
 }
 
-.cm-animate-fat-cursor {
-  color: #ff0000 !important;
-  background-color: var(--nord4);
-  opacity: 0.5;
-  width: 5px;
+.theme-light .cm-fat-cursor {
+  background-color: #000000 !important;
+  opacity: 1.0;
 }
 
-.cm-fat-cursor {
-  background-color: #ffffff !important;
-  opacity: 0.5;
+.theme-dark .cm-fat-cursor {
+  background-color: #00ff00 !important;
+  opacity: 0.7;
 }
