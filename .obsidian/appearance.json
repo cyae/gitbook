@@ -8,5 +8,8 @@
   "baseFontSize": 18,
   "interfaceFontFamily": "更纱黑体 UI SC",
   "textFontFamily": "等距更纱黑体 SC",
-  "showViewHeader": true
+  "showViewHeader": true,
+  "enabledCssSnippets": [
+    "obsidian"
+  ]
 }

@@ -1,0 +1,15 @@
+.cm-cursorLayer {
+    animation: none !important;
+}
+
+.cm-animate-fat-cursor {
+  color: #ff0000 !important;
+  background-color: var(--nord4);
+  opacity: 0.5;
+  width: 5px;
+}
+
+.cm-fat-cursor {
+  background-color: #ffffff !important;
+  opacity: 0.5;
+}
