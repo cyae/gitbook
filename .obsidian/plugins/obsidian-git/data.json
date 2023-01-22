@@ -1,5 +1,5 @@
 {
-  "commitMessage": "auto-bk: {{date}} | {{numFiles}} file(s) changed",
+  "commitMessage": "",
   "autoCommitMessage": "auto-bk: {{date}} | {{numFiles}} file(s) changed",
   "commitDateFormat": "YYYY-MM-DD HH:mm:ss",
   "autoSaveInterval": 30,
