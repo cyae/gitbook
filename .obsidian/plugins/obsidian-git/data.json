@@ -1,6 +1,6 @@
 {
-  "commitMessage": "vault backup: {{date}}",
-  "autoCommitMessage": "vault backup: {{date}}",
+  "commitMessage": "auto-bk: {{date}} | {{numFiles}} file(s) changed",
+  "autoCommitMessage": "auto-bk: {{date}} | {{numFiles}} file(s) changed",
   "commitDateFormat": "YYYY-MM-DD HH:mm:ss",
   "autoSaveInterval": 30,
   "autoPushInterval": 0,
