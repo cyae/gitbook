@@ -139,7 +139,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -155,7 +155,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "decf28131b98a1ce",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
     "Godis/核心流程.md",
     "Godis/核心概念.md",
