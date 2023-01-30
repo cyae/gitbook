@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "decf28131b98a1ce",
+            "id": "04541e3beead44b5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Godis/Redis 1.0.md",
+                "file": "Kafka原理/详解Kafka内核原理.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Godis/Redis 1.0.md",
+                "file": "Kafka原理/详解Kafka内核原理.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Godis/Redis 1.0.md",
+                "file": "Kafka原理/详解Kafka内核原理.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Godis/Redis 1.0.md"
+                "file": "Kafka原理/详解Kafka内核原理.md"
               }
             }
           },
@@ -155,16 +155,17 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2354696360fce6b1",
+  "active": "04541e3beead44b5",
   "lastOpenFiles": [
+    "Godis/Redis 1.0.md",
+    "Kafka原理/详解Kafka内核原理.md",
+    "未命名.md",
     "Godis/核心流程.md",
     "Godis/核心概念.md",
     "未命名.canvas",
     "设计模式/熔断器模式.md",
     "函数式编程/闭包.md",
-    "Godis/Redis 1.0.md",
     "Godis/img/Pasted image 20230119175504.png",
-    "Godis/img/Pasted image 20230119161725.png",
-    "设计模式/img/Pasted image 20230118160339.png"
+    "Godis/img/Pasted image 20230119161725.png"
   ]
 }
