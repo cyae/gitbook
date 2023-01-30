@@ -139,7 +139,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -155,7 +155,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "04541e3beead44b5",
+  "active": "1d28292f34e8f58f",
   "lastOpenFiles": [
     "Godis/Redis 1.0.md",
     "Kafka原理/详解Kafka内核原理.md",
