@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "31445f11596130c6",
+        "id": "24a446dd074d1891",
         "type": "tabs",
         "children": [
           {
-            "id": "f49d8ecaf871c5eb",
+            "id": "bd7696e4c947e0df",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Kafka原理/Kafka分区一致 & 任务流程.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Kafka原理/Kafka分区一致 & 任务流程.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Kafka原理/Kafka分区一致 & 任务流程.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Kafka原理/Kafka分区一致 & 任务流程.md"
-              }
+              "state": {}
             }
           },
           {
@@ -155,17 +146,17 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "1d28292f34e8f58f",
+  "active": "bd7696e4c947e0df",
   "lastOpenFiles": [
+    "未命名.canvas",
+    "Kafka原理/Kafka分区一致 & 任务流程.md",
     "Kafka原理/Kafka基础原理.md",
     "().md",
     "Godis/Redis 1.0.md",
     "未命名.md",
     "Godis/核心流程.md",
     "Godis/核心概念.md",
-    "未命名.canvas",
     "设计模式/熔断器模式.md",
-    "函数式编程/闭包.md",
-    "Godis/img/Pasted image 20230119175504.png"
+    "函数式编程/闭包.md"
   ]
 }
