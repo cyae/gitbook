@@ -4,37 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "24a446dd074d1891",
+        "id": "6d0d8da4960d3423",
         "type": "tabs",
         "children": [
           {
-            "id": "bd7696e4c947e0df",
+            "id": "8f454237e1b52223",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Kafka原理/Kafka基础原理.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "aeb3ad476366072d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Kafka原理/消息中间件基础.md",
+                "file": "miniLSM/LSM-Tree原理.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -100,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Kafka原理/Kafka基础原理.md",
+                "file": "miniLSM/LSM-Tree原理.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Kafka原理/Kafka基础原理.md",
+                "file": "miniLSM/LSM-Tree原理.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Kafka原理/Kafka基础原理.md"
+                "file": "miniLSM/LSM-Tree原理.md"
               }
             }
           },
@@ -157,7 +143,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 234.5
+    "width": 311.5
   },
   "left-ribbon": {
     "hiddenItems": {
