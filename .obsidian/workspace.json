@@ -155,17 +155,17 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "1d28292f34e8f58f",
+  "active": "8f454237e1b52223",
   "lastOpenFiles": [
+    "miniLSM/LSM-Tree改进.md",
+    "miniLSM/LSM-Tree原理.md",
+    "miniLSM/img/Pasted image 20230204222728.png",
     "Kafka原理/Kafka基础原理.md",
     "Kafka原理/Kafka分区一致 & 任务流程.md",
     "未命名.canvas",
     "().md",
     "Godis/Redis 1.0.md",
     "未命名.md",
-    "Godis/核心流程.md",
-    "Godis/核心概念.md",
-    "设计模式/熔断器模式.md",
-    "函数式编程/闭包.md"
+    "Godis/核心流程.md"
   ]
 }
