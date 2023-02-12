@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "59bb97016ee83871",
+        "id": "289e8b951af0050c",
         "type": "tabs",
         "children": [
           {
-            "id": "da1f1aac0ea024e8",
+            "id": "3ff6e74d349fd9b8",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "DDIA/关系型 vs 文档型.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DDIA/关系型 vs 文档型.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "DDIA/关系型 vs 文档型.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "DDIA/关系型 vs 文档型.md"
-              }
+              "state": {}
             }
           },
           {
@@ -139,7 +130,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -155,8 +146,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "da1f1aac0ea024e8",
+  "active": "1d28292f34e8f58f",
   "lastOpenFiles": [
+    "DDIA/关系型 vs 文档型.md",
     "设计模式/熔断器模式.md",
     "miniLSM/LSM-Tree原理.md",
     "miniLSM/LSM-Tree调优.md",
@@ -165,7 +157,6 @@
     "Kafka原理/Kafka分区一致 & 任务流程.md",
     "未命名.canvas",
     "().md",
-    "Godis/Redis 1.0.md",
-    "DDIA/关系型 vs 文档型.md"
+    "Godis/Redis 1.0.md"
   ]
 }
