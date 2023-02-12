@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "DDIA/Relational vs. NoSQL.md",
+                "file": "DDIA/关系型 vs 文档型.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DDIA/Relational vs. NoSQL.md",
+                "file": "DDIA/关系型 vs 文档型.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "DDIA/Relational vs. NoSQL.md",
+                "file": "DDIA/关系型 vs 文档型.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "DDIA/Relational vs. NoSQL.md"
+                "file": "DDIA/关系型 vs 文档型.md"
               }
             }
           },
@@ -155,7 +155,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2354696360fce6b1",
+  "active": "da1f1aac0ea024e8",
   "lastOpenFiles": [
     "设计模式/熔断器模式.md",
     "miniLSM/LSM-Tree原理.md",
@@ -166,6 +166,6 @@
     "未命名.canvas",
     "().md",
     "Godis/Redis 1.0.md",
-    "DDIA/Relational vs. NoSQL.md"
+    "DDIA/关系型 vs 文档型.md"
   ]
 }
