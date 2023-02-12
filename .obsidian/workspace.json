@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "6d0d8da4960d3423",
+        "id": "59bb97016ee83871",
         "type": "tabs",
         "children": [
           {
-            "id": "8f454237e1b52223",
+            "id": "da1f1aac0ea024e8",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "miniLSM/LSM-Tree原理.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "miniLSM/LSM-Tree原理.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "miniLSM/LSM-Tree原理.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "miniLSM/LSM-Tree原理.md"
-              }
+              "state": {}
             }
           },
           {
@@ -155,17 +146,17 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "8f454237e1b52223",
+  "active": "da1f1aac0ea024e8",
   "lastOpenFiles": [
-    "miniLSM/LSM-Tree改进.md",
+    "设计模式/熔断器模式.md",
     "miniLSM/LSM-Tree原理.md",
+    "miniLSM/LSM-Tree调优.md",
     "miniLSM/img/Pasted image 20230204222728.png",
     "Kafka原理/Kafka基础原理.md",
     "Kafka原理/Kafka分区一致 & 任务流程.md",
     "未命名.canvas",
     "().md",
     "Godis/Redis 1.0.md",
-    "未命名.md",
-    "Godis/核心流程.md"
+    "未命名.md"
   ]
 }
