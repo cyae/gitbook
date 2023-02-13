@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "f1822bb579821544",
+        "id": "fd6273dca141ae60",
         "type": "tabs",
         "children": [
           {
-            "id": "01ac7058b04d1754",
+            "id": "2fa96bb14bf27c79",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -146,7 +146,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "01ac7058b04d1754",
+  "active": "2fa96bb14bf27c79",
   "lastOpenFiles": [
     "DDIA/关系型 vs 文档型.md",
     "DDIA/img/Pasted image 20230212214619.png",
