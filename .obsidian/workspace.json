@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "289e8b951af0050c",
+        "id": "f1822bb579821544",
         "type": "tabs",
         "children": [
           {
-            "id": "3ff6e74d349fd9b8",
+            "id": "01ac7058b04d1754",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -146,9 +146,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "1d28292f34e8f58f",
+  "active": "01ac7058b04d1754",
   "lastOpenFiles": [
     "DDIA/关系型 vs 文档型.md",
+    "DDIA/img/Pasted image 20230212214619.png",
     "设计模式/熔断器模式.md",
     "miniLSM/LSM-Tree原理.md",
     "miniLSM/LSM-Tree调优.md",
@@ -156,7 +157,6 @@
     "Kafka原理/Kafka基础原理.md",
     "Kafka原理/Kafka分区一致 & 任务流程.md",
     "未命名.canvas",
-    "().md",
-    "Godis/Redis 1.0.md"
+    "().md"
   ]
 }
