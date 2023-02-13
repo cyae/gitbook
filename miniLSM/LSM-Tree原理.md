@@ -9,7 +9,11 @@
 `memtable`位于内存中, 仍然基于排序树(红黑树/AVL树/跳表)存储少量数据
 ![[Pasted image 20230204222728.png]]
 
-当内存中的`memtable`达到指定大小, 启动落盘进程: 遍历排序树, 将结果存储为有序数组并清空`memtable`. 每次落盘形成1个`SSTable`
+当内存中的`memtable`达到指定大小, 启动落盘进程: 遍历排序树, 将结果存储为有序数组并清空`memtable`. 每次落盘形成1个`SSTable`. 
+
+SSTable可以用稀疏索引存储, 这样索引大小就能控制在内存大小以内, 还可以先在稀疏索引上二分, 再在SSTable上遍历找值. 甚至可以用padding使每一个SSTable大小相同, 从而省略稀疏索引直接在SSTable上二分
+![[Pasted image 20230213202056.png]]
+
 - 假如落盘过程宕机, 内存中的`memtable`会丢失. 可以单独在disk存储这些数据用于恢复, 比如每次写操作需要额外在disk中追加写.
 ![[Pasted image 20230204223139.png]]
 
