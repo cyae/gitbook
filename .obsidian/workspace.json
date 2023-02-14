@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "b0c06597bc4ce233",
+        "id": "8e6ee0372a0f1651",
         "type": "tabs",
         "children": [
           {
-            "id": "76ef4e8547a4483e",
+            "id": "2f2baeb8eddeeca8",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -146,7 +146,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "76ef4e8547a4483e",
+  "active": "2f2baeb8eddeeca8",
   "lastOpenFiles": [
     "miniLSM/LSM-Tree原理.md",
     "miniLSM/LSM-Tree调优.md",
