@@ -1,0 +1,171 @@
+{
+  "main": {
+    "id": "89dc0647d93d737e",
+    "type": "split",
+    "children": [
+      {
+        "id": "9d69fd81150b8999",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f8160d90531daa8e",
+            "type": "leaf",
+            "state": {
+              "type": "diff-view",
+              "state": {
+                "staged": false,
+                "file": "DDIA/关系型 vs 文档型.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "52bc5f5d7ac31ca2",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "c0abf3f45f2e7c58",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "93517879f5eeaf5d",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "db96748aa70cc296",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true
+          }
+        }
+      },
+      {
+        "id": "574c60c27b74a239",
+        "type": "leaf",
+        "state": {
+          "type": "starred",
+          "state": {}
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "3c6fc8dbb18e447e",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "d703bb09bd8b0224",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "fa3ef46223b78a68",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "51261e4058bc9810",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {}
+        }
+      },
+      {
+        "id": "2b39331c71e6d3c7",
+        "type": "leaf",
+        "state": {
+          "type": "git-view",
+          "state": {}
+        }
+      }
+    ],
+    "currentTab": 2
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "f8160d90531daa8e",
+  "lastOpenFiles": [
+    "DDIA/关系型 vs 文档型.md",
+    "设计模式",
+    "Kafka原理",
+    "miniLSM/LSM-Tree调优.md",
+    "miniLSM",
+    "设计模式/img/Pasted image 20230118160339.png",
+    "设计模式/img",
+    "Kafka原理/Kafka分区一致 & 任务流程.md",
+    "miniLSM/img/Pasted image 20230204225743.png",
+    "miniLSM/img/Pasted image 20230204230924.png",
+    "miniLSM/img/Pasted image 20230204223818.png",
+    "miniLSM/img/Pasted image 20230204231117.png",
+    "miniLSM/img/Pasted image 20230204225954.png",
+    "miniLSM/img/Pasted image 20230204224726.png",
+    "miniLSM/img/Pasted image 20230204223139.png",
+    "miniLSM/img/Pasted image 20230204224657.png",
+    "miniLSM/img/Pasted image 20230204230231.png",
+    "miniLSM/img",
+    "Kafka原理/消息中间件基础.md",
+    "设计模式/熔断器模式.md",
+    "函数式编程/闭包.md",
+    "函数式编程",
+    "Kafka原理/Kafka基础原理.md",
+    "Godis/核心概念.md",
+    "Godis/核心流程.md",
+    "Godis/Redis 1.0.md",
+    "Godis",
+    "miniLSM/LSM-Tree原理.md",
+    "DDIA/img",
+    "DDIA",
+    "Godis/img"
+  ]
+}
