@@ -11,8 +11,13 @@
             "id": "c98f76f9a7afa33b",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "DDIA/关系型 vs 文档型.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
         "state": {
           "type": "backlink",
           "state": {
+            "file": "DDIA/关系型 vs 文档型.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
+            "file": "DDIA/关系型 vs 文档型.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           }
@@ -107,7 +114,9 @@
         "type": "leaf",
         "state": {
           "type": "outline",
-          "state": {}
+          "state": {
+            "file": "DDIA/关系型 vs 文档型.md"
+          }
         }
       },
       {
@@ -133,6 +142,7 @@
   },
   "active": "c98f76f9a7afa33b",
   "lastOpenFiles": [
+    "/DDIA/关系型 vs 文档型.md",
     "DDIA/关系型 vs 文档型.md",
     "设计模式",
     "Kafka原理",
