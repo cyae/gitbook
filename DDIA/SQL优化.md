@@ -128,63 +128,71 @@ limit深分页为什么会变慢呢？ 假设有表结构如下：
 　　
 　　以下这个SQL，你知道执行过程是怎样的呢？
 
-　　`select id,name,balance from account where create_time> '2020-09-19' limit 100000,10;
+　　```sql
+　　select id,name,balance from account where create_time> '2020-09-19' limit 100000,10;
 　　```
 
 　　这个SQL的执行流程酱紫：
 
-　　通过普通二级索引树idx_create_time，过滤create_time条件，找到满足条件的主键id。
+　　- 通过普通二级索引树idx_create_time，过滤create_time条件，找到满足条件的主键id。
 
-　　通过主键id，回到id主键索引树，找到满足记录的行，然后取出需要展示的列（回表过程）
+　　- 通过主键id，回到id主键索引树，找到满足记录的行，然后取出需要展示的列（回表过程）
 
-　　扫描满足条件的100010行，然后扔掉前100000行，返回。
+　　- 扫描满足条件的100010行，然后扔掉前100000行，返回。
 
 ![](http://n.sinaimg.cn/sinakd20221018s/468/w1080h188/20221018/714b-a2859b512b8914340dbed9e47797e136.png)
 
 　　因此，limit深分页，导致SQL变慢原因有两个：
 
--   　　limit语句会先扫描offset+n行，然后再丢弃掉前offset行，返回后n行数据。也就是说limit 100000,10，就会扫描100010行，而limit 0,10，只扫描10行。
+- limit语句会先扫描offset+n行，然后再丢弃掉前offset行，返回后n行数据。也就是说limit 100000,10，就会扫描100010行，而limit 0,10，只扫描10行。
     
--   　　limit 100000,10 扫描更多的行数，也意味着回表更多的次数。
+- limit 100000,10 扫描更多的行数，也意味着回表更多的次数。
     
 
 　　如何优化深分页问题?
 
 　　我们可以通过减少回表次数来优化。一般有标签记录法和延迟关联法。
 
-　　标签记录法
+#### 标签记录法
 
 > 　　就是标记一下上次查询到哪一条了，下次再来查的时候，从该条开始往下扫描。就好像看书一样，上次看到哪里了，你就折叠一下或者夹个书签，下次来看的时候，直接就翻到啦。
 
 　　假设上一次记录到100000，则SQL可以修改为：
 
+```sql
 　　select  id,name,balance FROM account where id > 100000 limit 10;
+　　```
 
 　　这样的话，后面无论翻多少页，性能都会不错的，因为命中了id索引。但是这种方式有局限性：需要一种类似连续自增的字段。
 
-　　延迟关联法
+#### 延迟关联法
 
 　　延迟关联法，就是把条件转移到主键索引树，然后减少回表。如下
 
+```sql
 　　select  acct1.id,acct1.name,acct1.balance FROM account acct1 INNER JOIN (SELECT a.id FROM account a WHERE a.create_time > '2020-09-19' limit 100000, 10) AS acct2 on acct1.id= acct2.id;
+```
 
 　　优化思路就是，先通过idx_create_time二级索引树查询到满足条件的主键ID，再与原表通过主键ID内连接，这样后面直接走了主键索引了，同时也减少了回表。
-
-　　2.4  案例4：in元素过多
+  
+### 案例4：in元素过多
 
 　　如果使用了in，即使后面的条件加了索引，还是要注意in后面的元素不要过多哈。in元素一般建议不要超过200个，如果超过了，建议分组，每次200一组进行哈。
 
 　　反例:
-
+```sql
 　　select user_id,name from user where user_id in (1,2,3...1000000); 
+```
 
 　　如果我们对in的条件不做任何限制的话，该查询语句一次性可能会查询出非常多的数据，很容易导致接口超时。尤其有时候，我们是用的子查询，in后面的子查询，你都不知道数量有多少那种，更容易采坑.如下这种子查询：
-
+```sql
 　　select * from user where user_id in (select author_id from artilce where type = 1);
+```
 
 　　如果type = 1有1一千，甚至上万个呢？肯定是慢SQL。索引一般建议分批进行，一次200个，比如：
-
+```sql
 　　select user_id,name from user where user_id in (1,2,3...200);
+```
 
 　　in查询为什么慢呢？
 
@@ -192,11 +200,13 @@ limit深分页为什么会变慢呢？ 假设有表结构如下：
 > 
 > 　　in查询在进行cost代价计算时（代价 = 元组数 * IO平均值），是通过将in包含的数值，一条条去查询获取元组数的，因此这个计算过程会比较的慢，所以MySQL设置了个临界值(eq_range_index_dive_limit)，5.6之后超过这个临界值后该列的cost就不参与计算了。因此会导致执行计划选择不准确。默认是200，即in条件超过了200个数据，会导致in的代价计算存在问题，可能会导致Mysql选择的索引不准确。
 
-　　2.5 order by 走文件排序导致的慢查询
+### 5. order by 走文件排序导致的慢查询
 
 　　如果order by 使用到文件排序，则会可能会产生慢查询。我们来看下下面这个SQL：
 
+```sql
 　　select name,age,city from staff where city = '深圳' order by age limit 10;
+```
 
 　　它表示的意思就是：查询前10个，来自深圳员工的姓名、年龄、城市，并且按照年龄小到大排序。
 
@@ -212,7 +222,7 @@ limit深分页为什么会变慢呢？ 假设有表结构如下：
 
 　　order by排序，分为全字段排序和rowid排序。它是拿max_length_for_sort_data和结果行数据长度对比，如果结果行数据长度超过max_length_for_sort_data这个值，就会走rowid排序，相反，则走全字段排序。
 
-　　2.5.1 rowid排序
+#### rowid排序
 
 　　rowid排序，一般需要回表去找满足条件的数据，所以效率会慢一点。以下这个SQL，使用rowid排序，执行过程是这样：
 
@@ -232,7 +242,7 @@ limit深分页为什么会变慢呢？ 假设有表结构如下：
 
 ![](http://n.sinaimg.cn/sinakd20221018s/797/w1080h517/20221018/ac59-7183c504494f0abf95cc9417fa5bdfcb.png)
 
-　　2.5.2 全字段排序
+#### 全字段排序
 
 　　同样的SQL，如果是走全字段排序是这样的：
 
@@ -263,7 +273,7 @@ limit深分页为什么会变慢呢？ 假设有表结构如下：
 
 > 　　借助磁盘文件排序的话，效率就更慢一点。因为先把数据放入sort_buffer，当快要满时。会排一下序，然后把sort_buffer中的数据，放到临时磁盘文件，等到所有满足条件数据都查完排完，再用归并算法把磁盘的临时排好序的小文件，合并成一个有序的大文件。
 
-　　2.5.3  如何优化order by的文件排序
+#### 如何优化order by的文件排序
 
 　　order by使用文件排序，效率会低一点。我们怎么优化呢？
 
@@ -272,11 +282,12 @@ limit深分页为什么会变慢呢？ 假设有表结构如下：
 -   　　我们还可以通过调整max_length_for_sort_data、sort_buffer_size等参数优化；
     
 
-　　2.6 索引字段上使用is null， is not null，索引可能失效
+### 6. 索引字段上使用is null， is not null，索引可能失效
 
 　　表结构:
-
+```sql
 　　CREATE TABLE `user` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `card` varchar(255) DEFAULT NULL,  `name` varchar(255) DEFAULT NULL,  PRIMARY KEY (`id`),  KEY `idx_name` (`name`) USING BTREE,  KEY `idx_card` (`card`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+```
 
 　　单个name字段加上索引，并查询name为非空的语句，其实会走索引的，如下:
 
@@ -291,12 +302,13 @@ limit深分页为什么会变慢呢？ 假设有表结构如下：
 ![](http://n.sinaimg.cn/sinakd20221018s/531/w1080h251/20221018/dd32-4bbfc465a1b17dab3bb32fd9cf33e44d.png)
 
 　　很多时候，也是因为数据量问题，导致了MySQL优化器放弃走索引。同时，平时我们用explain分析SQL的时候，如果type=range,要注意一下哈，因为这个可能因为数据量问题，导致索引无效。
-
-　　2.7 索引字段上使用（！= 或者 ），索引可能失效
+### 7. 索引字段上使用（！= 或者 ），索引可能失效
 
 　　假设有表结构：
 
+```sql
 　　CREATE TABLE `user` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `userId` int(11) NOT NULL,  `age` int(11) DEFAULT NULL,  `name` varchar(255) NOT NULL,  PRIMARY KEY (`id`),  KEY `idx_age` (`age`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+```
 
 　　虽然age加了索引，但是使用了！= 或者，not in这些时，索引如同虚设。如下：
 
@@ -304,11 +316,15 @@ limit深分页为什么会变慢呢？ 假设有表结构如下：
 
 　　其实这个也是跟mySQL优化器有关，如果优化器觉得即使走了索引，还是需要扫描很多很多行的哈，它觉得不划算，不如直接不走索引。平时我们用！= 或者，not in的时候，留点心眼哈。
 
-　　2.8 左右连接，关联的字段编码格式不一样
+### 8. 左右连接，关联的字段编码格式不一样
 
 　　新建两个表，一个user，一个user_job
 
-　　CREATE TABLE `user` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `name` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,  `age` int(11) NOT NULL,  PRIMARY KEY (`id`),  KEY `idx_name` (`name`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;CREATE TABLE `user_job` (  `id` int(11) NOT NULL,  `userId` int(11) NOT NULL,  `job` varchar(255) DEFAULT NULL,  `name` varchar(255) DEFAULT NULL,  PRIMARY KEY (`id`),  KEY `idx_name` (`name`) USING BTREE) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```sql
+　　CREATE TABLE `user` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `name` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,  `age` int(11) NOT NULL,  PRIMARY KEY (`id`),  KEY `idx_name` (`name`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+　　
+　　CREATE TABLE `user_job` (  `id` int(11) NOT NULL,  `userId` int(11) NOT NULL,  `job` varchar(255) DEFAULT NULL,  `name` varchar(255) DEFAULT NULL,  PRIMARY KEY (`id`),  KEY `idx_name` (`name`) USING BTREE) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
 　　user表的name字段编码是utf8mb4，而user_job表的name字段编码为utf8。
 
@@ -322,38 +338,41 @@ limit深分页为什么会变慢呢？ 假设有表结构如下：
 
 ![](http://n.sinaimg.cn/sinakd20221018s/579/w1080h299/20221018/e6a9-9e1abba85a8ec639783104480b2e0792.png)
 
-　　2.9 group by使用临时表
+### 9. group by使用临时表
 
 　　group by一般用于分组统计，它表达的逻辑就是根据一定的规则，进行分组。日常开发中，我们使用得比较频繁。如果不注意，很容易产生慢SQL。
 
-　　2.9.1 group by执行流程
+#### group by执行流程
 
 　　假设有表结构：
 
+```sql
 　　CREATE TABLE `staff` (  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',  `id_card` varchar(20) NOT NULL COMMENT '身份证号码',  `name` varchar(64) NOT NULL COMMENT '姓名',  `age` int(4) NOT NULL COMMENT '年龄',  `city` varchar(64) NOT NULL COMMENT '城市',  PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='员工表';
+```
 
-　　我们查看一下这个SQL的执行计划：
-
+  我们查看一下这个SQL的执行计划：
+```sql
 　　explain select city ,count(*) as num from staff group by city;
+```
 
 ![](http://n.sinaimg.cn/sinakd20221018s/491/w1080h211/20221018/20c6-1f2f2461c0ae5b04052c05ee2de43cd9.png)
 
--   　　Extra 这个字段的Using temporary表示在执行分组的时候使用了临时表
+- Extra 这个字段的Using temporary表示在执行分组的时候使用了临时表
     
--   　　Extra 这个字段的Using filesort表示使用了文件排序
+- Extra 这个字段的Using filesort表示使用了文件排序
     
-
-　　group by是怎么使用到临时表和排序了呢？我们来看下这个SQL的执行流程
-
+group by是怎么使用到临时表和排序了呢？我们来看下这个SQL的执行流程
+```sql
 　　select city ,count(*) as num from staff group by city;
-
+```
+　　
 　　创建内存临时表，表里有两个字段city和num；
 
 　　全表扫描staff的记录，依次取出city = 'X'的记录。
 
--   　　判断临时表中是否有为city='X'的行，没有就插入一个记录 (X,1);
+- 判断临时表中是否有为city='X'的行，没有就插入一个记录 (X,1);
     
--   　　如果临时表中有city='X'的行，就将X这一行的num值加 1；
+- 如果临时表中有city='X'的行，就将X这一行的num值加 1；
     
 
 　　遍历完成后，再根据字段city做排序，得到结果集返回给客户端。这个流程的执行图如下：
@@ -364,52 +383,76 @@ limit深分页为什么会变慢呢？ 假设有表结构如下：
 
 　　就是把需要排序的字段，放到sort buffer，排完就返回。在这里注意一点哈，排序分全字段排序和rowid排序
 
--   　　如果是全字段排序，需要查询返回的字段，都放入sort buffer，根据排序字段排完，直接返回
+- 如果是全字段排序，需要查询返回的字段，都放入sort buffer，根据排序字段排完，直接返回
     
--   　　如果是rowid排序，只是需要排序的字段放入sort buffer，然后多一次回表操作，再返回。
+- 如果是rowid排序，只是需要排序的字段放入sort buffer，然后多一次回表操作，再返回。
     
 
-　　2.9.2 group by可能会慢在哪里？
+#### group by可能会慢在哪里？
 
 　　group by使用不当，很容易就会产生慢SQL问题。因为它既用到临时表，又默认用到排序。有时候还可能用到磁盘临时表。
 
--   　　如果执行过程中，会发现内存临时表大小到达了上限（控制这个上限的参数就是tmp_table_size），会把内存临时表转成磁盘临时表。
+- 如果执行过程中，会发现内存临时表大小到达了上限（控制这个上限的参数就是tmp_table_size），会把内存临时表转成磁盘临时表。
     
--   　　如果数据量很大，很可能这个查询需要的磁盘临时表，就会占用大量的磁盘空间。
+- 如果数据量很大，很可能这个查询需要的磁盘临时表，就会占用大量的磁盘空间。
     
 
-　　2.9.3 如何优化group by呢
+#### 如何优化group by呢
 
 　　从哪些方向去优化呢？
 
--   　　方向1：既然它默认会排序，我们不给它排是不是就行啦。
+- 方向1：既然它默认会排序，我们不给它排是不是就行啦。
     
--   　　方向2：既然临时表是影响group by性能的X因素，我们是不是可以不用临时表？
+- 方向2：既然临时表是影响group by性能的X因素，我们是不是可以不用临时表？
     
 
 　　我们一起来想下，执行group by语句为什么需要临时表呢？group by的语义逻辑，就是统计不同的值出现的个数。如果这个这些值一开始就是有序的，我们是不是直接往下扫描统计就好了，就不用临时表来记录并统计结果啦?
 
 　　可以有这些优化方案：
 
--   　　group by 后面的字段加索引
+- group by 后面的字段加索引 
+- order by null 不用排序
     
--   　　order by null 不用排序
+- 尽量只使用内存临时表
     
--   　　尽量只使用内存临时表
+- 使用SQL_BIG_RESULT
     
--   　　使用SQL_BIG_RESULT
-    
-
-　　2.10  delete + in子查询不走索引！
+### 10.  delete + in子查询不走索引！
 
 　　之前见到过一个生产慢SQL问题，当delete遇到in子查询时，即使有索引，也是不走索引的。而对应的select + in子查询，却可以走索引。
 
 　　MySQL版本是5.7，假设当前有两张表account和old_account,表结构如下：
-
-　　CREATE TABLE `old_account` (  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键Id',  `name` varchar(255) DEFAULT NULL COMMENT '账户名',  `balance` int(11) DEFAULT NULL COMMENT '余额',  `create_time` datetime NOT NULL COMMENT '创建时间',  `update_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',  PRIMARY KEY (`id`),  KEY `idx_name` (`name`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=[1570068](tel:1570068) DEFAULT CHARSET=utf8 ROW_FORMAT=REDUNDANT COMMENT='老的账户表';CREATE TABLE `account` (  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键Id',  `name` varchar(255) DEFAULT NULL COMMENT '账户名',  `balance` int(11) DEFAULT NULL COMMENT '余额',  `create_time` datetime NOT NULL COMMENT '创建时间',  `update_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',  PRIMARY KEY (`id`),  KEY `idx_name` (`name`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=[1570068](tel:1570068) DEFAULT CHARSET=utf8 ROW_FORMAT=REDUNDANT COMMENT='账户表';
+```sql
+　　CREATE TABLE `old_account` (  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键Id',  `name` varchar(255) DEFAULT NULL COMMENT '账户名',  `balance` int(11) DEFAULT NULL COMMENT '余额',  `create_time` datetime NOT NULL COMMENT '创建时间',  `update_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',  PRIMARY KEY (`id`),  KEY `idx_name` (`name`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=[1570068](tel:1570068) DEFAULT CHARSET=utf8 ROW_FORMAT=REDUNDANT COMMENT='老的账户表';
+　　
+　　CREATE TABLE `account` (  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键Id',  `name` varchar(255) DEFAULT NULL COMMENT '账户名',  `balance` int(11) DEFAULT NULL COMMENT '余额',  `create_time` datetime NOT NULL COMMENT '创建时间',  `update_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',  PRIMARY KEY (`id`),  KEY `idx_name` (`name`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=[1570068](tel:1570068) DEFAULT CHARSET=utf8 ROW_FORMAT=REDUNDANT COMMENT='账户表';
+```
 
 　　执行的SQL如下：
-
+```sql
 　　delete from account where name in (select name from old_account);
+```
 
 　　查看执行计划，发现不走索引：
+
+![](http://n.sinaimg.cn/sinakd20221018s/480/w1080h200/20221018/726e-40f9686d6e412344779ec52cce2c5110.png)
+
+　　但是如果把delete换成select，就会走索引。如下：
+
+![](http://n.sinaimg.cn/sinakd20221018s/476/w1080h196/20221018/d7e7-d9b71efd85237b1cdbec7dd1067b9ba6.png)
+
+　　为什么select + in子查询会走索引，delete + in子查询却不会走索引呢？
+
+　　我们执行以下SQL看看：
+```sql
+　　explain select * from account where name in (select name from old_account);show WARNINGS; //可以查看优化后,最终执行的sql
+```
+
+　　结果如下：
+```sql
+　　select `test2`.`account`.`id` AS `id`,`test2`.`account`.`name` AS `name`,`test2`.`account`.`balance` AS `balance`,`test2`.`account`.`create_time` AS `create_time`,`test2`.`account`.`update_time` AS `update_time` from `test2`.`account` semi join (`test2`.`old_account`)where (`test2`.`account`.`name` = `test2`.`old_account`.`name`)
+```
+
+　　可以发现，实际执行的时候，MySQL对select in子查询做了优化，把子查询改成join的方式，所以可以走索引。但是很遗憾，对于delete in子查询，MySQL却没有对它做这个优化。
+
+　　日常开发中，大家注意一下这个场景哈
