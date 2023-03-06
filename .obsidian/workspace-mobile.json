@@ -128,7 +128,7 @@
         }
       }
     ],
-    "currentTab": 3
+    "currentTab": 2
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -140,7 +140,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "cedbdce4af59e78e",
+  "active": "51261e4058bc9810",
   "lastOpenFiles": [
     "DDIA/SQL优化.md",
     "DDIA/关系型 vs 文档型.md",
