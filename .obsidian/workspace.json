@@ -11,8 +11,13 @@
             "id": "2f2baeb8eddeeca8",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "DDIA/关系型 vs 文档型.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "DDIA/关系型 vs 文档型.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "DDIA/关系型 vs 文档型.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "DDIA/关系型 vs 文档型.md"
+              }
             }
           },
           {
@@ -130,7 +139,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -146,7 +155,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2f2baeb8eddeeca8",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
     "miniLSM/LSM-Tree原理.md",
     "miniLSM/LSM-Tree调优.md",
