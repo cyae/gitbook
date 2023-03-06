@@ -4,18 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "9d69fd81150b8999",
+        "id": "19b895c5bac952ac",
         "type": "tabs",
         "children": [
           {
-            "id": "f8160d90531daa8e",
+            "id": "c98f76f9a7afa33b",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
-              "state": {
-                "staged": false,
-                "file": "DDIA/关系型 vs 文档型.md"
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -134,7 +131,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "f8160d90531daa8e",
+  "active": "c98f76f9a7afa33b",
   "lastOpenFiles": [
     "DDIA/关系型 vs 文档型.md",
     "设计模式",
