@@ -4,17 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "9d69fd81150b8999",
+        "id": "bd3e85ccec824166",
         "type": "tabs",
         "children": [
           {
-            "id": "f8160d90531daa8e",
+            "id": "cedbdce4af59e78e",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "markdown",
               "state": {
-                "staged": false,
-                "file": "DDIA/关系型 vs 文档型.md"
+                "file": "DDIA/SQL优化.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -84,6 +86,7 @@
         "state": {
           "type": "backlink",
           "state": {
+            "file": "DDIA/SQL优化.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -100,6 +103,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
+            "file": "DDIA/SQL优化.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           }
@@ -110,7 +114,9 @@
         "type": "leaf",
         "state": {
           "type": "outline",
-          "state": {}
+          "state": {
+            "file": "DDIA/SQL优化.md"
+          }
         }
       },
       {
@@ -134,9 +140,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "f8160d90531daa8e",
+  "active": "51261e4058bc9810",
   "lastOpenFiles": [
+    "DDIA/SQL优化.md",
     "DDIA/关系型 vs 文档型.md",
+    "/DDIA/关系型 vs 文档型.md",
     "设计模式",
     "Kafka原理",
     "miniLSM/LSM-Tree调优.md",
