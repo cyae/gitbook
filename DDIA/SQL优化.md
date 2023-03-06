@@ -85,7 +85,7 @@ profile只能查看到SQL的执行耗时，但是无法看到SQL真正执行的�
 我们创建一个用户user表
 
 ```sql
-　　CREATE TABLE user (  id int(11) NOT NULL AUTO_INCREMENT,  userId varchar(32) NOT NULL,  age  varchar(16) NOT NULL,  name varchar(255) NOT NULL,  PRIMARY KEY (id),  KEY idx_userid (userId) USING BTREE) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE user (  id int(11) NOT NULL AUTO_INCREMENT,  userId varchar(32) NOT NULL,  age  varchar(16) NOT NULL,  name varchar(255) NOT NULL,  PRIMARY KEY (id),  KEY idx_userid (userId) USING BTREE) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 　　
 userId字段为字串类型，是B+树的普通索引，如果查询条件传了一个数字过去，会导致索引失效。如下：
@@ -128,9 +128,9 @@ CREATE TABLE account (  id int(11) NOT NULL AUTO_INCREMENT COMMENT '�
 　　
 以下这个SQL，你知道执行过程是怎样的呢？
 
-　　```sql
+```sql
 select id,name,balance from account where create_time> '2020-09-19' limit 100000,10;
-　　```
+```
 
 这个SQL的执行流程酱紫：
 
@@ -161,7 +161,7 @@ select id,name,balance from account where create_time> '2020-09-19' limit
 
 ```sql
 select  id,name,balance FROM account where id > 100000 limit 10;
-　　```
+```
 
 这样的话，后面无论翻多少页，性能都会不错的，因为命中了id索引。但是这种方式有局限性：需要一种类似连续自增的字段。
 
@@ -243,7 +243,7 @@ select name,age,city from staff where city = '深圳' order by age li
 
 同样的SQL，如果是走全字段排序是这样的：
 ```sql
-　　select name,age,city from staff where city = '深圳' order by age limit 10;
+select name,age,city from staff where city = '深圳' order by age limit 10;
 ```
 
 - MySQL 为对应的线程初始化sort_buffer，放入需要查询的name、age、city字段；
@@ -276,7 +276,7 @@ order by使用文件排序，效率会低一点。我们怎么优化呢？
 
 表结构:
 ```sql
-　　CREATE TABLE `user` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `card` varchar(255) DEFAULT NULL,  `name` varchar(255) DEFAULT NULL,  PRIMARY KEY (`id`),  KEY `idx_name` (`name`) USING BTREE,  KEY `idx_card` (`card`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE `user` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `card` varchar(255) DEFAULT NULL,  `name` varchar(255) DEFAULT NULL,  PRIMARY KEY (`id`),  KEY `idx_name` (`name`) USING BTREE,  KEY `idx_card` (`card`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 ```
 
 单个name字段加上索引，并查询name为非空的语句，其实会走索引的，如下:
@@ -408,7 +408,7 @@ CREATE TABLE `account` (  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT
 
 执行的SQL如下：
 ```sql
-　　delete from account where name in (select name from old_account);
+delete from account where name in (select name from old_account);
 ```
 
 查看执行计划，发现不走索引：
