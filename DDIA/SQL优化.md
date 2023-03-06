@@ -141,7 +141,8 @@ CREATE  TABLE  account (  id  int(11)  NOT  NULL  AUTO_INCREMENT  COMM
       11)  DEFAULT  NULL  COMMENT  '余额',   create_time  datetime  NOT  NULL  COMMENT  '创建时间',   
     update_time  datetime  NOT  NULL  ON  UPDATE  CURRENT_TIMESTAMP  COMMENT  '更新时间',   
     PRIMARY  KEY (id),   KEY  idx_name (name),   KEY  idx_create_time (
-      create_time)  //索引) ENGINE=InnoDB AUTO_INCREMENT=[1570068](tel:1570068) DEFAULT CHARSET=utf8 ROW_FORMAT=REDUNDANT COMMENT='账户表';
+      create_time)  //索引
+      ) ENGINE=InnoDB AUTO_INCREMENT=[1570068](tel:1570068) DEFAULT CHARSET=utf8 ROW_FORMAT=REDUNDANT COMMENT='账户表';
 ```
 
 　　
