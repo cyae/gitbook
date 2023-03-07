@@ -2,16 +2,13 @@
 date created: 2023-03-06 21:54
 date updated: 2023-03-06 22:04
 ---
-
+#SQL
 ![](http://n.sinaimg.cn/sinakd20221018s/291/w1080h811/20221018/2b5c-0588511925c5d60f774f430fb9223f73.png)
 
+---
 ## 问题定位
 
 ### 1. 查看慢查询日志
-
-![](http://n.sinaimg.cn/sinakd20221018s/13/w593h220/20221018/8362-46c21cca8389b221009f2a289d442743.png)
-
-![](http://n.sinaimg.cn/sinakd20221018s/752/w558h194/20221018/93a0-711839964c8db677ade3e09d5fc0ee01.png)
 
 ```sql
 show variables like ’slow_query_log%’
@@ -19,30 +16,33 @@ show variables like ’slow_query_log%’
 慢查询阈值
 show variables like ’long_query_time’
 ```
+![](http://n.sinaimg.cn/sinakd20221018s/13/w593h220/20221018/8362-46c21cca8389b221009f2a289d442743.png)
+
+![](http://n.sinaimg.cn/sinakd20221018s/752/w558h194/20221018/93a0-711839964c8db677ade3e09d5fc0ee01.png)
 
 ### 2. explain分析SQL执行计划
 
 ![](http://n.sinaimg.cn/sinakd20221018s/452/w1080h172/20221018/e91b-4089b5bb0d571131be047ba9601f9252.png)
 
-#### 2.1  type
+#### 2.1 type
 
 type表示连接类型，查看索引执行情况的一个重要指标。以下性能从好到坏依次：system > const > eq_ref > ref > ref_or_null > index_merge > unique_subquery > index_subquery > range > index > ALL
 
-- system：这种类型要求数据库表中只有一条数据，是const类型的一个特例，一般情况下是不会出现的。
-- const：通过一次索引就能找到数据，一般用于主键或唯一索引作为条件，这类扫描效率极高，，速度非常快。
-- eq_ref：常用于主键或唯一索引扫描，一般指使用主键的关联查询
-- ref : 常用于非主键和唯一索引扫描。
-- ref_or_null：这种连接类型类似于ref，区别在于MySQL会额外搜索包含NULL值的行
-- index_merge：使用了索引合并优化方法，查询使用了两个以上的索引。
-- unique_subquery：类似于eq_ref，条件用了in子查询
-- index_subquery：区别于unique_subquery，用于非唯一索引，可以返回重复值。
-- range：常用于范围查询，比如：between ... and 或 In 等操作
-- index：全索引扫描
-- ALL：全表扫描
+- **system**：这种类型要求数据库表中只有一条数据，是*const*类型的一个特例，一般情况下是不会出现的
+- **const**：通过一次索引就能找到数据，一般用于主键或唯一索引作为条件，这类扫描效率极高，速度非常快
+- **eq_ref**：常用于主键或唯一索引扫描，一般指使用主键的关联查询
+- **ref** : 常用于非主键和唯一索引扫描
+- **ref_or_null**：这种连接类型类似于*ref*，区别在于MySQL会额外搜索包含NULL值的行
+- **index_merge**：使用了索引合并优化方法，查询使用了两个以上的索引。
+- **unique_subquery**：类似于*eq_ref*，条件用了`in`子查询
+- **index_subquery**：区别于*unique_subquery*，用于非唯一索引，可以返回重复值
+- **range**：常用于范围查询，比如：`between ... and` 或 `in` 等操作
+- **index**：全索引扫描
+- **ALL**：全表扫描
 
 #### 2.2 rows
 
-该列表示MySQL估算要找到我们所需的记录，需要读取的行数。对于InnoDB表，此数字是估计值，并非一定是个准确值。
+该列表示MySQL估算要找到我们所需的记录，需要读取的行数。对于InnoDB表，此数字是**估计值**，并非一定是个准确值。
 
 #### 2.3 filtered
 
@@ -52,31 +52,31 @@ type表示连接类型，查看索引执行情况的一个重要指标。以下�
 
 该字段包含有关MySQL如何解析查询的其他信息，它一般会出现这几个值：
 
-- Using filesort：表示按文件排序，一般是在指定的排序和索引排序不一致的情况才会出现。一般见于order by语句
-- Using index ：表示是否用了覆盖索引。
-- Using temporary: 表示是否使用了临时表,性能特别差，需要重点优化。一般多见于group by语句，或者union语句。
-- Using where : 表示使用了where条件过滤.
-- Using index condition：MySQL5.6之后新增的索引下推。在存储引擎层进行数据过滤，而不是在服务层过滤，利用索引现有的数据减少回表的数据。
+- **Using filesort**：表示按文件排序，一般是在指定的排序和索引排序不一致的情况才会出现。一般见于`order by`语句
+- **Using index**：表示是否用了**覆盖索引**。
+- **Using temporary**: 表示是否使用了**临时表**,性能特别差，需要重点优化。一般多见于`group by`语句，或者`union`语句。
+- **Using where**: 表示使用了`where`条件过滤.
+- **Using index condition**：MySQL5.6之后新增的**索引下推**。在存储引擎层进行数据过滤，而不是在服务层过滤，利用索引现有的数据减少回表的数据。
 
 #### 2.5 key
 
-该列表示实际用到的索引。一般配合possible_keys列一起看。
+该列表示实际用到的索引。一般配合`possible_keys`列一起看。
 
 ### 3. profile分析执行资源消耗
 
-explain只是看到SQL的预估执行计划，如果要了解SQL真正的执行线程状态及消耗的时间，需要使用profiling。开启profiling参数后，后续执行的SQL语句都会记录其资源开销，包括IO，上下文切换，CPU，内存等等，我们可以根据这些开销进一步分析当前慢SQL的瓶颈再进一步进行优化。
+`explain`只是看到SQL的预估执行计划，如果要了解SQL真正的执行线程状态及消耗的时间，需要使用`profiling`。开启`profiling`参数后，后续执行的SQL语句都会记录其资源开销，包括*IO*，*上下文切换*，*CPU*，*内存*等等，我们可以根据这些开销进一步分析当前慢SQL的瓶颈再进一步进行优化。
 
 ![](http://n.sinaimg.cn/sinakd20221018s/68/w605h263/20221018/5392-e971a950b338b49a62a5f08e902fc7d2.png)
 
 ![](http://n.sinaimg.cn/sinakd20221018s/713/w881h632/20221018/13ed-b2fb4a2b18fab398e1d8eb092051dd25.png)
 
-show profiles会显示最近发给服务器的多条语句，条数由变量profiling_history_size定义，默认是15。如果我们需要看单独某条SQL的分析，可以show profile查看最近一条SQL的分析，也可以使用show profile for query id（其中id就是show profiles中的QUERY_ID）查看具体一条的SQL语句分析。
+`show profiles`会显示最近发给服务器的多条语句，条数由变量`profiling_history_size`定义，默认是15。如果我们需要看单独某条SQL的分析，可以`show profile`查看最近一条SQL的分析，也可以使用`show profile for query id`（其中`id`就是`show profiles`中的`QUERY_ID`）查看具体一条的SQL语句分析。
 
 ![](http://n.sinaimg.cn/sinakd20221018s/639/w852h587/20221018/c234-228c5bbbb1fafd4579542427bb398374.png)
 
 ### 4. optimizer trace追溯执行流程
 
-profile只能查看到SQL的执行耗时，但是无法看到SQL真正执行的过程信息，即不知道MySQL优化器是如何选择执行计划。这时候，我们可以使用Optimizer Trace，它可以跟踪执行语句的解析优化执行的全过程。
+`profile`只能查看到SQL的执行耗时，但是无法看到SQL真正执行的过程信息，即不知道MySQL**优化器**是如何**选择执行计划**。这时候，我们可以使用`Optimizer Trace`，它可以跟踪执行语句的解析优化执行的全过程。
 
 ![](http://n.sinaimg.cn/sinakd20221018s/529/w1080h249/20221018/4814-33900f18effd8bdba9b749def7100c4f.png)
 
@@ -86,89 +86,94 @@ profile只能查看到SQL的执行耗时，但是无法看到SQL真正执行的�
 
 ### 1. 隐式转换
 
-我们创建一个用户user表
-
+我们创建一个用户`user`表:
 ```sql
-CREATE  TABLE  user (  id  int(11)  NOT  NULL  AUTO_INCREMENT,   
-    userId  varchar(32)  NOT  NULL,   age   varchar(16)  NOT  NULL,   
-    name  varchar(255)  NOT  NULL,   PRIMARY  KEY (id),   KEY  idx_userid (
-      userId)  USING  BTREE)  ENGINE = InnoDB  DEFAULT  CHARSET = utf8;
+CREATE  TABLE  user (  
+	id  int(11)  NOT  NULL  AUTO_INCREMENT,   
+    userId  varchar(32)  NOT  NULL,   
+    age   varchar(16)  NOT  NULL,   
+    name  varchar(255)  NOT  NULL,   
+    PRIMARY  KEY (id),   
+    KEY  idx_userid (
+      userId
+    )  USING  BTREE
+)  ENGINE = InnoDB  DEFAULT  CHARSET = utf8;
 ```
 
-　　
 userId字段为字串类型，是B+树的普通索引，如果查询条件传了一个数字过去，会导致索引失效。如下：
+![](http://n.sinaimg.cn/sinakd20221018s/498/w1080h218/20221018/b9b0-fb6d6f54c4e8be1b004070e7b4b96b91.png)
 
-![](http://n.sinaimg.cn/sinakd20221018s/498/w1080h218/20221018/b9b0-fb6d6f54c4e8be1b004070e7b4b96b91.png)如果给数字加上'',也就是说，传的是一个字符串呢，当然是走索引，如下图：
-
+如果给数字加上'',也就是说，传的是一个字符串呢? 当然是走索引，如下图：
 ![](http://n.sinaimg.cn/sinakd20221018s/480/w1080h200/20221018/6e16-45218e5c907346df3d87929353aedd6b.png)
 
-> 为什么第一条语句未加单引号就不走索引了呢？这是因为不加单引号时，是字符串跟数字的比较，它们类型不匹配，MySQL会做隐式的类型转换，把它们转换为浮点数再做比较。隐式的类型转换，索引会失效。
+>为什么第一条语句未加单引号就不走索引了呢？
+>
+>这是因为不加单引号时，是字符串跟数字的比较，它们类型不匹配，MySQL会做隐式的类型转换，把它们转换为浮点数再做比较。隐式的类型转换，索引会失效。
 
 ### 2. 最左匹配
 
-MySQl建立联合索引时，会遵循最左前缀匹配的原则，即最左优先。如果你建立一个（a,b,c）的联合索引，相当于建立了(a)、(a,b)、(a,b,c)三个索引。
+MySQl建立**联合索引**时，会遵循**最左前缀匹配**的原则，即最左优先。如果你建立一个`(a,b,c)`的联合索引，相当于建立了`(a)`、`(a,b)`、`(a,b,c)`三个索引。
 
 假设有以下表结构：
-
 ```sql
-CREATE  TABLE  user (  id  int(11)  NOT  NULL  AUTO_INCREMENT,   
-    user_id  varchar(32)  NOT  NULL,   age   varchar(16)  NOT  NULL,   
-    name  varchar(255)  NOT  NULL,   PRIMARY  KEY (id),   KEY  idx_userid_name (
-      user_id, name)  USING  BTREE)  ENGINE = InnoDB  DEFAULT  CHARSET = butf8;
+CREATE  TABLE  user (  
+	id  int(11)  NOT  NULL  AUTO_INCREMENT,   
+    user_id  varchar(32)  NOT  NULL,   
+    age   varchar(16)  NOT  NULL,   
+    name  varchar(255)  NOT  NULL,   
+    PRIMARY  KEY (id),   
+    KEY  idx_userid_name (
+      user_id, name
+    )  USING  BTREE
+)  ENGINE = InnoDB  DEFAULT  CHARSET = butf8;
 ```
 
-　　
-假设有一个联合索引idx_userid_name，我们现在执行以下SQL，如果查询列是name，索引是无效的：
-
+假设有一个联合索引`idx_userid_name`，我们现在执行以下SQL，如果查询列是`name`，索引是无效的：
 ```sql
 explain select * from user where name ='捡田螺的小男孩';
 ```
-
 ![](http://n.sinaimg.cn/sinakd20221018s/462/w1080h182/20221018/77aa-8dbfcac025f0ed24a772803a69b767df.png)
-因为查询条件列name不是联合索引idx_userid_name中的第一个列，不满足最左匹配原则，所以索引不生效。在联合索引中，只有查询条件满足最左匹配原则时，索引才正常生效。如下，查询条件列是user_id
 
+因为查询条件列`name`不是联合索引`idx_userid_name`中的第一个列，不满足最左匹配原则，所以索引不生效。在联合索引中，只有查询条件满足最左匹配原则时，索引才正常生效。如下，查询条件列是`user_id`
 ![](http://n.sinaimg.cn/sinakd20221018s/501/w1080h221/20221018/96c4-a4696c24f1ebd85cb5e147995e9ac106.png)
 
 ### 3. 深分页问题
 
-limit深分页问题，会导致慢查询，应该大家都司空见惯了吧。
+`limit`深分页问题，会导致慢查询，应该大家都司空见惯了吧。
 
-limit深分页为什么会变慢呢？ 假设有表结构如下：
-
+假设有表结构如下：
 ```sql
-CREATE  TABLE  account (  id  int(11)  NOT  NULL  AUTO_INCREMENT  COMMENT  '主键Id',   
-    name  varchar(255)  DEFAULT  NULL  COMMENT  '账户名',   balance  int(
-      11)  DEFAULT  NULL  COMMENT  '余额',   create_time  datetime  NOT  NULL  COMMENT  '创建时间',   
-    update_time  datetime  NOT  NULL  ON  UPDATE  CURRENT_TIMESTAMP  COMMENT  '更新时间',   
-    PRIMARY  KEY (id),   KEY  idx_name (name),   KEY  idx_create_time (
-      create_time)  //索引
-      ) ENGINE=InnoDB AUTO_INCREMENT=[1570068](tel:1570068) DEFAULT CHARSET=utf8 ROW_FORMAT=REDUNDANT COMMENT='账户表';
+CREATE  TABLE  account (  
+	id  int(11)  NOT  NULL  AUTO_INCREMENT  COMMENT  '主键Id',
+    name  varchar(255)  DEFAULT  NULL  COMMENT  '账户名',
+    balance  int(11)  DEFAULT  NULL  COMMENT  '余额',
+	create_time  datetime  NOT  NULL  COMMENT  '创建时间',   
+    update_time  datetime  NOT  NULL  ON  UPDATE  CURRENT_TIMESTAMP  COMMENT  '更新时间',
+    PRIMARY  KEY (id),   
+    KEY  idx_name (name),   
+    KEY  idx_create_time (
+      create_time
+    )  //索引
+) ENGINE=InnoDB AUTO_INCREMENT=DEFAULT CHARSET=utf8 ROW_FORMAT=REDUNDANT COMMENT='账户表';
 ```
 
-　　
 以下这个SQL，你知道执行过程是怎样的呢？
-
 ```sql
-select  id, name, balance  from  account  where  create_time >  
-  '2020-09-19' 
+select  id, name, balance  
+from  account  
+where  create_time > '2020-09-19' 
 limit  100000, 10;
 ```
 
 这个SQL的执行流程酱紫：
-
-- 通过普通二级索引树idx_create_time，过滤create_time条件，找到满足条件的主键id。
-
-- 通过主键id，回到id主键索引树，找到满足记录的行，然后取出需要展示的列（回表过程）
-
-- 扫描满足条件的100010行，然后扔掉前100000行，返回。
-
+1. 通过普通二级索引树`idx_create_time`，过滤`create_time`条件，找到满足条件的主键`id`。
+2. 通过主键`id`，回到`id`主键索引树，找到满足记录的行，然后取出需要展示的列（回表过程）
+3. 扫描满足条件的`100010`行，然后扔掉前`100000`行，返回。
 ![](http://n.sinaimg.cn/sinakd20221018s/468/w1080h188/20221018/714b-a2859b512b8914340dbed9e47797e136.png)
 
-因此，limit深分页，导致SQL变慢原因有两个：
-
-- limit语句会先扫描offset+n行，然后再丢弃掉前offset行，返回后n行数据。也就是说limit 100000,10，就会扫描100010行，而limit 0,10，只扫描10行。
-
-- limit 100000,10 扫描更多的行数，也意味着回表更多的次数。
+因此，`limit`深分页，导致SQL变慢原因有两个：
+- `limit`语句会先扫描offset+n行，然后再丢弃掉前offset行，返回后n行数据。也就是说`limit 100000,10`，就会扫描100010行，而`limit 0,10`，只扫描10行。
+- `limit 100000,10` 扫描更多的行数，也意味着**回表**更多的次数。
 
 **如何优化深分页问题?**
 
