@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "DDIA/SQL优化.md",
-                "mode": "source",
+                "file": "sqlDB/SQL优化.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DDIA/SQL优化.md",
+                "file": "sqlDB/SQL优化.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "DDIA/SQL优化.md",
+                "file": "sqlDB/SQL优化.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "DDIA/SQL优化.md"
+                "file": "sqlDB/SQL优化.md"
               }
             }
           },
@@ -139,7 +139,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -155,10 +155,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2354696360fce6b1",
+  "active": "9b51f0d214730f02",
   "lastOpenFiles": [
     "DDIA/关系型 vs 文档型.md",
-    "DDIA/SQL优化.md",
+    "sqlDB/SQL优化.md",
     "miniLSM/LSM-Tree原理.md",
     "miniLSM/LSM-Tree调优.md",
     "DDIA/img/Pasted image 20230212214619.png",
