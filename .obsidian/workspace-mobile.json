@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "bd3e85ccec824166",
+        "id": "9c8426c07f0d0cd3",
         "type": "tabs",
         "children": [
           {
-            "id": "cedbdce4af59e78e",
+            "id": "1edb241285394945",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -128,7 +128,7 @@
         }
       }
     ],
-    "currentTab": 2
+    "currentTab": 3
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -140,8 +140,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "51261e4058bc9810",
+  "active": "1edb241285394945",
   "lastOpenFiles": [
+    "/DDIA/SQL优化.md",
     "DDIA/SQL优化.md",
     "DDIA/关系型 vs 文档型.md",
     "/DDIA/关系型 vs 文档型.md",
