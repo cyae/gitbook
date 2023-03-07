@@ -175,7 +175,7 @@ limit  100000, 10;
 - `limit`语句会先扫描offset+n行，然后再丢弃掉前offset行，返回后n行数据。也就是说`limit 100000,10`，就会扫描100010行，而`limit 0,10`，只扫描10行。
 - `limit 100000,10` 扫描更多的行数，也意味着**回表**更多的次数。
 
-#### 如何优化深分页问题?
+#### 💡如何优化深分页问题?
 
 我们可以通过**减少回表次数**来优化。一般有标签记录法和延迟关联法。
 
@@ -322,7 +322,7 @@ sort_buffer的大小是由一个参数控制的：`sort_buffer_size`。
 
 >借助磁盘文件排序的话，效率就**更慢**。因为先把数据放入sort_buffer，当快要满时。会排一下序，然后把sort_buffer中的数据，放到临时磁盘文件，等到所有满足条件数据都查完排完，再用**归并算法**把磁盘的临时排好序的小文件，合并成一个有序的大文件。
 
-#### 如何优化order by的文件排序
+#### 💡如何优化order by的文件排序
 
 - 因为数据是无序的，所以就需要排序。如果**数据本身是有序**的，那就不会再用到文件排序啦。而**索引数据本身是有序**的，我们通过建立索引来优化`order by`语句。
 - 我们还可以通过调整`max_length_for_sort_data`、`sort_buffer_size`等参数优化；
@@ -416,7 +416,7 @@ CREATE  TABLE  user_job  (  
 
 `group by`一般用于**分组统计**，它表达的逻辑就是根据一定的规则，进行分组。日常开发中，我们使用得比较频繁。如果不注意，很容易产生慢SQL。
 
-#### group by为什么慢呢
+#### group by执行流程
 
 假设有表结构：
 ```sql
@@ -450,89 +450,89 @@ select city ,count(*) as num from staff group by city;
 创建内存临时表，表里有两个字段`city`和`num`；
 
 全表扫描`staff`的记录，依次取出`city = X`的记录。
-- 判断临时表中是否有为city='X'的行，没有就插入一个记录 (X,1);
-- 如果临时表中有city='X'的行，就将X这一行的num值加 1；
+- 判断临时表中是否有为`city = X`的行，没有就插入一个记录 (X,1);
+- 如果临时表中有`city = X`的行，就将X这一行的num值加 1；
 
-遍历完成后，再根据字段city做排序，得到结果集返回给客户端。这个流程的执行图如下：
-
+遍历完成后，再根据字段`city`做排序，得到结果集返回给客户端。这个流程的执行图如下：
 ![](http://n.sinaimg.cn/sinakd20221018s/710/w1048h462/20221018/0e0a-7a0da3a29385ede317cfda8d0e117db0.png)
 
 #### 临时表的排序是怎样的呢？
 
-就是把需要排序的字段，放到sort buffer，排完就返回。在这里注意一点哈，排序分全字段排序和rowid排序
-
+就是把需要排序的字段，放到sort buffer，排完就返回。在这里注意一点哈，排序分全字段排序和rowid排序:
 - 如果是全字段排序，需要查询返回的字段，都放入sort buffer，根据排序字段排完，直接返回
 - 如果是rowid排序，只是需要排序的字段放入sort buffer，然后多一次回表操作，再返回。
 
 #### group by可能会慢在哪里？
 
-group by使用不当，很容易就会产生慢SQL问题。因为它既用到临时表，又默认用到排序。有时候还可能用到磁盘临时表。
-
-- 如果执行过程中，会发现内存临时表大小到达了上限（控制这个上限的参数就是tmp_table_size），会把内存临时表转成磁盘临时表。
+`group by`使用不当，很容易就会产生慢SQL问题。因为它既用到**临时表**，又默认用到**排序**。有时候还可能用到**磁盘临时表**:
+- 如果执行过程中，会发现**内存临时表**大小到达了上限（控制这个上限的参数就是`tmp_table_size`），会把内存临时表转成磁盘临时表。
 - 如果数据量很大，很可能这个查询需要的磁盘临时表，就会占用大量的磁盘空间。
 
-#### 如何优化group by呢
+#### 💡如何优化group by呢
 
 从哪些方向去优化呢？
+- 既然它默认会排序，我们不给它排是不是就行啦。
+- 既然临时表是影响`group by`性能的X因素，我们是不是可以不用临时表？
 
-- 方向1：既然它默认会排序，我们不给它排是不是就行啦。
-- 方向2：既然临时表是影响group by性能的X因素，我们是不是可以不用临时表？
-
-我们一起来想下，执行group by语句为什么需要临时表呢？group by的语义逻辑，就是统计不同的值出现的个数。如果这个这些值一开始就是有序的，我们是不是直接往下扫描统计就好了，就不用临时表来记录并统计结果啦?
+我们一起来想下，执行`group by`语句为什么需要临时表呢？`group by`的语义逻辑，就是统计不同的值出现的个数。如果这个这些值一开始就是有序的，我们是不是直接往下扫描统计就好了，就不用临时表来记录并统计结果啦?
 
 可以有这些优化方案：
-
-- group by 后面的字段加索引
-- order by null 不用排序
+- `group by` 后面的字段加索引
+- `order by null` 不用排序
 - 尽量只使用内存临时表
-- 使用SQL_BIG_RESULT
+- 使用`SQL_BIG_RESULT`
 
-### 10.  delete + in子查询不走索引！
+### 10.  delete + in子查询不走索引
 
-之前见到过一个生产慢SQL问题，当delete遇到in子查询时，即使有索引，也是不走索引的。而对应的select + in子查询，却可以走索引。
+之前见到过一个生产慢SQL问题，当`delete`遇到`in`子查询时，即使有索引，也是不走索引的。而对应的`select + in`子查询，却可以走索引。
 
-MySQL版本是5.7，假设当前有两张表account和old_account,表结构如下：
-
+MySQL版本是5.7，假设当前有两张表`account`和`old_account`,表结构如下：
 ```sql
-CREATE  TABLE  `old_account`  (  `id` 
-    int(11)  NOT  NULL  AUTO_INCREMENT  COMMENT  '主键Id',   `name` 
-    varchar(255)  DEFAULT  NULL  COMMENT  '账户名',   `balance` 
-    int(11)  DEFAULT  NULL  COMMENT  '余额',   `create_time` 
-    datetime  NOT  NULL  COMMENT  '创建时间',   `update_time` 
-    datetime  NOT  NULL  ON  UPDATE  CURRENT_TIMESTAMP  COMMENT  '更新时间',   
-    PRIMARY  KEY (`id`),   KEY  `idx_name`  (`name`)  USING  BTREE
-  )  ENGINE = InnoDB  AUTO_INCREMENT = [1570068](tel: 1570068)  DEFAULT  CHARSET =
-  utf8  ROW_FORMAT = REDUNDANT  COMMENT = '老的账户表';
+CREATE  TABLE  old_account  (  
+	id int(11)  NOT  NULL  AUTO_INCREMENT  COMMENT  '主键Id', 
+    name varchar(255)  DEFAULT  NULL  COMMENT  '账户名', 
+    balance int(11)  DEFAULT  NULL  COMMENT  '余额', 
+    create_time datetime  NOT  NULL  COMMENT  '创建时间',
+    update_time datetime  NOT  NULL  ON  UPDATE  CURRENT_TIMESTAMP  COMMENT  '更新时间',   
+    PRIMARY  KEY (id),   
+    KEY  idx_name  (
+	    name
+	)  USING  BTREE
+)  ENGINE = InnoDB  AUTO_INCREMENT =  DEFAULT  CHARSET = utf8  ROW_FORMAT = REDUNDANT  COMMENT = '老的账户表';
 　　
-CREATE  TABLE  `account`  (  `id` 
-    int(11)  NOT  NULL  AUTO_INCREMENT  COMMENT  '主键Id',   `name` 
-    varchar(255)  DEFAULT  NULL  COMMENT  '账户名',   `balance` 
-    int(11)  DEFAULT  NULL  COMMENT  '余额',   `create_time` 
-    datetime  NOT  NULL  COMMENT  '创建时间',   `update_time` 
-    datetime  NOT  NULL  ON  UPDATE  CURRENT_TIMESTAMP  COMMENT  '更新时间',   
-    PRIMARY  KEY (`id`),   KEY  `idx_name`  (`name`)  USING  BTREE)  ENGINE =
-  InnoDB  AUTO_INCREMENT = [1570068](tel: 1570068)  DEFAULT  CHARSET =
-  utf8  ROW_FORMAT = REDUNDANT  COMMENT = '账户表';
+CREATE  TABLE  account  (  
+	id int(11)  NOT  NULL  AUTO_INCREMENT  COMMENT  '主键Id',   
+    name varchar(255)  DEFAULT  NULL  COMMENT  '账户名',   
+    balance int(11)  DEFAULT  NULL  COMMENT  '余额',   
+    create_time datetime  NOT  NULL  COMMENT  '创建时间',   
+    update_time datetime  NOT  NULL  ON  UPDATE  CURRENT_TIMESTAMP  COMMENT  '更新时间',   
+    PRIMARY  KEY (
+	    id
+	),   
+	KEY  idx_name  (
+	    name
+	)  USING  BTREE
+)  ENGINE = InnoDB  AUTO_INCREMENT = DEFAULT  CHARSET = utf8  ROW_FORMAT = REDUNDANT  COMMENT = '账户表';
 ```
 
 执行的SQL如下：
-
 ```sql
-delete from account where name in (select name from old_account);
+delete from account 
+where name 
+in (
+	select name 
+	from old_account
+);
 ```
 
 查看执行计划，发现不走索引：
-
 ![](http://n.sinaimg.cn/sinakd20221018s/480/w1080h200/20221018/726e-40f9686d6e412344779ec52cce2c5110.png)
 
-但是如果把delete换成select，就会走索引。如下：
-
+但是如果把`delete`换成`select`，就会走索引。如下：
 ![](http://n.sinaimg.cn/sinakd20221018s/476/w1080h196/20221018/d7e7-d9b71efd85237b1cdbec7dd1067b9ba6.png)
 
-为什么select + in子查询会走索引，delete + in子查询却不会走索引呢？
-
+为什么`select + in`子查询会走索引，`delete + in`子查询却不会走索引呢？
 我们执行以下SQL看看：
-
 ```sql
 explain  select  *  from  account  where  name  in  (select  name  from  old_account);
 
@@ -540,34 +540,22 @@ show  WARNINGS;  //可以查看优化后,最终执行的sql
 ```
 
 结果如下：
-
 ```sql
-select `test2`.
-`account`.
-`id`
-AS `id`, `test2`.
-`account`.
-`name`
-AS `name`, `test2`.
-`account`.
-`balance`
-AS `balance`, `test2`.
-`account`.
-`create_time`
-AS `create_time`, `test2`.
-`account`.
-`update_time`
+select `test2`.`account`.`id`
+AS `id`, `test2`.`account`.`name`
+AS `name`, `test2`.`account`.`balance`
+AS `balance`, `test2`.`account`.`create_time`
+AS `create_time`, `test2`.`account`.`update_time`
 AS `update_time`
-from `test2`.
-`account`
-semi join(`test2`.
-  `old_account`) where(`test2`.
-  `account`.
-  `name` = `test2`.
-  `old_account`.
-  `name`)
+from `test2`.`account`
+semi join (
+	`test2`.`old_account`
+)
+where (
+	`test2`.`account`.`name` = `test2`.`old_account`.`name`
+)
 ```
 
-可以发现，实际执行的时候，MySQL对select in子查询做了优化，把子查询改成join的方式，所以可以走索引。但是很遗憾，对于delete in子查询，MySQL却没有对它做这个优化。
+可以发现，实际执行的时候，MySQL对`select in`子查询做了优化，把子查询改成`join`的方式，所以可以走索引。但是很遗憾，对于`delete in`子查询，MySQL却没有对它做这个优化。
 
-日常开发中，大家注意一下这个场景哈
+日常开发中，大家注意一下这个场景

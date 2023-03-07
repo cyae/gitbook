@@ -139,7 +139,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -155,7 +155,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b51f0d214730f02",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
     "DDIA/关系型 vs 文档型.md",
     "sqlDB/SQL优化.md",
