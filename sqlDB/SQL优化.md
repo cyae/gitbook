@@ -157,7 +157,7 @@ CREATE  TABLE  account (  
 ) ENGINE=InnoDB AUTO_INCREMENT=DEFAULT CHARSET=utf8 ROW_FORMAT=REDUNDANT COMMENT='账户表';
 ```
 
-以下这个SQL，你知道执行过程是怎样的呢？
+#### 深分页为什么慢呢？
 ```sql
 select  id, name, balance  
 from  account  
@@ -175,260 +175,281 @@ limit  100000, 10;
 - `limit`语句会先扫描offset+n行，然后再丢弃掉前offset行，返回后n行数据。也就是说`limit 100000,10`，就会扫描100010行，而`limit 0,10`，只扫描10行。
 - `limit 100000,10` 扫描更多的行数，也意味着**回表**更多的次数。
 
-**如何优化深分页问题?**
+#### 如何优化深分页问题?
 
-我们可以通过减少回表次数来优化。一般有标签记录法和延迟关联法。
+我们可以通过**减少回表次数**来优化。一般有标签记录法和延迟关联法。
 
-#### 标签记录法
+##### 标签记录法
 
-> 就是标记一下上次查询到哪一条了，下次再来查的时候，从该条开始往下扫描。就好像看书一样，上次看到哪里了，你就折叠一下或者夹个书签，下次来看的时候，直接就翻到啦。
+>就是标记一下上次查询到哪一条了，下次再来查的时候，从该条开始往下扫描。就好像看书一样，上次看到哪里了，你就折叠一下或者夹个书签，下次来看的时候，直接就翻到啦。
 
 假设上一次记录到100000，则SQL可以修改为：
-
 ```sql
-select  id,name,balance FROM account where id > 100000 limit 10;
+select  id,name,balance 
+FROM account
+where id > 100000 
+limit 10;
 ```
 
-这样的话，后面无论翻多少页，性能都会不错的，因为命中了id索引。但是这种方式有局限性：需要一种类似连续自增的字段。
+这样的话，后面无论翻多少页，性能都会不错的，因为命中了id索引。但是这种方式有**局限性**：需要一种类似**连续自增**的字段。
 
-#### 延迟关联法
+##### 延迟关联法
 
 延迟关联法，就是把条件转移到主键索引树，然后减少回表。如下
-
 ```sql
-select   acct1.id, acct1.name, acct1.balance  FROM  account  acct1  INNER  JOIN (
-  SELECT  a.id  FROM  account  a  WHERE  a.create_time  >  
-  '2020-09-19' 
-  limit  100000,  10)  AS  acct2  on  acct1.id =  acct2.id;
+select   acct1.id, acct1.name, acct1.balance  
+FROM  account  acct1
+INNER JOIN (
+	SELECT  a.id  
+	FROM  account  a  
+	WHERE  a.create_time  >  '2020-09-19' 
+	limit  100000,  10
+)  AS  acct2  
+on  acct1.id = acct2.id;
 ```
 
-优化思路就是，先通过idx_create_time二级索引树查询到满足条件的主键ID，再与原表通过主键ID内连接，这样后面直接走了主键索引了，同时也减少了回表。
+优化思路就是，先通过`idx_create_time`二级索引树查询到满足条件的主键ID，再与原表通过主键ID**内连接**，这样后面直接走主键索引了，同时也减少了回表。
 
 ### 4. in元素过多
 
-如果使用了in，即使后面的条件加了索引，还是要注意in后面的元素不要过多哈。in元素一般建议不要超过200个，如果超过了，建议分组，每次200一组进行哈。
+如果使用了`in`，即使后面的条件加了索引，也要注意`in`后面的元素不要过多。`in`元素一般建议不要超过`200`个，如果超过了，建议分组，每200一组进行。
 
 反例:
-
 ```sql
-select user_id,name from user where user_id in (1,2,3...1000000); 
+select user_id,name 
+from user 
+where user_id 
+in (1,2,3,...,1000000); 
 ```
 
-如果我们对in的条件不做任何限制的话，该查询语句一次性可能会查询出非常多的数据，很容易导致接口超时。尤其有时候，我们是用的子查询，in后面的子查询，你都不知道数量有多少那种，更容易采坑.如下这种子查询：
+如果我们对`in`的条件不做任何限制的话，该查询语句一次性可能会查询出非常多的数据，很容易导致接口超时。
 
+尤其有时候，我们是用的子查询，**in后面的子查询结果集大小未知**，更容易采坑. 如下这种子查询：
 ```sql
-select * from user where user_id in (select author_id from artilce where type = 1);
+select * 
+from user 
+where user_id 
+in (
+	select author_id 
+	from artilce 
+	where type = 1
+);
 ```
 
-如果type = 1有1一千，甚至上万个呢？肯定是慢SQL。索引一般建议分批进行，一次200个，比如：
-
+如果`type = 1`有一千，甚至上万个呢？肯定是慢SQL。索引一般建议分批进行，一次200个，比如：
 ```sql
-select user_id,name from user where user_id in (1,2,3...200);
+select user_id,name 
+from user 
+where user_id 
+in (1,2,3...200);
 ```
 
 #### in查询为什么慢呢？
 
-> 这是因为in查询在MySQL底层是通过n*m的方式去搜索，类似union。
+>这是因为`in`查询在MySQL底层是通过n\*m笛卡尔积的方式去搜索，类似`union`。
 >
-> in查询在进行cost代价计算时（代价 = 元组数 * IO平均值），是通过将in包含的数值，一条条去查询获取元组数的，因此这个计算过程会比较的慢，所以MySQL设置了个临界值(eq_range_index_dive_limit)，5.6之后超过这个临界值后该列的cost就不参与计算了。因此会导致执行计划选择不准确。默认是200，即in条件超过了200个数据，会导致in的代价计算存在问题，可能会导致Mysql选择的索引不准确。
+>`in`查询在进行cost代价计算时（代价 = 元组数 * IO平均值），是通过将`in`包含的数值，一条条去查询获取元组数的，因此这个计算过程会比较的慢，所以MySQL设置了个临界值(`eq_range_index_dive_limit`)，5.6之后超过这个临界值后该列的cost就不参与计算了。因此会导致**执行计划选择不准确**。
+>
+>默认是`200`，即`in`条件超过了200个数据，会导致`in`的代价计算存在问题，可能会导致Mysql选择的索引不准确。
 
-### 5. order by 走文件排序导致的慢查询
+### 5. order by走filesort导致的慢查询
 
-如果order by 使用到文件排序，则会可能会产生慢查询。我们来看下下面这个SQL：
-
+我们来看下下面这个SQL：
 ```sql
-select  name, age, city  from  staff  where  city  =  '深圳' 
-order  by  age  limit  10;
+select  name, age, city  
+from  staff  
+where  city  =  '深圳' 
+order  by  age  
+limit  10;
 ```
 
 它表示的意思就是：查询前10个，来自深圳员工的姓名、年龄、城市，并且按照年龄小到大排序。
-
 ![](http://n.sinaimg.cn/sinakd20221018s/478/w1080h198/20221018/95e4-56cfa5571ab4e59a621be4b3be113249.png)
 
-查看explain执行计划的时候，可以看到Extra这一列，有一个Using filesort，它表示用到文件排序。
+查看`explain`执行计划的时候，可以看到`Extra`这一列，有一个`Using filesort`，它表示用到文件排序。
 
-#### order by文件排序效率为什么较低?
+#### order by文件排序效率为什么低?
 
 大家可以看下这个下面这个图:
-
 ![](http://n.sinaimg.cn/sinakd20221018s/507/w1080h227/20221018/6f9d-994469e6cfe6e78e8a7d79c61b314867.png)
 
-order by排序，分为全字段排序和rowid排序。它是拿max_length_for_sort_data和结果行数据长度对比，如果结果行数据长度超过max_length_for_sort_data这个值，就会走rowid排序，相反，则走全字段排序。
+`order by`排序，分为*全字段排序*和*rowid排序*。它是拿`max_length_for_sort_data`和结果行数据长度对比，如果结果行数据长度超过`max_length_for_sort_data`这个值，就会走rowid排序，相反，则走全字段排序。
 
-#### rowid排序
+##### rowid排序
 
-rowid排序，一般需要回表去找满足条件的数据，所以效率会慢一点。以下这个SQL，使用rowid排序，执行过程是这样：
-
+rowid排序，一般需要**回表**去找满足条件的数据，所以效率会慢一点。以下这个SQL，使用rowid排序，执行过程是这样：
 ```sql
-select  name, age, city  from  staff  where  city  =  '深圳' 
-order  by  age  limit  10;
+select  name, age, city  
+from  staff  
+where  city  =  '深圳' 
+order  by  age  
+limit  10;
 ```
 
-- MySQL为对应的线程初始化sort_buffer，放入需要排序的age字段，以及主键id；
-- 从索引树idx_city， 找到第一个满足 city='深圳’条件的主键id,假设id为X；
-- 到主键id索引树拿到id=X的这一行数据， 取age和主键id的值，存到sort_buffer；
-- 从索引树idx_city拿到下一个记录的主键id，假设id=Y；
-- 重复步骤 3、4 直到city的值不等于深圳为止；
+1. MySQL为对应的线程初始化sort_buffer，放入需要排序的`age`字段，以及主键id；
+2. 从索引树`idx_city`， 找到第一个满足 `city='深圳'`条件的主键id,假设id为X；
+3. 到主键id索引树拿到`id=X`的这一行数据， 取`age`和主键id的值，存到sort_buffer；
+4. 从索引树`idx_city`拿到下一个记录的主键id，假设`id=Y`；
+5. 重复步骤 3、4 直到`city`的值不等于深圳为止；
 
-前面5步已经查找到了所有city为深圳的数据，在sort_buffer中，将所有数据根据age进行排序；遍历排序结果，取前10行，并按照id的值回到原表中，取出city、name 和 age三个字段返回给客户端。
-
+前面5步已经查找到了所有`city`为深圳的数据，在sort_buffer中，将所有数据根据`age`进行排序；遍历排序结果，取前10行，并按照id的值回到原表中，取出`city`、`name` 和 `age`三个字段返回给客户端。
 ![](http://n.sinaimg.cn/sinakd20221018s/797/w1080h517/20221018/ac59-7183c504494f0abf95cc9417fa5bdfcb.png)
 
-#### 全字段排序
+##### 全字段排序
 
 同样的SQL，如果是走全字段排序是这样的：
-
 ```sql
-select  name, age, city  from  staff  where  city  =  '深圳' 
-order  by  age  limit  10;
+select  name, age, city  
+from  staff  
+where  city  =  '深圳' 
+order  by  age  
+limit  10;
 ```
 
-- MySQL 为对应的线程初始化sort_buffer，放入需要查询的name、age、city字段；
-- 从索引树idx_city， 找到第一个满足 city='深圳’条件的主键 id，假设找到id=X；
-- 到主键id索引树拿到id=X的这一行数据， 取name、age、city三个字段的值，存到sort_buffer；
-- 从索引树idx_city 拿到下一个记录的主键id，假设id=Y；
-- 重复步骤 3、4 直到city的值不等于深圳为止；
+1. MySQL 为对应的线程初始化sort_buffer，放入需要查询的`name`、`age`、`city`字段；
+2. 从索引树`idx_city`， 找到第一个满足 `city='深圳'`条件的主键 id，假设找到`id=X`；
+3. 到主键id索引树拿到`id=X`的这一行数据， 取`name`、`age`、`city`三个字段的值，存到sort_buffer；
+4. 从索引树`idx_city` 拿到下一个记录的主键id，假设`id=Y`；
+5. 重复步骤 3、4 直到`city`的值不等于深圳为止；
 
-前面5步已经查找到了所有city为深圳的数据，在sort_buffer中，将所有数据根据age进行排序；
-
-按照排序结果取前10行返回给客户端。
-
+前面5步已经查找到了所有`city`为深圳的数据，在sort_buffer中，将所有数据根据age进行排序；按照排序结果取前10行返回给客户端。
 ![](http://n.sinaimg.cn/sinakd20221018s/109/w1080h629/20221018/442c-2423eb7b4acb1fc6d4314c7be12104ab.png)
 
-sort_buffer的大小是由一个参数控制的：sort_buffer_size。
+sort_buffer的大小是由一个参数控制的：`sort_buffer_size`。
 
-- 如果要排序的数据小于sort_buffer_size，排序在sort_buffer内存中完成
-- 如果要排序的数据大于sort_buffer_size，则借助磁盘文件来进行排序。
+- 如果要排序的数据小于`sort_buffer_size`，排序在sort_buffer**内存**中完成
+- 如果要排序的数据大于`sort_buffer_size`，则借助**磁盘文件**来进行排序。
 
-> 借助磁盘文件排序的话，效率就更慢一点。因为先把数据放入sort_buffer，当快要满时。会排一下序，然后把sort_buffer中的数据，放到临时磁盘文件，等到所有满足条件数据都查完排完，再用归并算法把磁盘的临时排好序的小文件，合并成一个有序的大文件。
+>借助磁盘文件排序的话，效率就**更慢**。因为先把数据放入sort_buffer，当快要满时。会排一下序，然后把sort_buffer中的数据，放到临时磁盘文件，等到所有满足条件数据都查完排完，再用**归并算法**把磁盘的临时排好序的小文件，合并成一个有序的大文件。
 
 #### 如何优化order by的文件排序
 
-order by使用文件排序，效率会低一点。我们怎么优化呢？
-
-- 因为数据是无序的，所以就需要排序。如果数据本身是有序的，那就不会再用到文件排序啦。而索引数据本身是有序的，我们通过建立索引来优化order by语句。
-- 我们还可以通过调整max_length_for_sort_data、sort_buffer_size等参数优化；
+- 因为数据是无序的，所以就需要排序。如果**数据本身是有序**的，那就不会再用到文件排序啦。而**索引数据本身是有序**的，我们通过建立索引来优化`order by`语句。
+- 我们还可以通过调整`max_length_for_sort_data`、`sort_buffer_size`等参数优化；
 
 ### 6. 索引字段上使用is null， is not null，索引可能失效
 
 表结构:
-
 ```sql
-CREATE  TABLE  `user`  (  `id` 
-  int(11)  NOT  NULL  AUTO_INCREMENT,   `card` 
-  varchar(255)  DEFAULT  NULL,   `name` 
-  varchar(255)  DEFAULT  NULL,   PRIMARY  KEY (`id`),   KEY  `idx_name`  (
-    `name`)  USING  BTREE,   KEY  `idx_card`  (`card`)  USING  BTREE
+CREATE  TABLE  `user`  (  
+	id  int(11)  NOT  NULL  AUTO_INCREMENT,   
+	card varchar(255)  DEFAULT  NULL,   
+	name varchar(255)  DEFAULT  NULL,   
+	PRIMARY  KEY (id),   
+	KEY  idx_name  (
+		name
+    )  USING  BTREE,   
+    KEY  idx_card  (
+	    card
+	)  USING  BTREE
 )  ENGINE = InnoDB  AUTO_INCREMENT = 2  DEFAULT  CHARSET = utf8;
 ```
 
-单个name字段加上索引，并查询name为非空的语句，其实会走索引的，如下:
-
+单个`name`字段加上索引，并查询`name`为非空的语句，其实会走索引的，如下:
 ![](http://n.sinaimg.cn/sinakd20221018s/459/w1080h179/20221018/bdfa-c027c61ce8ea94e9b520124bfa7f7dd2.png)
 
-单个card字段加上索引，并查询name为非空的语句，其实会走索引的，如下:
-
+单个`card`字段加上索引，并查询`name`为非空的语句，其实会走索引的，如下:
 ![](http://n.sinaimg.cn/sinakd20221018s/501/w1080h221/20221018/343b-f34404014b3578e9b3185d168ecf0fbb.png)
 
-但是它两用or连接起来，索引就失效了，如下：
-
+但是它两用`or`连接起来，索引就失效了，如下：
 ![](http://n.sinaimg.cn/sinakd20221018s/531/w1080h251/20221018/dd32-4bbfc465a1b17dab3bb32fd9cf33e44d.png)
 
-很多时候，也是因为数据量问题，导致了MySQL优化器放弃走索引。同时，平时我们用explain分析SQL的时候，如果type=range,要注意一下哈，因为这个可能因为数据量问题，导致索引无效。
+很多时候，也是因为**数据量问题**，导致了MySQL**优化器放弃走索引**。同时，平时我们用`explain`分析SQL的时候，如果`type=range`,要注意一下，因为这个可能因为数据量问题，导致索引无效。
 
-### 7. 索引字段上使用（！= 或者 ），索引可能失效
+### 7. 索引字段上使用（!= 或者 not in），索引可能失效
 
 假设有表结构：
-
 ```sql
-CREATE  TABLE  `user`  (  `id` 
-    int(11)  NOT  NULL  AUTO_INCREMENT,   `userId` 
-    int(11)  NOT  NULL,   `age` 
-    int(11)  DEFAULT  NULL,   `name` 
-    varchar(255)  NOT  NULL,   PRIMARY  KEY (`id`),   KEY  `idx_age`  (
-      `age`)  USING  BTREE)  ENGINE = InnoDB  AUTO_INCREMENT = 2  DEFAULT  CHARSET =
-  utf8;
+CREATE  TABLE  user  (  
+	id  int(11)  NOT  NULL  AUTO_INCREMENT,   
+	userId  int(11)  NOT  NULL,   
+	age int(11)  DEFAULT  NULL,   
+	name varchar(255)  NOT  NULL,   
+	PRIMARY  KEY (id),   
+	KEY  idx_age  (
+      age
+    )  USING  BTREE
+)  ENGINE = InnoDB  AUTO_INCREMENT = 2  DEFAULT  CHARSET = utf8;
 ```
 
-虽然age加了索引，但是使用了!=或者，not in这些时，索引如同虚设。如下：
-
+虽然`age`加了索引，但是使用了`!=`或者，`not in`这些时，索引如同虚设。如下：
 ![](http://n.sinaimg.cn/sinakd20221018s/445/w1080h165/20221018/31eb-c8ec9431da0e10b02f06187d23f0db52.png)
 
-其实这个也是跟mySQL优化器有关，如果优化器觉得即使走了索引，还是需要扫描很多很多行的哈，它觉得不划算，不如直接不走索引。平时我们用！= 或者，not in的时候，留点心眼哈。
+其实这个也是跟mySQL**优化器**有关，如果优化器觉得即使走了索引，还是需要扫描很多很多行的哈，它觉得不划算，不如直接不走索引。平时我们用 `!=` 或者，`not in`的时候，留点心眼。
 
 ### 8. 左右连接，关联的字段编码格式不一样
 
-新建两个表，一个user，一个user_job
-
+新建两个表，一个`user`，一个`user_job`:
 ```sql
-CREATE  TABLE  `user`  (  `id` 
-    int(11)  NOT  NULL  AUTO_INCREMENT,   `name` 
-    varchar(255)  CHARACTER  SET  utf8mb4  DEFAULT  NULL,   `age` 
-    int(11)  NOT  NULL,   PRIMARY  KEY (`id`),   KEY  `idx_name`  (
-      `name`)  USING  BTREE)  ENGINE = InnoDB  AUTO_INCREMENT = 2  DEFAULT  CHARSET = utf8;　　
+CREATE  TABLE  user  (  
+	id int(11)  NOT  NULL  AUTO_INCREMENT,   
+	name varchar(255)  CHARACTER  SET  utf8mb4  DEFAULT  NULL,   
+    age int(11)  NOT  NULL,   
+    PRIMARY  KEY (id),   
+    KEY  idx_name  (
+      name
+    )  USING  BTREE
+)  ENGINE = InnoDB  AUTO_INCREMENT = 2  DEFAULT  CHARSET = utf8;　　
   
-CREATE  TABLE  `user_job`  (  `id` 
-    int(11)  NOT  NULL,   `userId` 
-    int(11)  NOT  NULL,   `job` 
-    varchar(255)  DEFAULT  NULL,   `name` 
-    varchar(255)  DEFAULT  NULL,   PRIMARY  KEY (`id`),   KEY  `idx_name`  (
-      `name`)  USING  BTREE)  ENGINE = InnoDB  DEFAULT  CHARSET = utf8;
+CREATE  TABLE  user_job  (  
+	id int(11)  NOT  NULL,   
+	userId int(11)  NOT  NULL,   
+    job varchar(255)  DEFAULT  NULL,   
+    name varchar(255)  DEFAULT  NULL,   
+    PRIMARY  KEY (id),   
+    KEY  idx_name  (
+      name
+    )  USING  BTREE
+)  ENGINE = InnoDB  DEFAULT  CHARSET = utf8;
 ```
 
-user表的name字段编码是utf8mb4，而user_job表的name字段编码为utf8。
-
+`user`表的`name`字段编码是`utf8mb4`，而`user_job`表的`name`字段编码为`utf8`。
 ![](http://n.sinaimg.cn/sinakd20221018s/590/w1038h352/20221018/8f25-629a5776c5eccaf42860bdbc845ed49e.png)
 
-执行左外连接查询,user_job表还是走全表扫描，如下：
-
+执行左外连接查询, `user_job`表还是走全表扫描，如下：
 ![](http://n.sinaimg.cn/sinakd20221018s/565/w1080h285/20221018/51ad-1f7efae98f9f207bca51ced374889195.png)
 
-如果把它们的name字段改为编码一致，相同的SQL，还是会走索引。
-
+如果把它们的`name`字段改为编码一致，相同的SQL，还是会走索引。
 ![](http://n.sinaimg.cn/sinakd20221018s/579/w1080h299/20221018/e6a9-9e1abba85a8ec639783104480b2e0792.png)
 
 ### 9. group by使用临时表
 
-group by一般用于分组统计，它表达的逻辑就是根据一定的规则，进行分组。日常开发中，我们使用得比较频繁。如果不注意，很容易产生慢SQL。
+`group by`一般用于**分组统计**，它表达的逻辑就是根据一定的规则，进行分组。日常开发中，我们使用得比较频繁。如果不注意，很容易产生慢SQL。
 
-#### group by执行流程
+#### group by为什么慢呢
 
 假设有表结构：
-
 ```sql
-CREATE  TABLE  `staff`  (  `id` 
-    bigint(11)  NOT  NULL  AUTO_INCREMENT  COMMENT  '主键id',   
-    `id_card` 
-    varchar(20)  NOT  NULL  COMMENT  '身份证号码',   `name` 
-    varchar(64)  NOT  NULL  COMMENT  '姓名',   `age` 
-    int(4)  NOT  NULL  COMMENT  '年龄',   `city` 
-    varchar(64)  NOT  NULL  COMMENT  '城市',   PRIMARY  KEY (`id`))  ENGINE =
-  InnoDB  AUTO_INCREMENT = 15  DEFAULT  CHARSET = utf8  COMMENT =
-  '员工表';
+CREATE  TABLE  staff  (  
+	id bigint(11)  NOT  NULL  AUTO_INCREMENT  COMMENT  '主键id',   
+    id_card varchar(20)  NOT  NULL  COMMENT  '身份证号码',   
+    name varchar(64)  NOT  NULL  COMMENT  '姓名',   
+    age int(4)  NOT  NULL  COMMENT  '年龄',   
+    city varchar(64)  NOT  NULL  COMMENT  '城市',   
+    PRIMARY  KEY (
+	    id
+	)
+)  ENGINE = InnoDB  AUTO_INCREMENT = 15  DEFAULT  CHARSET = utf8  COMMENT = '员工表';
 ```
 
 我们查看一下这个SQL的执行计划：
-
 ```sql
 explain select city ,count(*) as num from staff group by city;
 ```
 
 ![](http://n.sinaimg.cn/sinakd20221018s/491/w1080h211/20221018/20c6-1f2f2461c0ae5b04052c05ee2de43cd9.png)
 
-- Extra 这个字段的Using temporary表示在执行分组的时候使用了临时表
-- Extra 这个字段的Using filesort表示使用了文件排序
+- `Extra` 这个字段的`Using temporary`表示在执行分组的时候使用了**临时表**
+- `Extra` 这个字段的`Using filesort`表示使用了**文件排序**
 
-group by是怎么使用到临时表和排序了呢？我们来看下这个SQL的执行流程
-
+`group by`是怎么使用到临时表和排序了呢？我们来看下这个SQL的执行流程
 ```sql
 select city ,count(*) as num from staff group by city;
 ```
 
-　　
-创建内存临时表，表里有两个字段city和num；
+创建内存临时表，表里有两个字段`city`和`num`；
 
-全表扫描staff的记录，依次取出city = 'X'的记录。
-
+全表扫描`staff`的记录，依次取出`city = X`的记录。
 - 判断临时表中是否有为city='X'的行，没有就插入一个记录 (X,1);
 - 如果临时表中有city='X'的行，就将X这一行的num值加 1；
 
