@@ -1,11 +1,13 @@
 ---
 date created: 2023-03-06 21:54
-date updated: 2023-03-06 22:04
+date updated: 2023-03-07 22:48
 ---
+
 #SQL
 ![](http://n.sinaimg.cn/sinakd20221018s/291/w1080h811/20221018/2b5c-0588511925c5d60f774f430fb9223f73.png)
 
 ---
+
 ## 问题定位
 
 ### 1. 查看慢查询日志
@@ -16,6 +18,7 @@ show variables like ’slow_query_log%’
 慢查询阈值
 show variables like ’long_query_time’
 ```
+
 ![](http://n.sinaimg.cn/sinakd20221018s/13/w593h220/20221018/8362-46c21cca8389b221009f2a289d442743.png)
 
 ![](http://n.sinaimg.cn/sinakd20221018s/752/w558h194/20221018/93a0-711839964c8db677ade3e09d5fc0ee01.png)
@@ -28,14 +31,14 @@ show variables like ’long_query_time’
 
 type表示连接类型，查看索引执行情况的一个重要指标。以下性能从好到坏依次：system > const > eq_ref > ref > ref_or_null > index_merge > unique_subquery > index_subquery > range > index > ALL
 
-- **system**：这种类型要求数据库表中只有一条数据，是*const*类型的一个特例，一般情况下是不会出现的
+- **system**：这种类型要求数据库表中只有一条数据，是_const_类型的一个特例，一般情况下是不会出现的
 - **const**：通过一次索引就能找到数据，一般用于主键或唯一索引作为条件，这类扫描效率极高，速度非常快
 - **eq_ref**：常用于主键或唯一索引扫描，一般指使用主键的关联查询
 - **ref** : 常用于非主键和唯一索引扫描
-- **ref_or_null**：这种连接类型类似于*ref*，区别在于MySQL会额外搜索包含NULL值的行
+- **ref_or_null**：这种连接类型类似于_ref_，区别在于MySQL会额外搜索包含NULL值的行
 - **index_merge**：使用了索引合并优化方法，查询使用了两个以上的索引。
-- **unique_subquery**：类似于*eq_ref*，条件用了`in`子查询
-- **index_subquery**：区别于*unique_subquery*，用于非唯一索引，可以返回重复值
+- **unique_subquery**：类似于_eq_ref_，条件用了`in`子查询
+- **index_subquery**：区别于_unique_subquery_，用于非唯一索引，可以返回重复值
 - **range**：常用于范围查询，比如：`between ... and` 或 `in` 等操作
 - **index**：全索引扫描
 - **ALL**：全表扫描
@@ -64,7 +67,7 @@ type表示连接类型，查看索引执行情况的一个重要指标。以下�
 
 ### 3. profile分析执行资源消耗
 
-`explain`只是看到SQL的预估执行计划，如果要了解SQL真正的执行线程状态及消耗的时间，需要使用`profiling`。开启`profiling`参数后，后续执行的SQL语句都会记录其资源开销，包括*IO*，*上下文切换*，*CPU*，*内存*等等，我们可以根据这些开销进一步分析当前慢SQL的瓶颈再进一步进行优化。
+`explain`只是看到SQL的预估执行计划，如果要了解SQL真正的执行线程状态及消耗的时间，需要使用`profiling`。开启`profiling`参数后，后续执行的SQL语句都会记录其资源开销，包括_IO_，_上下文切换_，_CPU_，_内存_等等，我们可以根据这些开销进一步分析当前慢SQL的瓶颈再进一步进行优化。
 
 ![](http://n.sinaimg.cn/sinakd20221018s/68/w605h263/20221018/5392-e971a950b338b49a62a5f08e902fc7d2.png)
 
@@ -87,6 +90,7 @@ type表示连接类型，查看索引执行情况的一个重要指标。以下�
 ### 1. 隐式转换
 
 我们创建一个用户`user`表:
+
 ```sql
 CREATE  TABLE  user (  
 	id  int(11)  NOT  NULL  AUTO_INCREMENT,   
@@ -106,15 +110,16 @@ userId字段为字串类型，是B+树的普通索引，如果查询条件传了
 如果给数字加上'',也就是说，传的是一个字符串呢? 当然是走索引，如下图：
 ![](http://n.sinaimg.cn/sinakd20221018s/480/w1080h200/20221018/6e16-45218e5c907346df3d87929353aedd6b.png)
 
->为什么第一条语句未加单引号就不走索引了呢？
+> 为什么第一条语句未加单引号就不走索引了呢？
 >
->这是因为不加单引号时，是字符串跟数字的比较，它们类型不匹配，MySQL会做隐式的类型转换，把它们转换为浮点数再做比较。隐式的类型转换，索引会失效。
+> 这是因为不加单引号时，是字符串跟数字的比较，它们类型不匹配，MySQL会做隐式的类型转换，把它们转换为浮点数再做比较。隐式的类型转换，索引会失效。
 
 ### 2. 最左匹配
 
 MySQl建立**联合索引**时，会遵循**最左前缀匹配**的原则，即最左优先。如果你建立一个`(a,b,c)`的联合索引，相当于建立了`(a)`、`(a,b)`、`(a,b,c)`三个索引。
 
 假设有以下表结构：
+
 ```sql
 CREATE  TABLE  user (  
 	id  int(11)  NOT  NULL  AUTO_INCREMENT,   
@@ -129,9 +134,11 @@ CREATE  TABLE  user (  
 ```
 
 假设有一个联合索引`idx_userid_name`，我们现在执行以下SQL，如果查询列是`name`，索引是无效的：
+
 ```sql
 explain select * from user where name ='捡田螺的小男孩';
 ```
+
 ![](http://n.sinaimg.cn/sinakd20221018s/462/w1080h182/20221018/77aa-8dbfcac025f0ed24a772803a69b767df.png)
 
 因为查询条件列`name`不是联合索引`idx_userid_name`中的第一个列，不满足最左匹配原则，所以索引不生效。在联合索引中，只有查询条件满足最左匹配原则时，索引才正常生效。如下，查询条件列是`user_id`
@@ -142,6 +149,7 @@ explain select * from user where name ='捡田螺的小男孩';
 `limit`深分页问题，会导致慢查询，应该大家都司空见惯了吧。
 
 假设有表结构如下：
+
 ```sql
 CREATE  TABLE  account (  
 	id  int(11)  NOT  NULL  AUTO_INCREMENT  COMMENT  '主键Id',
@@ -158,6 +166,7 @@ CREATE  TABLE  account (  
 ```
 
 #### 深分页为什么慢呢？
+
 ```sql
 select  id, name, balance  
 from  account  
@@ -166,12 +175,15 @@ limit  100000, 10;
 ```
 
 这个SQL的执行流程酱紫：
+
 1. 通过普通二级索引树`idx_create_time`，过滤`create_time`条件，找到满足条件的主键`id`。
 2. 通过主键`id`，回到`id`主键索引树，找到满足记录的行，然后取出需要展示的列（回表过程）
 3. 扫描满足条件的`100010`行，然后扔掉前`100000`行，返回。
+
 ![](http://n.sinaimg.cn/sinakd20221018s/468/w1080h188/20221018/714b-a2859b512b8914340dbed9e47797e136.png)
 
 因此，`limit`深分页，导致SQL变慢原因有两个：
+
 - `limit`语句会先扫描offset+n行，然后再丢弃掉前offset行，返回后n行数据。也就是说`limit 100000,10`，就会扫描100010行，而`limit 0,10`，只扫描10行。
 - `limit 100000,10` 扫描更多的行数，也意味着**回表**更多的次数。
 
@@ -181,9 +193,10 @@ limit  100000, 10;
 
 ##### 标签记录法
 
->就是标记一下上次查询到哪一条了，下次再来查的时候，从该条开始往下扫描。就好像看书一样，上次看到哪里了，你就折叠一下或者夹个书签，下次来看的时候，直接就翻到啦。
+> 就是标记一下上次查询到哪一条了，下次再来查的时候，从该条开始往下扫描。就好像看书一样，上次看到哪里了，你就折叠一下或者夹个书签，下次来看的时候，直接就翻到啦。
 
 假设上一次记录到100000，则SQL可以修改为：
+
 ```sql
 select  id,name,balance 
 FROM account
@@ -196,6 +209,7 @@ limit 10;
 ##### 延迟关联法
 
 延迟关联法，就是把条件转移到主键索引树，然后减少回表。如下
+
 ```sql
 select   acct1.id, acct1.name, acct1.balance  
 FROM  account  acct1
@@ -215,6 +229,7 @@ on  acct1.id = acct2.id;
 如果使用了`in`，即使后面的条件加了索引，也要注意`in`后面的元素不要过多。`in`元素一般建议不要超过`200`个，如果超过了，建议分组，每200一组进行。
 
 反例:
+
 ```sql
 select user_id,name 
 from user 
@@ -225,6 +240,7 @@ in (1,2,3,...,1000000); 
 如果我们对`in`的条件不做任何限制的话，该查询语句一次性可能会查询出非常多的数据，很容易导致接口超时。
 
 尤其有时候，我们是用的子查询，**in后面的子查询结果集大小未知**，更容易采坑. 如下这种子查询：
+
 ```sql
 select * 
 from user 
@@ -237,6 +253,7 @@ in (
 ```
 
 如果`type = 1`有一千，甚至上万个呢？肯定是慢SQL。索引一般建议分批进行，一次200个，比如：
+
 ```sql
 select user_id,name 
 from user 
@@ -246,15 +263,16 @@ in (1,2,3...200);
 
 #### in查询为什么慢呢？
 
->这是因为`in`查询在MySQL底层是通过n\*m笛卡尔积的方式去搜索，类似`union`。
+> 这是因为`in`查询在MySQL底层是通过n*m笛卡尔积的方式去搜索，类似`union`。
 >
->`in`查询在进行cost代价计算时（代价 = 元组数 * IO平均值），是通过将`in`包含的数值，一条条去查询获取元组数的，因此这个计算过程会比较的慢，所以MySQL设置了个临界值(`eq_range_index_dive_limit`)，5.6之后超过这个临界值后该列的cost就不参与计算了。因此会导致**执行计划选择不准确**。
+> `in`查询在进行cost代价计算时（代价 = 元组数 * IO平均值），是通过将`in`包含的数值，一条条去查询获取元组数的，因此这个计算过程会比较的慢，所以MySQL设置了个临界值(`eq_range_index_dive_limit`)，5.6之后超过这个临界值后该列的cost就不参与计算了。因此会导致**执行计划选择不准确**。
 >
->默认是`200`，即`in`条件超过了200个数据，会导致`in`的代价计算存在问题，可能会导致Mysql选择的索引不准确。
+> 默认是`200`，即`in`条件超过了200个数据，会导致`in`的代价计算存在问题，可能会导致Mysql选择的索引不准确。
 
 ### 5. order by走filesort导致的慢查询
 
 我们来看下下面这个SQL：
+
 ```sql
 select  name, age, city  
 from  staff  
@@ -273,11 +291,12 @@ limit  10;
 大家可以看下这个下面这个图:
 ![](http://n.sinaimg.cn/sinakd20221018s/507/w1080h227/20221018/6f9d-994469e6cfe6e78e8a7d79c61b314867.png)
 
-`order by`排序，分为*全字段排序*和*rowid排序*。它是拿`max_length_for_sort_data`和结果行数据长度对比，如果结果行数据长度超过`max_length_for_sort_data`这个值，就会走rowid排序，相反，则走全字段排序。
+`order by`排序，分为_全字段排序_和_rowid排序_。它是拿`max_length_for_sort_data`和结果行数据长度对比，如果结果行数据长度超过`max_length_for_sort_data`这个值，就会走rowid排序，相反，则走全字段排序。
 
 ##### rowid排序
 
 rowid排序，一般需要**回表**去找满足条件的数据，所以效率会慢一点。以下这个SQL，使用rowid排序，执行过程是这样：
+
 ```sql
 select  name, age, city  
 from  staff  
@@ -298,6 +317,7 @@ limit  10;
 ##### 全字段排序
 
 同样的SQL，如果是走全字段排序是这样的：
+
 ```sql
 select  name, age, city  
 from  staff  
@@ -320,7 +340,7 @@ sort_buffer的大小是由一个参数控制的：`sort_buffer_size`。
 - 如果要排序的数据小于`sort_buffer_size`，排序在sort_buffer**内存**中完成
 - 如果要排序的数据大于`sort_buffer_size`，则借助**磁盘文件**来进行排序。
 
->借助磁盘文件排序的话，效率就**更慢**。因为先把数据放入sort_buffer，当快要满时。会排一下序，然后把sort_buffer中的数据，放到临时磁盘文件，等到所有满足条件数据都查完排完，再用**归并算法**把磁盘的临时排好序的小文件，合并成一个有序的大文件。
+> 借助磁盘文件排序的话，效率就**更慢**。因为先把数据放入sort_buffer，当快要满时。会排一下序，然后把sort_buffer中的数据，放到临时磁盘文件，等到所有满足条件数据都查完排完，再用**归并算法**把磁盘的临时排好序的小文件，合并成一个有序的大文件。
 
 #### 💡如何优化order by的文件排序
 
@@ -330,6 +350,7 @@ sort_buffer的大小是由一个参数控制的：`sort_buffer_size`。
 ### 6. 索引字段上使用is null， is not null，索引可能失效
 
 表结构:
+
 ```sql
 CREATE  TABLE  `user`  (  
 	id  int(11)  NOT  NULL  AUTO_INCREMENT,   
@@ -359,6 +380,7 @@ CREATE  TABLE  `user`  (  
 ### 7. 索引字段上使用（!= 或者 not in），索引可能失效
 
 假设有表结构：
+
 ```sql
 CREATE  TABLE  user  (  
 	id  int(11)  NOT  NULL  AUTO_INCREMENT,   
@@ -380,6 +402,7 @@ CREATE  TABLE  user  (  
 ### 8. 左右连接，关联的字段编码格式不一样
 
 新建两个表，一个`user`，一个`user_job`:
+
 ```sql
 CREATE  TABLE  user  (  
 	id int(11)  NOT  NULL  AUTO_INCREMENT,   
@@ -419,6 +442,7 @@ CREATE  TABLE  user_job  (  
 #### group by执行流程
 
 假设有表结构：
+
 ```sql
 CREATE  TABLE  staff  (  
 	id bigint(11)  NOT  NULL  AUTO_INCREMENT  COMMENT  '主键id',   
@@ -433,6 +457,7 @@ CREATE  TABLE  staff  (  
 ```
 
 我们查看一下这个SQL的执行计划：
+
 ```sql
 explain select city ,count(*) as num from staff group by city;
 ```
@@ -443,6 +468,7 @@ explain select city ,count(*) as num from staff group by city;
 - `Extra` 这个字段的`Using filesort`表示使用了**文件排序**
 
 `group by`是怎么使用到临时表和排序了呢？我们来看下这个SQL的执行流程
+
 ```sql
 select city ,count(*) as num from staff group by city;
 ```
@@ -450,6 +476,7 @@ select city ,count(*) as num from staff group by city;
 创建内存临时表，表里有两个字段`city`和`num`；
 
 全表扫描`staff`的记录，依次取出`city = X`的记录。
+
 - 判断临时表中是否有为`city = X`的行，没有就插入一个记录 (X,1);
 - 如果临时表中有`city = X`的行，就将X这一行的num值加 1；
 
@@ -459,24 +486,28 @@ select city ,count(*) as num from staff group by city;
 #### 临时表的排序是怎样的呢？
 
 就是把需要排序的字段，放到sort buffer，排完就返回。在这里注意一点哈，排序分全字段排序和rowid排序:
+
 - 如果是全字段排序，需要查询返回的字段，都放入sort buffer，根据排序字段排完，直接返回
 - 如果是rowid排序，只是需要排序的字段放入sort buffer，然后多一次回表操作，再返回。
 
 #### group by可能会慢在哪里？
 
 `group by`使用不当，很容易就会产生慢SQL问题。因为它既用到**临时表**，又默认用到**排序**。有时候还可能用到**磁盘临时表**:
+
 - 如果执行过程中，会发现**内存临时表**大小到达了上限（控制这个上限的参数就是`tmp_table_size`），会把内存临时表转成磁盘临时表。
 - 如果数据量很大，很可能这个查询需要的磁盘临时表，就会占用大量的磁盘空间。
 
 #### 💡如何优化group by呢
 
 从哪些方向去优化呢？
+
 - 既然它默认会排序，我们不给它排是不是就行啦。
 - 既然临时表是影响`group by`性能的X因素，我们是不是可以不用临时表？
 
 我们一起来想下，执行`group by`语句为什么需要临时表呢？`group by`的语义逻辑，就是统计不同的值出现的个数。如果这个这些值一开始就是有序的，我们是不是直接往下扫描统计就好了，就不用临时表来记录并统计结果啦?
 
 可以有这些优化方案：
+
 - `group by` 后面的字段加索引
 - `order by null` 不用排序
 - 尽量只使用内存临时表
@@ -487,6 +518,7 @@ select city ,count(*) as num from staff group by city;
 之前见到过一个生产慢SQL问题，当`delete`遇到`in`子查询时，即使有索引，也是不走索引的。而对应的`select + in`子查询，却可以走索引。
 
 MySQL版本是5.7，假设当前有两张表`account`和`old_account`,表结构如下：
+
 ```sql
 CREATE  TABLE  old_account  (  
 	id int(11)  NOT  NULL  AUTO_INCREMENT  COMMENT  '主键Id', 
@@ -516,6 +548,7 @@ CREATE  TABLE  account  (  
 ```
 
 执行的SQL如下：
+
 ```sql
 delete from account 
 where name 
@@ -533,6 +566,7 @@ in (
 
 为什么`select + in`子查询会走索引，`delete + in`子查询却不会走索引呢？
 我们执行以下SQL看看：
+
 ```sql
 explain  select  *  from  account  where  name  in  (select  name  from  old_account);
 
@@ -540,6 +574,7 @@ show  WARNINGS;  //可以查看优化后,最终执行的sql
 ```
 
 结果如下：
+
 ```sql
 select `test2`.`account`.`id`
 AS `id`, `test2`.`account`.`name`
