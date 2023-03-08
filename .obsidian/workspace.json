@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "2114d8d583b4c29d",
+        "id": "b3d1222eef227122",
         "type": "tabs",
         "children": [
           {
-            "id": "c14c1ea7f66f27a6",
+            "id": "a25be0b51954ffe7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Git/Git命令.md",
+                "file": "容器化/k8s.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -70,8 +70,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "c617cbd17e3b9b56",
@@ -87,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Git/Git命令.md",
+                "file": "容器化/k8s.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Git/Git命令.md",
+                "file": "容器化/k8s.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Git/Git命令.md"
+                "file": "容器化/k8s.md"
               }
             }
           },
@@ -156,8 +155,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "c14c1ea7f66f27a6",
+  "active": "a25be0b51954ffe7",
   "lastOpenFiles": [
+    "容器化/Docker.md",
+    "Git/Git命令.md",
     "Git/img",
     "Git/img/20221211_004638.jpg",
     "数据库/DDIA/存储架构.md",
@@ -175,10 +176,8 @@
     "操作系统",
     "vim.md",
     "Git/Github搜索.md",
-    "Git/Git命令.md",
     "Git",
     "算法/其他.md",
-    "容器化/Docker.md",
     "算法/背包问题.md",
     "[.md",
     "容器化/k8s.md",
@@ -197,7 +196,6 @@
     "Java/img",
     "Java/img/Pasted image 20230308191006.png",
     "Java/Guava",
-    "Java",
     "数据库/miniLSM/img/Pasted image 20230204222728.png",
     "未命名.canvas"
   ]
