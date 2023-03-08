@@ -1,79 +1,52 @@
-<ul>
-<li><strong>命令</strong>
-<ul>
-<li>查看历史命令 git reflog</li>
-<li>查看提交历史 git log</li>
-<li>查看当前分支状态 git status</li>
-<li>查看节点区别 git diff</li>
-<li>创建分支 git branch/git checkout -b</li>
-<li>切换分支 git checkout [branch-name]</li>
-<li>创建节点 git init
-<ul>
-<li>设置个人信息标识 git config --global user.name/email</li>
-</ul>
-</li>
-<li>绑定远程库 git remote add [url.git]</li>
-<li>将工作区提交到暂存区 git add .</li>
-<li>将暂存区提交到本地库 git commit -am "msg"
-<ul>
+>不要直接对公共远程仓库clone，应先fork出个人远程仓库，再clone回本地进行作业，最后将修改提交到个人远程仓库，向公共远程仓库提交merge request申请
 
-<li>"msg"需符合提交规范</li>
-</ul>
-</li>
-<li>推送本地库到远程库 git push origin master [--force]</li>
-<li>拉取远程库到本地库，且合并本地分支 git pull</li>
-<li>拉取远程库到本地库，但不合并，作为新分支 git fetch</li>
-<li>克隆远程库到工作区 git clone</li>
-<li>工作区内容回退 git checkout [file-name] | .</li>
-<li>暂存区删除文件 git rm --cache</li>
-<li><strong>本地库回退 git reset [commit ID] | [HEAD^^^]</strong></li>
-<li>合并分支的三种方式
-<ul>
-<li>三方非线性合并，产生菱形路径 git merge</li>
-<li>三方线性变基 git rebase，用之前应与协作者商量</li>
-<li><strong>合并节点 git cherry-pick [commit ID]</strong></li>
-</ul>
-</li>
-<li>冲突处理
-<ul>
-<li>冲突是由于不同分支在同一文件同一行产生了不同提交内容</li>
-<li>产生冲突后，先商量好最终留存版本，再commit</li>
-</ul>
-</li>
-<li>git fork</li>
-<li>git patch</li>
-</ul>
-</li>
-<li><strong>使用</strong>
-<ul>
-<li>不要直接对公共远程仓库clone，应先fork出个人远程仓库，再clone回本地进行作业，最后将修改提交到个人远程仓库，向公共远程仓库提交merge request申请</li>
-</ul>
-</li>
-</ul>
-<p class="infinite-list-item"><strong>&nbsp;</strong></p>
-<p class="infinite-list-item"><strong>合并历史commit</strong></p>
-<ul>
-<li>有时开发过程中提交的commit很多，但实际需要展示的进程节点仅需几个，因此可以将若干commit合并提交，保持提交历史的整洁</li>
-<ul>
-<li>使用git log查看历史提交，确定想要合并的区间</li>
-<li>使用git rebase -i [commitID]将HEAD指针放到区间的前一个节点<br />
-      2.1. 弹出交互式界面，将需要保留的节点前缀保留为pick，将需要合并的节点前缀改为squash(保留该条msg或简写s), 或fixup(舍弃该条msg, 简写f)<br />
-      2.2. 继续弹出交互式界面，添加合并后节点的message</li>
-<li>使用git log验证效果</li>
+![[20221211_004638.jpg]]
 
+## 命令
+* 查看历史命令 git reflog  
+* 查看提交历史 git log  
+* 查看当前分支状态 git status  
+* 查看节点区别 git diff  
+* 创建分支 git branch/git checkout -b  
+* 切换分支 git checkout \[branch-name\]  
+* 创建节点 git init   
+	* 设置个人信息标识 git config --global `user.name/email ` 
+* 绑定远程库 git remote add \[url.git\]  
+* 将工作区提交到暂存区 git add .  
+* 将暂存区提交到本地库 git commit -am "msg"   
+    * "msg"需符合提交规范  
+* 推送本地库到远程库 git push origin master **--force(慎用)**
+* 拉取远程库到本地库，且合并本地分支 git pull  
+* 拉取远程库到本地库，但不合并，作为新分支 git fetch  
+* 克隆远程库到工作区 git clone  
+* 工作区内容回退 git checkoutb \<file-name\> | .  
+* 暂存区删除文件 git rm --cache  
+* **本地库回退 git reset \[commit ID\] | \[HEAD^^^\]**  
+* 合并分支的三种方式   
+	* 三方非线性合并，产生菱形路径 git merge  
+    * 三方线性变基 git rebase，用之前应与协作者商量  
+    * **合并节点 git cherry-pick \[commit ID\]**  
+* 冲突处理   
+	* 冲突是由于不同分支在同一文件同一行产生了不同提交内容  
+	* 产生冲突后，先商量好最终留存版本，再commit  
+* git fork  
+* git patch  
 
- </ul>
+## 合并历史commit  
+  
+* 有时开发过程中提交的commit很多，但实际需要展示的进程节点仅需几个，因此可以将若干commit合并提交，保持提交历史的整洁  
+    1. 使用git log查看历史提交，确定想要合并的区间  
+    2. 使用git rebase -i [commitID]将HEAD指针放到区间的前一个节点  
+	    2.1 弹出交互式界面，将需要保留的节点前缀保留为pick，将需要合并的节点前缀改为squash(保留该条msg或简写s),  或fixup(舍弃该条msg, 简写f)
+	    2.2 继续弹出交互式界面，添加合并后节点的message  
+    3. 使用git log验证效果
 
+## 同步源仓库到fork仓
 
-</ul>
-<p class="infinite-list-item"><strong>同步源仓库到fork仓</strong></p>
-<ul>
-<li>开发时常需要将源仓库fork到个人远程仓，然后再clone到本地仓进行开发</li>
-<li>但有时fork的分支仓库相比于源仓库存在版本落后情况，需要将其与源仓库最新版本同步</li>
-<li><strong>思路</strong>：使用本地仓作为第三方中间点，同时建立到fork分支仓库和源仓库的连接，并在本地同步版本差异，然后push到fork分支仓库</li>
+* 开发时常需要将源仓库fork到个人远程仓，然后再clone到本地仓进行开发  
+* 但有时fork的分支仓库相比于源仓库存在版本落后情况，需要将其与源仓库最新版本同步  
+* **思路** ：使用本地仓作为第三方中间点，同时建立到fork分支仓库和源仓库的连接，并在本地同步版本差异，然后push到fork分支仓库
 
-
-</ul>
 <p class="infinite-list-item"><strong>步骤：</strong></p>
 <p class="infinite-list-item">1. 列出当前为 Fork 配置的远程仓库，一般应只有到fork仓的连接 </p>
 <p class="infinite-list-item">git remote -v</p>
