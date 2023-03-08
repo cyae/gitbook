@@ -1,10 +1,16 @@
+---
+date created: 2023-03-08 14:05
+---
+
+#消息中间件 #分布式
+
 ## 一、分区一致性
 
 在Kafka的生产者案例和消费者原理解析中我们提到kafka的内核里还有个 LEO&HW 原理，现在补充回来。
 
 ### LEO&HW更新原理
 
-首先这里有两个Broker，也就是两台服务器，然后它们的分区中分别存储了两个p0的副本，一个是leader，一个是follower  
+首先这里有两个Broker，也就是两台服务器，然后它们的分区中分别存储了两个p0的副本，一个是leader，一个是follower
 
 ![](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20211012_6fcb4e5e-2b45-11ec-b625-fa163eb4f6be.png)
 
@@ -16,7 +22,7 @@
 
 #### 1. LEO是什么
 
-LEO（last end offset）就是该副本底层日志文件上的数据的**最大偏移量的下一个值**，所以上图中leader那里的LEO就是5+1 = 6，follower的LEO是5。以此类推，当我知道了LEO为10，我就知道该日志文件已经保存了10条信息，位移范围为\[0,9\]
+LEO（last end offset）就是该副本底层日志文件上的数据的**最大偏移量的下一个值**，所以上图中leader那里的LEO就是5+1 = 6，follower的LEO是5。以此类推，当我知道了LEO为10，我就知道该日志文件已经保存了10条信息，位移范围为[0,9]
 
 #### 2. HW是什么
 
@@ -36,7 +42,7 @@ follower在和leader同步数据的时候，同步过来的数据会带上LEO的
 
 ![](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20211012_70b6992c-2b45-11ec-b625-fa163eb4f6be.png)
 
-现在你再回想一下之前提到的ISR，是不是就更加清楚了。**follower如果超过10秒没有到leader这里同步数据，就会被踢出ISR, 加入OSR**。它的作用就是帮助我们在leader宕机时快速再选出一个leader，因为在ISR列表中的follower都是和leader同步率高的，就算丢失数据也不会丢失太多。选举在ISR中的节点产生. 
+现在你再回想一下之前提到的ISR，是不是就更加清楚了。**follower如果超过10秒没有到leader这里同步数据，就会被踢出ISR, 加入OSR**。它的作用就是帮助我们在leader宕机时快速再选出一个leader，因为在ISR列表中的follower都是和leader同步率高的，就算丢失数据也不会丢失太多。选举在ISR中的节点产生.
 
 如果OSR中节点恢复同步, 则重新加入ISR. 恢复的标准即: 当**follower的LEO值>=leader的HW值，就可以回到ISR**。
 
