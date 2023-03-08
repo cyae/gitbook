@@ -4,15 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "5ef1d252ec74848f",
+        "id": "1c7fa99955fe81ea",
         "type": "tabs",
         "children": [
           {
-            "id": "d97fe19911eaa70e",
+            "id": "c88c69fe2b3a456a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "设计模式/熔断器模式.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
         "state": {
           "type": "backlink",
           "state": {
+            "file": "设计模式/熔断器模式.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
+            "file": "设计模式/熔断器模式.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           }
@@ -107,7 +114,9 @@
         "type": "leaf",
         "state": {
           "type": "outline",
-          "state": {}
+          "state": {
+            "file": "设计模式/熔断器模式.md"
+          }
         }
       },
       {
@@ -131,18 +140,28 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "d97fe19911eaa70e",
+  "active": "c88c69fe2b3a456a",
   "lastOpenFiles": [
     "sqlDB/SQL优化.md",
+    "/设计模式/熔断器模式.md",
+    "/函数式编程/闭包.md",
+    "/miniLSM/LSM-Tree调优.md",
+    "/miniLSM/LSM-Tree原理.md",
+    "/Kafka原理/消息中间件基础.md",
+    "/Kafka原理/Kafka基础原理.md",
+    "/Kafka原理/Kafka分区一致 & 任务流程.md",
+    "/Godis/核心流程.md",
+    "/Godis/核心概念.md",
+    "/Godis/Redis 1.0.md",
+    "/DDIA/关系型 vs 文档型.md",
+    "/sqlDB/SQL优化.md",
     "/index",
     "sqlDB",
-    "/sqlDB/SQL优化.md",
     "/sqlDB",
     "index",
     "DDIA/SQL优化.md",
     "/DDIA/SQL优化.md",
     "DDIA/关系型 vs 文档型.md",
-    "/DDIA/关系型 vs 文档型.md",
     "设计模式",
     "Kafka原理",
     "miniLSM/LSM-Tree调优.md",
