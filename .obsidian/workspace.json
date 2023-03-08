@@ -11,8 +11,13 @@
             "id": "9a61a8518eb7d376",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "算法/排序算法.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "算法/排序算法.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "算法/排序算法.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "算法/排序算法.md"
+              }
             }
           },
           {
@@ -130,7 +139,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -146,11 +155,15 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2354696360fce6b1",
+  "active": "9a61a8518eb7d376",
   "lastOpenFiles": [
+    "算法/匹配算法.md",
+    "算法/排序算法.md",
+    "DDIA/关系型 vs 文档型.md",
+    "算法",
+    "数据结构",
     "函数式编程/闭包.md",
     "设计模式/熔断器模式.md",
-    "DDIA/关系型 vs 文档型.md",
     "Godis/核心概念.md",
     "Godis/核心流程.md",
     "Godis/Redis 1.0.md",
