@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "1d458c8855350274",
+        "id": "98418ca9ba98cd50",
         "type": "tabs",
         "children": [
           {
-            "id": "826e8bdc16be23ee",
+            "id": "9a61a8518eb7d376",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -146,17 +146,22 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "826e8bdc16be23ee",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
-    "sqlDB/SQL优化.md",
+    "函数式编程/闭包.md",
+    "设计模式/熔断器模式.md",
     "DDIA/关系型 vs 文档型.md",
+    "Godis/核心概念.md",
+    "Godis/核心流程.md",
+    "Godis/Redis 1.0.md",
+    "sqlDB/SQL优化.md",
     "miniLSM/LSM-Tree原理.md",
     "miniLSM/LSM-Tree调优.md",
-    "DDIA/img/Pasted image 20230212214619.png",
-    "设计模式/熔断器模式.md",
-    "miniLSM/img/Pasted image 20230204222728.png",
     "Kafka原理/Kafka基础原理.md",
     "Kafka原理/Kafka分区一致 & 任务流程.md",
+    "Kafka原理/消息中间件基础.md",
+    "DDIA/img/Pasted image 20230212214619.png",
+    "miniLSM/img/Pasted image 20230204222728.png",
     "未命名.canvas",
     "().md"
   ]
