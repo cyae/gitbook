@@ -4,18 +4,50 @@
     "type": "split",
     "children": [
       {
-        "id": "048963e7bfacbd3c",
+        "id": "c241d384f1c59626",
         "type": "tabs",
         "children": [
           {
-            "id": "ff59bac07bbd8613",
+            "id": "3414739d42bdcd41",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Git.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "caead1b3c630147a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "容器化/Docker.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "f7e048c33e5370c7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "测试/单元测试.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -81,6 +113,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "测试/单元测试.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +130,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "测试/单元测试.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +152,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "测试/单元测试.md"
+              }
             }
           },
           {
@@ -146,10 +182,29 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "ff59bac07bbd8613",
+  "active": "f7e048c33e5370c7",
   "lastOpenFiles": [
+    "数据库/幂等性.md",
+    "测试/单元测试.md",
+    "Java/JUC/多线程创建.md",
+    "Java/JUC/跨线程传播数据.md",
+    "Java/JUC",
+    "容器化/k8s.md",
+    "测试/各种Mock方法对比.md",
+    "数据库/DDIA/分库分表.md",
+    "Java/阿里Java规范.md",
+    "容器化/Docker.md",
+    "测试",
+    "Git.md",
+    "容器化",
+    "Java/Arthas常用命令.md",
+    "Java/Guava.md",
+    "Java/img",
+    "Java/img/Pasted image 20230308191006.png",
+    "Java/Guava",
+    "Java",
     "网络协议/计算机网络.md",
-    "数据库/sqlDB/SQL优化.md",
+    "数据库/SQL优化.md",
     "数据库/sqlDB/MySQL45讲.md",
     "数据库",
     "算法/排序算法.md",
@@ -160,20 +215,14 @@
     "index",
     "数据库/DDIA/关系型 vs 文档型.md",
     "算法",
-    "数据结构",
     "函数式编程/闭包.md",
     "设计模式/熔断器模式.md",
     "数据库/Godis/核心概念.md",
     "数据库/Godis/核心流程.md",
     "数据库/Godis/Redis 1.0.md",
     "数据库/miniLSM/LSM-Tree原理.md",
-    "数据库/miniLSM/LSM-Tree调优.md",
-    "Kafka原理/Kafka基础原理.md",
-    "Kafka原理/Kafka分区一致 & 任务流程.md",
-    "Kafka原理/消息中间件基础.md",
     "数据库/DDIA/img/Pasted image 20230212214619.png",
     "数据库/miniLSM/img/Pasted image 20230204222728.png",
-    "未命名.canvas",
-    "().md"
+    "未命名.canvas"
   ]
 }
