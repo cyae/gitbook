@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "b3d1222eef227122",
+        "id": "7332ab20796014d5",
         "type": "tabs",
         "children": [
           {
-            "id": "a25be0b51954ffe7",
+            "id": "a14c21a07a9b721f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "容器化/k8s.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "容器化/k8s.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "容器化/k8s.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "容器化/k8s.md"
-              }
+              "state": {}
             }
           },
           {
@@ -139,7 +130,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -155,8 +146,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "a25be0b51954ffe7",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
+    "容器化/k8s.md",
     "容器化/Docker.md",
     "Git/Git命令.md",
     "Git/img",
@@ -180,7 +172,6 @@
     "算法/其他.md",
     "算法/背包问题.md",
     "[.md",
-    "容器化/k8s.md",
     "数据库/SQL优化.md",
     "测试/单元测试.md",
     "Java/Spring/spring体现的设计模式.md",
