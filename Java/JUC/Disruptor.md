@@ -1,3 +1,5 @@
+#并发 
+
 本文，给大家介绍 disruptor 使用和原理 。
 
 ## 1 disruptor 是什么？
