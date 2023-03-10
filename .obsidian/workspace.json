@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "efd3a55255ba270c",
+        "id": "5876aec495394d34",
         "type": "tabs",
         "children": [
           {
-            "id": "50ef979d3f98f3c8",
+            "id": "0a3de84bfe8fbbfb",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -130,7 +130,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -146,9 +146,13 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "50ef979d3f98f3c8",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
+    "数据库/Godis/哨兵模式.md",
+    "分布式KV存储/SEATA.md",
+    "数据库/DDIA/事务.md",
     "分布式KV存储/分布式事务.md",
+    "Pasted image 20230311001205.png",
     "分布式KV存储/img",
     "分布式KV存储/img/Pasted image 20230311000352.png",
     "数据库/视图.md",
@@ -173,8 +177,6 @@
     "Java/JUC/伪共享.md",
     "Java/JUC/Disruptor.md",
     "Java/JUC/跨线程传播数据.md",
-    "Java/JUC/多线程创建.md",
-    "vim.md",
     "数据库/分表中间件",
     "Git/img",
     "Git/img/20221211_004638.jpg",
