@@ -4,50 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "0a7ad11e9cd436d1",
+        "id": "bb110a2d1d766cc8",
         "type": "tabs",
         "children": [
           {
-            "id": "19125cb963bb401c",
+            "id": "59741b6c5f5574ca",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "数据库/SQLParser.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ba97e04797986ae8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "数据库/SQL优化.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c6f15163668c7312",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "数据库/索引优化2.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -113,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据库/索引优化2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -130,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据库/索引优化2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -152,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "数据库/索引优化2.md"
-              }
+              "state": {}
             }
           },
           {
@@ -166,7 +130,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -182,12 +146,12 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "c6f15163668c7312",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
+    "数据库/SQLParser.md",
     "数据库/SQL优化.md",
     "数据库/索引优化2.md",
     "数据库/常用数据库连接池.md",
-    "数据库/SQLParser.md",
     "数据库/DDIA/倒排索引.md",
     "Java/Spring/AOP.md",
     "Java/JUC/跨线程传播数据.md",
