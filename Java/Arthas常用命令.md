@@ -1,55 +1,56 @@
-> 一种动态的JVM监控工具
+> 一种动态的 JVM 监控工具
 
 ## [原理](https://blog.csdn.net/hosaos/article/details/102931887#AgentClassAttachAgent_437)
 
 通过**代理模式**, 对字节码进行修改或增强.
 
-随着进程启动的Premain方式的Agent更偏向是一种初始化加载时的修改方式，而Attach API的loadAgent()方法，能够将打包好的Agent jar包动态Attach到目标JVM上，是一种**运行时注入Agent**、**修改字节码**的方式
+随着进程启动的 Premain 方式的 Agent 更偏向是一种初始化加载时的修改方式，而 Attach API 的 loadAgent()方法，能够将打包好的 Agent jar 包动态 Attach 到目标 JVM 上，是一种**运行时注入 Agent**、**修改字节码**的方式
 
 ## 用途
 
-* 想知道某个方法有没被调用到，但是忘了打日志
-* 想要确定环境上的代码和本地代码是否一致，需要多次拷贝才能到本地(k8s)，再执行反编译查看
-* 想知道环境**运行时动态生成的**的**环境变量**长啥样
-* 日志级别调的比较高，出问题时没有日志可定位
-* 想知道某个对象的状态，但是不能引发业务中断去dump
-* 代码有BUG，只有打补丁重启环境，无法热修改
-* lombok等三方注解字节码动态增强出来的代码到底长啥样
-* 查看CPU资源使用情况, 绘制火焰图
+- 想知道某个方法有没被调用到，但是忘了打日志
+- 想要确定环境上的代码和本地代码是否一致，需要多次拷贝才能到本地(k8s)，再执行反编译查看
+- 想知道环境**运行时动态生成的**的**环境变量**长啥样
+- 日志级别调的比较高，出问题时没有日志可定位
+- 想知道某个对象的状态，但是不能引发业务中断去 dump
+- 代码有 BUG，只有打补丁重启环境，无法热修改
+- lombok 等三方注解字节码动态增强出来的代码到底长啥样
+- 查看 CPU 资源使用情况, 绘制火焰图
 
 ## 样例
 
-假设只知道某jvm上运行服务的如下信息
+假设只知道某 jvm 上运行服务的如下信息
 
-* 是一个Spring boot 服务，Main Class:  `com.learn.arthas.ArthasLearnMain`  
-* 在8080端口提供http rest服务(通过`netstat -anp | grep <java pid>`也能查看监听端口)
+- 是一个 Spring boot 服务，Main Class: `com.learn.arthas.ArthasLearnMain`
+- 在 8080 端口提供 http rest 服务(通过`netstat -anp | grep <java pid>`也能查看监听端口)
 
-0. 在主机上准备arthas的jar包, 通过kubectl cp 命令拷入docker容器
+0. 在主机上准备 arthas 的 jar 包, 通过 kubectl cp 命令拷入 docker 容器
 
-1. xhsell连接目标pod, 打开三个窗口, 分别用于:
-   * 日志
-   * 发送请求
-   * Arthas命令行界面
+1. xhsell 连接目标 pod, 打开三个窗口, 分别用于:
 
-2. 启动Arthas
+   - 日志
+   - 发送请求
+   - Arthas 命令行界面
+
+2. 启动 Arthas
 
 ```bash
 JAVA_HOME -jar arthas/arthas-boot.jar
 ```
 
-3. 使用jad命令查看MainClass反编译码
+3. 使用 jad 命令查看 MainClass 反编译码
 
 ```bash
 jad com.learn.arthas.ArthasLearnMain
 ```
 
-4. 使用sc命令查看所有类, 模型, 接口api定义, 类加载器
+4. 使用 sc 命令查看所有类, 模型, 接口 api 定义, 类加载器
 
 ```bash
 sc [-d 详细信息] com.learn.*
 ```
 
-5. 找到接口后, 观察接口调用情况, 注意如果线上环境的接口被频繁调用, 以下所有命令后缀-n 限制执行次数, 防止xshell被打爆
+5. 找到接口后, 观察接口调用情况, 注意如果线上环境的接口被频繁调用, 以下所有命令后缀-n 限制执行次数, 防止 xshell 被打爆
 
 ```bash
 # 统计成功/失败/错误率/时延
@@ -84,7 +85,7 @@ ognl [-c 类加载器] ['@全类名@日志对象名.getClass().getName()']
 ognl [-c 类加载器] ['@全类名@日志对象名.setLevel(@org.apache.logging.log4j.Level@INFO)']
 ```
 
-7. 模拟rest调用
+7. 模拟 rest 调用
 
 ```bash
 # 思路1: 在springBoot启动类Main Class里预留ApplicationContext ctx落脚点, 拿到springIOC容器, 然后获取里面的Controller/Service/Mapper Bean, 接着使用ognl调用对应方法
@@ -100,12 +101,14 @@ tt [-i 快照id] [-w 查看属性/方法]
 ```
 
 8. 线程繁忙度
+
 ```bash
 # thread繁忙程度前三个线程
 thread -n 3
 ```
 
 9. 绘制火焰图, 一般在压测时绘制
+
 ```bash
 # profiler火焰图
 profiler start [--event 监测事件] # 默认是按cpu占用率画
@@ -114,4 +117,4 @@ profiler stop [--file 路径+文件名] # 停止，会自动生成svg图，也�
 ```
 
 10. 详细命令[列表](https://alibaba.github.io/arthas/)
-![image](https://img2022.cnblogs.com/blog/2827284/202208/2827284-20220819001430482-1904590557.png)
+    ![image](https://img2022.cnblogs.com/blog/2827284/202208/2827284-20220819001430482-1904590557.png)

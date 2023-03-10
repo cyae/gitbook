@@ -1,6 +1,8 @@
+#运维
+
 ## 整机管理
 
-* top/uptime
+- top/uptime
 
 ```java
 top - 14:55:19 up 1 day, 15 min,  1 user,  load average: 2.70, 2.38, 1.86
@@ -19,30 +21,31 @@ KiB Swap:  8000508 total,  7997680 free,     2828 used.  4569192 avail Mem
     2 root      20   0       0      0      0 S   0.0  0.0   0:00.10 kthreadd
 ```
 
-* load average表示系统1min, 5min, 15min内的平均负载
-  * 如果三者的平均值>0.6, 则表示系统负载过高
+- load average 表示系统 1min, 5min, 15min 内的平均负载
 
-* PID, %CPU, %MEM, TIME+
-  * PID: 进程ID
-  * %CPU: 进程占用CPU的百分比
-  * %MEM: 进程占用内存的百分比
-  * TIME+: 进程运行时间
+  - 如果三者的平均值>0.6, 则表示系统负载过高
 
-## CPU管理
+- PID, %CPU, %MEM, TIME+
+  - PID: 进程 ID
+  - %CPU: 进程占用 CPU 的百分比
+  - %MEM: 进程占用内存的百分比
+  - TIME+: 进程运行时间
 
-* vmstat的procs列和cpu列
-  * procs: 系统运行的进程数
-    * r, b: 运行和阻塞进程数
-      * r: 运行进程数, 平均不能超过总核数 * 2, 否则表示CPU过载
-      * b: 阻塞进程数, 等待磁盘IO, 网络IO等
-  * cpu: CPU的使用率
-    * us, sy, id, wa, st: 各个状态的CPU使用率
-      * us: 用户态CPU使用率
-      * sy: 内核态CPU使用率
-      * id: idle状态CPU使用率
-      * wa: 等待CPU时间的CPU使用率
-      * st: 超时等待CPU时间的CPU使用率
-    * 如果us + sy > 80, 则表示CPU过载
+## CPU 管理
+
+- vmstat 的 procs 列和 cpu 列
+  - procs: 系统运行的进程数
+    - r, b: 运行和阻塞进程数
+      - r: 运行进程数, 平均不能超过总核数 \* 2, 否则表示 CPU 过载
+      - b: 阻塞进程数, 等待磁盘 IO, 网络 IO 等
+  - cpu: CPU 的使用率
+    - us, sy, id, wa, st: 各个状态的 CPU 使用率
+      - us: 用户态 CPU 使用率
+      - sy: 内核态 CPU 使用率
+      - id: idle 状态 CPU 使用率
+      - wa: 等待 CPU 时间的 CPU 使用率
+      - st: 超时等待 CPU 时间的 CPU 使用率
+    - 如果 us + sy > 80, 则表示 CPU 过载
 
 ```java
 procs -----------memory---------- ---swap--- -----io---- -system-- ------cpu-----
@@ -50,7 +53,7 @@ procs -----------memory---------- ---swap--- -----io---- -system-- ------cpu----
  2  0   2828 404008 630504 4001128    0    0     7     3   32   11 15  2 83  0  0
 ```
 
-* mpstat -P ALL: 查看所有和单个cpu的使用率
+- mpstat -P ALL: 查看所有和单个 cpu 的使用率
 
 ```java
 15时14分04秒  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
@@ -65,7 +68,7 @@ procs -----------memory---------- ---swap--- -----io---- -system-- ------cpu----
 15时14分06秒    7   47.26    0.00    0.50    0.00    0.00    0.00    0.00    0.00    0.00   52.24
 ```
 
-* pidstat -p pid -u 1: 每隔1秒查看指定进程的CPU使用率
+- pidstat -p pid -u 1: 每隔 1 秒查看指定进程的 CPU 使用率
 
 ```java
 15时18分49秒   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
@@ -77,8 +80,8 @@ procs -----------memory---------- ---swap--- -----io---- -system-- ------cpu----
 
 ## 内存管理
 
-* free -m: 查看内存使用情况
-  * 如果可用/总内存小于20%, 则表示内存不足
+- free -m: 查看内存使用情况
+  - 如果可用/总内存小于 20%, 则表示内存不足
 
 ```java
               总计         已用        空闲      共享    缓冲/缓存    可用
@@ -86,8 +89,8 @@ procs -----------memory---------- ---swap--- -----io---- -system-- ------cpu----
 交换：        7812           2        7810
 ```
 
-* pidstat -p pid -r 1: 每隔1秒查看指定进程的内存使用情况
-  * %MEM: 内存使用率
+- pidstat -p pid -r 1: 每隔 1 秒查看指定进程的内存使用情况
+  - %MEM: 内存使用率
 
 ```java
 15时24分24秒   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
@@ -101,7 +104,7 @@ procs -----------memory---------- ---swap--- -----io---- -system-- ------cpu----
 
 ## 磁盘管理
 
-* df/du -h: 查看磁盘使用情况
+- df/du -h: 查看磁盘使用情况
 
 ```java
 文件系统          容量  已用   可用  已用% 挂载点
@@ -143,16 +146,16 @@ tmpfs           789M     0  789M    0% /run/user/1001
 tmpfs           789M     0  789M    0% /run/user/1009
 ```
 
-## 磁盘IO(大表查询)
+## 磁盘 IO(大表查询)
 
-* iostat -xdk 2 3: 查看磁盘IO情况
-  * rkB/s: 读取速度, kB/s
-  * wkB/s: 写入速度, kB/s
-  * %util: IO请求平均使用率
-  * svctm: IO请求平均服务时间, ms
-  * await: IO请求平均等待时间, ms
-    * 如果svctm和await很接近, 表明IO队列很短, 可以增加磁盘IO请求数量
-    * 如果await远大于svctm, 表明IO队列很长, 可以减少磁盘IO请求数量或更换磁盘
+- iostat -xdk 2 3: 查看磁盘 IO 情况
+  - rkB/s: 读取速度, kB/s
+  - wkB/s: 写入速度, kB/s
+  - %util: IO 请求平均使用率
+  - svctm: IO 请求平均服务时间, ms
+  - await: IO 请求平均等待时间, ms
+    - 如果 svctm 和 await 很接近, 表明 IO 队列很短, 可以增加磁盘 IO 请求数量
+    - 如果 await 远大于 svctm, 表明 IO 队列很长, 可以减少磁盘 IO 请求数量或更换磁盘
 
 ```java
 Device            r/s     w/s     rkB/s     wkB/s   rrqm/s   wrqm/s  %rrqm  %wrqm r_await w_await aqu-sz rareq-sz wareq-sz  svctm  %util
@@ -183,7 +186,7 @@ loop22           0.00    0.00      0.01      0.00     0.00     0.00   0.00   0.0
 loop23           0.00    0.00      0.00      0.00     0.00     0.00   0.00   0.00    0.00    0.00   0.00     2.00     0.00   0.67   0.00
 ```
 
-* pidstat -p pid -d 1: 每隔一秒查看指定进程的IO状态
+- pidstat -p pid -d 1: 每隔一秒查看指定进程的 IO 状态
 
 ```java
 15时39分57秒   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
@@ -195,10 +198,10 @@ loop23           0.00    0.00      0.00      0.00     0.00     0.00   0.00   0.0
 
 ## 网络管理
 
-* ifstat
+- ifstat
 
 ```java
-      eno1               enp1s0             docker0      
+      eno1               enp1s0             docker0
  KB/s in  KB/s out   KB/s in  KB/s out   KB/s in  KB/s out
     0.00      0.00      0.87      1.63      0.00      0.00
     0.00      0.00      5.28      3.92      0.00      0.00
@@ -207,22 +210,21 @@ loop23           0.00    0.00      0.00      0.00     0.00     0.00   0.00   0.0
     0.00      0.00      0.36      0.58      0.00      0.00
 ```
 
-## 使用linux命令排查问题代码行
+## 使用 linux 命令排查问题代码行
 
-1. 用以上所有命令查出某资源消耗过高的pid
+1. 用以上所有命令查出某资源消耗过高的 pid
 2. `ps -ef|grep java|grep -v grep` 或 jps -l 查看某进程的详细信息
 3. `ps -mp pid -o THEAD,tid,time` 产看该进程下各线程的资源使用情况
-4. jstack pid|grep tid(16进制小写英文) -A60 查看某线程的堆栈信息
-5. 根据找到的代码行数, 结合业务逻辑, 查log/dump等
-6. arthas工具能完成上述工作
+4. jstack pid|grep tid(16 进制小写英文) -A60 查看某线程的堆栈信息
+5. 根据找到的代码行数, 结合业务逻辑, 查 log/dump 等
+6. arthas 工具能完成上述工作
 
-## 使用jdk自带工具排查问题
-  
-* jps
-* jinfo
-* jmap
-* jstat
-* jstack
-* jvisualvm
-* jconsole
+## 使用 jdk 自带工具排查问题
 
+- jps
+- jinfo
+- jmap
+- jstat
+- jstack
+- jvisualvm
+- jconsole

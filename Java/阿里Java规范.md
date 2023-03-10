@@ -54,7 +54,7 @@ public class ConfusingName {
 
 ### **1.5 接口类中的方法和属性不要加任何修饰符号（public 也不要加），保持代码的简洁性，并加上有效的 Javadoc 注释。尽量不要在接口里定义常量，如果一定要定义，最好确定该常量与接口的方法相关，并且是整个应用的基础常量。**
 
-**正例**：接口方法签名 `void commit()`;   接口基础常量 `String COMPANY = "alibaba"`;
+**正例**：接口方法签名 `void commit()`; 接口基础常量 `String COMPANY = "alibaba"`;
 
 **反例**：接口方法定义 `public abstract void commit()`;
 
@@ -98,8 +98,8 @@ cache.get(key);
 **正例**：
 
 ```java
-public static final double HEIGHT = 175.5D;  
-public static final float WEIGHT = 150.3F;  
+public static final double HEIGHT = 175.5D;
+public static final float WEIGHT = 150.3F;
 public static final long LENGTH = 254L;
 ```
 
@@ -138,7 +138,7 @@ int second = (int)first + 2;
 
 ---
 
-## **4. OOP规约**
+## **4. OOP 规约**
 
 ### **4.1 相同参数类型，相同业务含义，才可以使用的可变参数，参数类型避免定义为 Object。**
 
@@ -202,7 +202,7 @@ if (c.equals(d))
 ```
 
 **正例**:\
-(1) 指定误差范围esp\
+(1) 指定误差范围 esp\
 (2) 使用`BigDecimal`类的`.add`/`.subtract`/`.compareTo`方法\
 (3) 使用`strictfp`关键字
 
@@ -216,7 +216,7 @@ BigDecimal g = new BigDecimal(0.1F)；// 实际的存储值为：0.1000000014901
 ```
 
 **正例**:\
-优先推荐入参为 String 的构造方法，或使用 BigDecimal 的 `valueOf` 方法，此方法内部其实执行了 Double 的toString，而 Double 的 toString 按 double 的实际能表达的精度对尾数进行了截断。
+优先推荐入参为 String 的构造方法，或使用 BigDecimal 的 `valueOf` 方法，此方法内部其实执行了 Double 的 toString，而 Double 的 toString 按 double 的实际能表达的精度对尾数进行了截断。
 
 ```java
 BigDecimal recommend1 = new BigDecimal("0.1");
@@ -225,28 +225,28 @@ BigDecimal recommend2 = BigDecimal.valueOf(0.1);
 
 ### **4.9 定义数据对象 DO 类时，属性类型要与数据库字段类型相匹配。**
 
-| MySQL数据类型 | Java实体类属性类型 | 说明                                                    |
-| --------- | ----------- | ----------------------------------------------------- |
-| int       | Integer     | 不管是signed还是unsigned，Java实体类型都是Integer                 |
-| bigint    | Long        | 不管是bigint(xxx)括号多少位，不管signed还是unsigned，Java实体类型都是Long |
-| varchar   | String      | -                                                     |
-| bit       | byte[]      | -                                                     |
-| tinyint   | Byte        | 不管是signed还是unsigned，Java实体类型都是Byte，在java.lang包下       |
-| smallint  | Short       | 不管是signed还是unsigned，Java实体类型都是Short                   |
-| char      | String      | 不管char是gbk、utf8、utf8mb4等编码类型，Java实体类型都是String         |
-| date      | Date        | java.util.Date                                        |
-| datetime  | Date        | java.util.Date                                        |
-| timestamp | Date        | java.util.Date                                        |
-| time      | Date        | java.util.Date                                        |
-| float     | Float       | 不管是signed还是unsigned，Java实体类型都是Float                   |
-| decimal   | BigDecimal  | -                                                     |
-| numeric   | Long        | -                                                     |
-| double    | Double      | 不管是signed还是unsigned，Java实体类型都是Double                  |
-| tinytext  | String      | -                                                     |
-| text      | String      | -                                                     |
-| year      | Date        | java.util.Date                                        |
-| enum      | String      | -                                                     |
-| tinyint   | Boolean     | 0, 1表示false, true                                     |
+| MySQL 数据类型 | Java 实体类属性类型 | 说明                                                                            |
+| -------------- | ------------------- | ------------------------------------------------------------------------------- |
+| int            | Integer             | 不管是 signed 还是 unsigned，Java 实体类型都是 Integer                          |
+| bigint         | Long                | 不管是 bigint(xxx)括号多少位，不管 signed 还是 unsigned，Java 实体类型都是 Long |
+| varchar        | String              | -                                                                               |
+| bit            | byte[]              | -                                                                               |
+| tinyint        | Byte                | 不管是 signed 还是 unsigned，Java 实体类型都是 Byte，在 java.lang 包下          |
+| smallint       | Short               | 不管是 signed 还是 unsigned，Java 实体类型都是 Short                            |
+| char           | String              | 不管 char 是 gbk、utf8、utf8mb4 等编码类型，Java 实体类型都是 String            |
+| date           | Date                | java.util.Date                                                                  |
+| datetime       | Date                | java.util.Date                                                                  |
+| timestamp      | Date                | java.util.Date                                                                  |
+| time           | Date                | java.util.Date                                                                  |
+| float          | Float               | 不管是 signed 还是 unsigned，Java 实体类型都是 Float                            |
+| decimal        | BigDecimal          | -                                                                               |
+| numeric        | Long                | -                                                                               |
+| double         | Double              | 不管是 signed 还是 unsigned，Java 实体类型都是 Double                           |
+| tinytext       | String              | -                                                                               |
+| text           | String              | -                                                                               |
+| year           | Date                | java.util.Date                                                                  |
+| enum           | String              | -                                                                               |
+| tinyint        | Boolean             | 0, 1 表示 false, true                                                           |
 
 ### **4.10 关于基本数据类型与包装数据类型的使用标准如下：**
 
@@ -268,7 +268,7 @@ BigDecimal recommend2 = BigDecimal.valueOf(0.1);
 
 **说明**: 当一个类实现`Serializable`接口, 有两种生成可传输对象的方式\
 (1) 显式指定: `private static final long serialVersionUID = 1L`;\
-(2) 隐式生成: 如果没有显式指定, 在传输该对象时, 底层会调用`java.io.ObjectStreamClass#computeDefaultSUID`, 根据类名, 属性, 方法等样本信息生成hash值, 作为`serialVersionUID`;
+(2) 隐式生成: 如果没有显式指定, 在传输该对象时, 底层会调用`java.io.ObjectStreamClass#computeDefaultSUID`, 根据类名, 属性, 方法等样本信息生成 hash 值, 作为`serialVersionUID`;
 
 - 如果序列化和反序列化的`serialVersionUID`不同, 则报
 
@@ -317,7 +317,7 @@ public class Dog implement Serializable {
 // 再反序列化, 新增属性age会设为默认值
 ```
 
-### **4.13 构造方法里面禁止加入任何业务逻辑，如果有初始化逻辑，请放在 init 方法中。可以使用`@PostConstruct`注解修饰init**
+### **4.13 构造方法里面禁止加入任何业务逻辑，如果有初始化逻辑，请放在 init 方法中。可以使用`@PostConstruct`注解修饰 init**
 
 ### **4.14 POJO 类的子类重写`toString()`方法时要加`super.toString()`**
 
@@ -342,7 +342,7 @@ System.out.println(ary.length);
 (1) 公有方法是类的调用者和维护者最关心的方法，首屏展示最好；\
 (2) 保护方法虽然只是子类关心，也可能是“模板设计模式”下的核心方法；\
 (3) 私有方法外部一般不需要特别关心，是一个黑盒实现；\
-(4) 因为承载的信息价值较低，所有Service 和 DAO 的 getter / setter 方法放在类体最后。
+(4) 因为承载的信息价值较低，所有 Service 和 DAO 的 getter / setter 方法放在类体最后。
 
 - 但对于方法重载, 可以将所有访问域的同名方法放在一起, 便于查看
 
@@ -359,7 +359,7 @@ for (int i = 0; i < 100; i++) {
 
 **说明**：反编译出的字节码文件显示每次循环都会 new 出一个 StringBuilder 对象，然后进行 append 操作，最后通过`toString()` 返回 String 对象，造成内存资源浪费。
 
-### **4.18 如果要深拷贝对象, 则需重写Object的clone方法, 不重写默认为浅拷贝**
+### **4.18 如果要深拷贝对象, 则需重写 Object 的 clone 方法, 不重写默认为浅拷贝**
 
 ### **4.19 类成员与方法的访问域遵从最小权限原则：**
 
@@ -374,7 +374,7 @@ for (int i = 0; i < 100; i++) {
 
 **说明**：任何类、方法、参数、变量，严控访问范围。过于宽泛的访问范围，不利于模块解耦。
 
-**思考**：如果是一个private 的方法，想删除就删除，可是一个 public 的 service 成员方法或成员变量，删除一下，不得手心冒点汗吗？变量像自己的小孩，尽量在自己的视线内，变量作用域太大，无限制的到处跑，那么你会担心的。
+**思考**：如果是一个 private 的方法，想删除就删除，可是一个 public 的 service 成员方法或成员变量，删除一下，不得手心冒点汗吗？变量像自己的小孩，尽量在自己的视线内，变量作用域太大，无限制的到处跑，那么你会担心的。
 
 ---
 
@@ -387,25 +387,24 @@ for (int i = 0; i < 100; i++) {
 2）表示分钟则是小写的 m\
 3）24 小时制的是大写的 H\
 4）12 小时制的则是小写的 h\
-5）表示当天所在年是 y
-6) 表示当周所在年是 Y, 如2017年12月31日 执行结果为 2018/12/31
+5）表示当天所在年是 y 6) 表示当周所在年是 Y, 如 2017 年 12 月 31 日 执行结果为 2018/12/31
 
 ### **5.2 获取时间**
 
-| 精确度        | 方法                                                               |
-| ---------- | ---------------------------------------------------------------- |
-| 毫秒         | `System.currentTimeMillis()`<br>`new Date().getTime()`也可以, 但会创建类 |
-| 纳秒         | `System.nanoTime`                                                |
-| 不带时区的格式化纳秒 | `Instant`类                                                       |
-| 带时区的格式化纳秒  | `LocalDateTime`类                                                 |
+| 精确度               | 方法                                                                     |
+| -------------------- | ------------------------------------------------------------------------ |
+| 毫秒                 | `System.currentTimeMillis()`<br>`new Date().getTime()`也可以, 但会创建类 |
+| 纳秒                 | `System.nanoTime`                                                        |
+| 不带时区的格式化纳秒 | `Instant`类                                                              |
+| 带时区的格式化纳秒   | `LocalDateTime`类                                                        |
 
 ### **5.3 不允许在程序任何地方中使用：**
 
-| 禁用方法                 | 原因                                                            |
-| -------------------- | ------------------------------------------------------------- |
-| `java.sql.Date`      | 不记录时间，时间相关的操作都会抛出异常                                           |
-| `java.sql.Time`      | 不记录日期，有关日期的操作都会抛出异常                                           |
-| `java.sql.Timestamp` | 继承自Date，精确到纳秒, 但是在构造方法对毫秒四舍五入存到nanos， 如果作为参数传给Date的方法, 造成精度损失 |
+| 禁用方法             | 原因                                                                                                         |
+| -------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `java.sql.Date`      | 不记录时间，时间相关的操作都会抛出异常                                                                       |
+| `java.sql.Time`      | 不记录日期，有关日期的操作都会抛出异常                                                                       |
+| `java.sql.Timestamp` | 继承自 Date，精确到纳秒, 但是在构造方法对毫秒四舍五入存到 nanos， 如果作为参数传给 Date 的方法, 造成精度损失 |
 
 ### **5.4 禁止在程序中写死一年为 365 天，避免在公历闰年时出现日期转换错误或程序逻辑错误。注意闰年 2 月**
 
@@ -453,31 +452,31 @@ Map<Integer, String> map = Arrays.stream(departments)
 .collect(Collectors.toMap(String::hashCode, str -> str));
 ```
 
-### **6.3 在使用 `java.util.stream.Collectors` 类的 `toMap()` 方法转为 Map 集合时，一定要注意有些map的value是要求非空的, 一旦存在null的value, 即使按照取值策略取不到, 也会抛NPE**
+### **6.3 在使用 `java.util.stream.Collectors` 类的 `toMap()` 方法转为 Map 集合时，一定要注意有些 map 的 value 是要求非空的, 一旦存在 null 的 value, 即使按照取值策略取不到, 也会抛 NPE**
 
 **说明**:
 
-| 集合类                                     | Key       | Value     | Super       | 说明              |
-| --------------------------------------- | --------- | --------- | ----------- | --------------- |
-| HashMap<br>LinkedHashMap<br>WeakHashMap | 允许为 null  | 允许为 null  | AbstractMap | 线程不安全           |
-| TreeMap                                 | 不允许为 null | 允许为 null  | AbstractMap | 线程不安全           |
-| ConcurrentHashMap                       | 不允许为 null | 不允许为 null | AbstractMap | 锁分段（JDK8:CAS细化） |
-| Hashtable                               | 不允许为 null | 不允许为null  | Dictionary  | 线程安全            |
-| ConcurrentSkipListMap                   | 不允许为 null | 不允许为 null | AbstractMap | 线程安全            |
-| **反例**:                                 |           |           |             |                 |
+| 集合类                                  | Key           | Value         | Super       | 说明                    |
+| --------------------------------------- | ------------- | ------------- | ----------- | ----------------------- |
+| HashMap<br>LinkedHashMap<br>WeakHashMap | 允许为 null   | 允许为 null   | AbstractMap | 线程不安全              |
+| TreeMap                                 | 不允许为 null | 允许为 null   | AbstractMap | 线程不安全              |
+| ConcurrentHashMap                       | 不允许为 null | 不允许为 null | AbstractMap | 锁分段（JDK8:CAS 细化） |
+| Hashtable                               | 不允许为 null | 不允许为 null | Dictionary  | 线程安全                |
+| ConcurrentSkipListMap                   | 不允许为 null | 不允许为 null | AbstractMap | 线程安全                |
+| **反例**:                               |               |               |             |                         |
 
 ```java
 List<Pair<String, Double>> list = new ArrayList<>();
 list.add(new Pair<>("2", 0.1));
 list.add(new Pair<>("2", 0.2));
 list.add(new Pair<>("2", null));
-Map<String, Double> collect = 
+Map<String, Double> collect =
     list.stream().collect(Collectors.toMap(Pair::getFirst, Pair::getSecond, (k1, k2) -> k1));
 ```
 
 ### **6.4 `ArrayList` 的 `subList()` 结果不可强转成 `ArrayList`，否则会抛出 `ClassCastException` 异常. 类似还有`Arrays.asList()`, `List.of()`方法**
 
-**说明**：`subList()`返回的是 ArrayList 的**内部类** SubList，并不是 ArrayList 本身，而是 ArrayList 的一个视图，对于SubList 的所有操作最终会反映到原列表上。
+**说明**：`subList()`返回的是 ArrayList 的**内部类** SubList，并不是 ArrayList 本身，而是 ArrayList 的一个视图，对于 SubList 的所有操作最终会反映到原列表上。
 
 **反例**:
 
@@ -487,7 +486,7 @@ list.add(new Pair<>("2", 0.1));
 list.add(new Pair<>("2", 0.2));
 list.add(new Pair<>("2", null));
 // 运行时错误, 编译时ide语法层面不会报错
-ArrayList<Pair<String, Double>> list1 = (ArrayList<Pair<String, Double>>) list.subList(0, 1); 
+ArrayList<Pair<String, Double>> list1 = (ArrayList<Pair<String, Double>>) list.subList(0, 1);
 ```
 
 ### **6.5 在 subList 场景中，高度注意对父集合元素的增加或删除，均会导致子列表的遍历、增加、删除产生 `ConcurrentModificationException` 异常。**
@@ -498,7 +497,7 @@ ArrayList<Pair<String, Double>> list1 = (ArrayList<Pair<String, Double>>) list.s
 
 **反例**：如果查询无结果，返回 `Collections.emptyList()` 空集合对象，调用方一旦在返回的集合中进行了添加元素的操作，就会触发 `UnsupportedOperationException` 异常。
 
-### **6.8 使用集合转数组的方法，必须使用集合的 toArray(T[] array)，传入的是类型完全一致、长度为0 的空数组。**
+### **6.8 使用集合转数组的方法，必须使用集合的 toArray(T[] array)，传入的是类型完全一致、长度为 0 的空数组。**
 
 **反例**：直接使用 toArray 无参方法存在问题，此方法返回值只能是 Object[]类，若强转其它类型数组将出现`ClassCastException` 错误。
 
@@ -520,7 +519,7 @@ String[] array = list.toArray(new String[0]);
 ### **6.9 泛型通配符`<? is extends of T>`来接收返回的数据，此写法的泛型集合不能使用 add 方法，而`<? is super of T>`不能使用 get 方法，两者在接口调用赋值的场景中容易出错。**
 
 **说明**：扩展说一下 **PECS**(Producer Extends Consumer Super) 原则，即频繁往外供读取内容的，适合用`<? extends T>`，经常往里插入的，适合用`<? super T>`.\
-本质上, java泛型是靠擦除实现的, 只有编译器能明确类的结构时才能分配内存, 才能初始化类.
+本质上, java 泛型是靠擦除实现的, 只有编译器能明确类的结构时才能分配内存, 才能初始化类.
 
 ### **6.10 在无泛型限制定义的集合赋值给泛型限制的集合时，在使用集合元素时，需要进行 `instanceof` 判断，避免抛出 `ClassCastException` 异常。**
 
@@ -609,8 +608,8 @@ class A {
 
 **说明**：Executors 返回的线程池对象的弊端如下：
 
-| 阻塞队列                                                       | 弊端                                               |
-| ---------------------------------------------------------- | ------------------------------------------------ |
+| 阻塞队列                                                   | 弊端                                                                       |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------- |
 | FixedThreadPool<br>SingleThreadPool<br>ScheduledThreadPool | 允许的请求队列长度为 Integer.MAX_VALUE，可能会堆积大量的请求，从而导致 OOM |
 | CachedThreadPool                                           | 允许的创建线程数量为 Integer.MAX_VALUE，可能会创建大量的线程，从而导致 OOM |
 
@@ -626,12 +625,12 @@ private static final ThreadLocal<DateFormat> dateStyle = new ThreadLocal<DateFor
     protected DateFormat initialValue() {
         return new SimpleDateFormat("yyyy-MM-dd");
     }
-}  
+}
 ```
 
 **说明**：如果是 JDK8 的应用，可以
 
-| 原先(线程不安全)        | 替代(线程安全)          |
+| 原先(线程不安全) | 替代(线程安全)    |
 | ---------------- | ----------------- |
 | Date             | Instant           |
 | Calendar         | LocalDateTime     |
@@ -641,8 +640,8 @@ private static final ThreadLocal<DateFormat> dateStyle = new ThreadLocal<DateFor
 
 **说明**:
 
-- ThreadLocal底层使用了ThreadLocalMap, 每一个泛型类实例都是一份拷贝并存进value中, 如果不主动释放Entry, 会导致内存泄漏
-- 这是因为线程池恰好是为了减少 创建/销毁 线程的开销而复用线程, 那么如果线程池内某线程用完后不释放, ThreadLocalMap的Entry会越堆越多
+- ThreadLocal 底层使用了 ThreadLocalMap, 每一个泛型类实例都是一份拷贝并存进 value 中, 如果不主动释放 Entry, 会导致内存泄漏
+- 这是因为线程池恰好是为了减少 创建/销毁 线程的开销而复用线程, 那么如果线程池内某线程用完后不释放, ThreadLocalMap 的 Entry 会越堆越多
 
 **正例**：
 
@@ -659,14 +658,14 @@ objectThreadLocal.set(userInfo);
 
 **说明**：尽可能使加锁的代码块工作量尽可能的小，避免在锁代码块中调用 RPC 方法。
 
-| 类型                | 实现                        |
-| ----------------- | ------------------------- |
-| 细粒度               | synchronized(this)        |
-| 对象锁               | synchronized(非static obj) |
-| 只影响同一实例内同一把锁修饰的对象 | synchronized修饰非static方法   |
-| 粗粒度               | synchronized(static obj)  |
-| 类锁                | synchronized修饰static方法    |
-| 影响全部实例            | synchronized(.class)      |
+| 类型                               | 实现                            |
+| ---------------------------------- | ------------------------------- |
+| 细粒度                             | synchronized(this)              |
+| 对象锁                             | synchronized(非 static obj)     |
+| 只影响同一实例内同一把锁修饰的对象 | synchronized 修饰非 static 方法 |
+| 粗粒度                             | synchronized(static obj)        |
+| 类锁                               | synchronized 修饰 static 方法   |
+| 影响全部实例                       | synchronized(.class)            |
 
 ### **7.8 对多个资源、数据库表、对象同时加锁时，需要保持一致的加锁顺序，否则可能会造成死锁。**
 
@@ -739,7 +738,7 @@ if (isLocked) {
 
 **正例**：悲观锁遵循**一锁二判三更新四释放**的原则。
 
-### **7.14 使用 `CountDownLatch` 进行异步转同步操作，每个线程退出前必须调用 `countDown` 方法，线程执行代码注意 catch 异常，确保 `countDown` 方法被执行到，避免主线程一直阻塞等待count归零至 `await` 方法，直到超时才返回结果。**
+### **7.14 使用 `CountDownLatch` 进行异步转同步操作，每个线程退出前必须调用 `countDown` 方法，线程执行代码注意 catch 异常，确保 `countDown` 方法被执行到，避免主线程一直阻塞等待 count 归零至 `await` 方法，直到超时才返回结果。**
 
 **说明**：注意，子线程抛出异常堆栈，不能在主线程 try-catch 到。
 
@@ -797,7 +796,7 @@ public class LazyInitDemo {
 
 ### **8.1 当 switch 括号内的变量类型为 String 并且此变量为外部参数时，必须先进行 null 判断。**
 
-### **8.2三目运算符 condition ? 表达式 1：表达式 2 中，高度注意表达式 1 和 2 在类型对齐时，可能抛出因自动拆箱导致的 NPE 异常。**
+### **8.2 三目运算符 condition ? 表达式 1：表达式 2 中，高度注意表达式 1 和 2 在类型对齐时，可能抛出因自动拆箱导致的 NPE 异常。**
 
 **说明**：以下两种场景会触发类型对齐的拆箱操作：\
 1）表达式 1 或 表达式 2 的值只要有一个是原始类型。\
@@ -806,10 +805,10 @@ public class LazyInitDemo {
 **反例**：
 
 ```java
-Integer a = 1;  
-Integer b = 2;  
-Integer c = null;  
-Boolean flag = false;  
+Integer a = 1;
+Integer b = 2;
+Integer c = null;
+Boolean flag = false;
 // a*b 的结果是 int 类型，那么 c 会强制拆箱成 int 类型，抛出 NPE 异常
 Integer result = (flag ? a * b : c);
 ```
@@ -820,30 +819,30 @@ Integer result = (flag ? a * b : c);
 
 ### **8.5 参数校验场景**
 
-| 需要                                                           | 不需要                                                                                                   |
-| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| 调用频次低的方法                                                     | 极有可能被循环调用的方法。但在方法说明里必须注明外部参数检查                                                                        |
-| 执行时间开销很大的方法。此情形中，参数校验时间几乎可以忽略不计，但如果因为参数错误导致中间执行回退，或者错误，那得不偿失 | 底层调用频度比较高的方法。毕竟是像纯净水过滤的最后一道，参数错误不太可能到底层才会暴露问题。一般 DAO层与 Service 层都在同一个应用中，部署在同一台服务器中，所以 DAO 的参数校验，可以省略 |
-| 需要极高稳定性和可用性的方法                                               | 被声明成 private 只会被自己代码所调用的方法，如果能够确定调用方法的代码传入参数已经做过检查或者肯定不会有问题，此时可以不校验参数。                                |
-| 对外提供的开放接口，不管是 RPC / API / HTTP 接口                            | ---                                                                                                   |
-| 敏感权限入口                                                       | ---                                                                                                   |
+| 需要                                                                                                                     | 不需要                                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 调用频次低的方法                                                                                                         | 极有可能被循环调用的方法。但在方法说明里必须注明外部参数检查                                                                                                                              |
+| 执行时间开销很大的方法。此情形中，参数校验时间几乎可以忽略不计，但如果因为参数错误导致中间执行回退，或者错误，那得不偿失 | 底层调用频度比较高的方法。毕竟是像纯净水过滤的最后一道，参数错误不太可能到底层才会暴露问题。一般 DAO 层与 Service 层都在同一个应用中，部署在同一台服务器中，所以 DAO 的参数校验，可以省略 |
+| 需要极高稳定性和可用性的方法                                                                                             | 被声明成 private 只会被自己代码所调用的方法，如果能够确定调用方法的代码传入参数已经做过检查或者肯定不会有问题，此时可以不校验参数。                                                       |
+| 对外提供的开放接口，不管是 RPC / API / HTTP 接口                                                                         | ---                                                                                                                                                                                       |
+| 敏感权限入口                                                                                                             | ---                                                                                                                                                                                       |
 
 ---
 
 ## **9. 注释规约**
 
-### **9.1 类、类属性、类方法, 抽象方法（包括接口中的方法）必须使用JavaDoc, 枚举类型字段必须添加含义注释**
+### **9.1 类、类属性、类方法, 抽象方法（包括接口中的方法）必须使用 JavaDoc, 枚举类型字段必须添加含义注释**
 
-### **9.2 特殊javadoc**
+### **9.2 特殊 javadoc**
 
-1）**待办事宜（TODO）**：（标记人，标记时间，[预计处理时间]）表示需要实现，但目前还未实现的功能。只能应用于类，接口和方法（因为它是一个Javadoc 标签）。\
+1）**待办事宜（TODO）**：（标记人，标记时间，[预计处理时间]）表示需要实现，但目前还未实现的功能。只能应用于类，接口和方法（因为它是一个 Javadoc 标签）。\
 2）**错误，不能工作（FIXME）**：（标记人，标记时间，[预计处理时间]）在注释中用 FIXME 标记某代码是错误的，而且不能工作，需要及时纠正的情况。
 
 ---
 
 ## **10. 前后端规约**
 
-### **10.1 前后端交互的 API，需要明确协议、域名、路径、请求方法、请求内容、状态码、响应体。通过yaml规定**
+### **10.1 前后端交互的 API，需要明确协议、域名、路径、请求方法、请求内容、状态码、响应体。通过 yaml 规定**
 
 **说明**：\
 1）协议：生产环境必须使用 HTTPS。\
@@ -881,7 +880,7 @@ Integer result = (flag ? a * b : c);
 - 404 NotFound：服务器无法取得所请求的网页，请求资源不存在。
 - 500 InternalServerError：服务器内部错误。
 
-### **10.4 在前后端交互的 JSON 格式数据中，所有的 key 必须为小写字母开始的 lowerCamelCase风格，符合英文表达习惯，且表意完整。**
+### **10.4 在前后端交互的 JSON 格式数据中，所有的 key 必须为小写字母开始的 lowerCamelCase 风格，符合英文表达习惯，且表意完整。**
 
 **正例**：errorCode / errorMessage / assetStatus / menuList / orderList / configFlag\
 **反例**：ERRORCODE / ERROR_CODE / error_message / error-message / errormessage
@@ -913,7 +912,7 @@ Integer result = (flag ? a * b : c);
 
 **说明**：`ApacheBeanUtils` 性能较差，可以使用其他方案比如 `SpringBeanUtils`，`CglibBeanCopier`，注意均是浅拷贝。
 
-### **11.3【强制】velocity 调用 POJO 类的属性时，直接使用属性名取值即可，模板引擎会自动按规范调用 POJO的 `getXxx()`，如果是 `boolean` 基本数据类型变量（`boolean` 命名不需要加 is 前缀），会自动调 `isXxx()`方法。**
+### **11.3【强制】velocity 调用 POJO 类的属性时，直接使用属性名取值即可，模板引擎会自动按规范调用 POJO 的 `getXxx()`，如果是 `boolean` 基本数据类型变量（`boolean` 命名不需要加 is 前缀），会自动调 `isXxx()`方法。**
 
 **说明**：注意如果是 `Boolean` 包装类对象，优先调用 `getXxx()` 的方法。
 
@@ -964,13 +963,13 @@ Integer result = (flag ? a * b : c);
 
 ### **11.11 高并发服务器建议调小 TCP 协议的 time_wait 超时时间。**
 
-**说明**：操作系统默认 240 秒后，才会关闭处于 time_wait 状态的连接，在高并发访问下，服务器端会因为处于time_wait 的连接数太多，可能无法建立新的连接，所以需要在服务器上调小此等待值。
+**说明**：操作系统默认 240 秒后，才会关闭处于 time_wait 状态的连接，在高并发访问下，服务器端会因为处于 time_wait 的连接数太多，可能无法建立新的连接，所以需要在服务器上调小此等待值。
 
 **正例**：在 linux 服务器上请通过变更/etc/sysctl.conf 文件去修改该缺省值（秒）：net.ipv4.tcp_fin_timeout=30
 
 ### **11.12 调大服务器所支持的最大文件句柄数（File Descriptor，简写为 fd）**
 
-**说明**：主流操作系统的设计是将 TCP / UDP 连接采用与文件一样的方式去管理，即一个连接对应于一个 fd。主流的 linux服务器默认所支持最大 fd 数量为 1024，当并发连接数很大时很容易因为 fd 不足而出现“open too many files”错误，导致新的连接无法建立。建议将 linux 服务器所支持的最大句柄数调高数倍（与服务器的内存数量相关）。
+**说明**：主流操作系统的设计是将 TCP / UDP 连接采用与文件一样的方式去管理，即一个连接对应于一个 fd。主流的 linux 服务器默认所支持最大 fd 数量为 1024，当并发连接数很大时很容易因为 fd 不足而出现“open too many files”错误，导致新的连接无法建立。建议将 linux 服务器所支持的最大句柄数调高数倍（与服务器的内存数量相关）。
 
 ### **11.13 给 JVM 环境参数设置-XX：+HeapDumpOnOutOfMemoryError 参数，让 JVM 碰到 OOM 场景时输出 dump 信息。**
 
@@ -980,15 +979,15 @@ Integer result = (flag ? a * b : c);
 
 ### **11.15 了解每个服务大致的平均耗时，可以通过独立配置线程池，将较慢的服务与主线程池隔离开，免得不同服务的线程同归于尽。**
 
-### **11.16 UML使用规范**
+### **11.16 UML 使用规范**
 
-| 图   | 条件                                             |
-| --- | ---------------------------------------------- |
+| 图     | 条件                                                                       |
+| ------ | -------------------------------------------------------------------------- |
 | 用例图 | 在需求分析阶段，如果与系统交互的 User 超过一类并且相关的 UseCase 超过 5 个 |
-| 状态图 | 某个业务对象的状态超过 3 个                                |
-| 时序图 | 系统中某个功能的调用链路上的涉及对象超过 3 个                       |
-| 类图  | 系统中模型类超过 5 个                                   |
-| 活动图 | 系统中超过 2 个对象之间存在协作关系                            |
+| 状态图 | 某个业务对象的状态超过 3 个                                                |
+| 时序图 | 系统中某个功能的调用链路上的涉及对象超过 3 个                              |
+| 类图   | 系统中模型类超过 5 个                                                      |
+| 活动图 | 系统中超过 2 个对象之间存在协作关系                                        |
 
 ### **11.17 系统设计时要准确识别出弱依赖，并针对性地设计降级和应急预案，保证核心系统正常可用。**
 
@@ -1000,12 +999,12 @@ Integer result = (flag ? a * b : c);
 
 ### **11.18 设计模式原则**
 
-| 原则     | 场景                                         |
-| ------ | ------------------------------------------ |
-| 单一原则   | 类的功能单一职责                                   |
-| 里氏代换原则 | 推荐使用接口聚合, 若要使用继承, 父子类应满足替换原则               |
-| 依赖倒置原则 | 依赖抽象类与接口                                   |
-| 开闭原则   | 极端情况下，交付的代码是不可修改的，同一业务域内的需求变化，通过模块或类的扩展来实现 |
+| 原则         | 场景                                                                                 |
+| ------------ | ------------------------------------------------------------------------------------ |
+| 单一原则     | 类的功能单一职责                                                                     |
+| 里氏代换原则 | 推荐使用接口聚合, 若要使用继承, 父子类应满足替换原则                                 |
+| 依赖倒置原则 | 依赖抽象类与接口                                                                     |
+| 开闭原则     | 极端情况下，交付的代码是不可修改的，同一业务域内的需求变化，通过模块或类的扩展来实现 |
 
 ---
 
@@ -1059,12 +1058,12 @@ public int checkReturn() {
 
 - 异常分为`Error`和`Exception`
 - `Exception`又分为`RuntimeException`和普通`Exception`
-- 三者中只有普通`Exception`可以在编译时确定, 需要`try-catch`捕捉, 称为checked. `Error`和`RuntimeException`则只有在运行时才会出现, 无法捕捉, 称为unchecked
+- 三者中只有普通`Exception`可以在编译时确定, 需要`try-catch`捕捉, 称为 checked. `Error`和`RuntimeException`则只有在运行时才会出现, 无法捕捉, 称为 unchecked
 
 ### **12.7 分层异常处理规约**
 
-- 在 DAO 层，产生的异常类型有很多，无法用细粒度的异常进行 catch，可以使用 catch(Exception e) 方式，并 throw new DAOException(e)，不需要打印日志，因为日志在Manager 或 Service 层一定需要捕获并打印到日志文件中去，如果同台服务器再打日志，浪费性能和存储。
-- 在 Service 层出现异常时，必须记录出错日志到磁盘，尽可能带上参数和上下文信息，相当于保护案发现场。Manager 层与 Service 同机部署，日志方式与 DAO 层处理一致，如果是单独部署，则采用与Service 一致的处理方式。
+- 在 DAO 层，产生的异常类型有很多，无法用细粒度的异常进行 catch，可以使用 catch(Exception e) 方式，并 throw new DAOException(e)，不需要打印日志，因为日志在 Manager 或 Service 层一定需要捕获并打印到日志文件中去，如果同台服务器再打日志，浪费性能和存储。
+- 在 Service 层出现异常时，必须记录出错日志到磁盘，尽可能带上参数和上下文信息，相当于保护案发现场。Manager 层与 Service 同机部署，日志方式与 DAO 层处理一致，如果是单独部署，则采用与 Service 一致的处理方式。
 - Web 层绝不应该继续往上抛异常，因为已经处于顶层，如果意识到这个异常将导致页面无法正常渲染，那么就应该直接跳转到友好错误页面，尽量加上友好的错误提示信息。
 - 开放接口层要将异常处理成错误码和错误信息方式返回。
 
@@ -1108,28 +1107,28 @@ public void do() {
 
 ---
 
-## **14. UT规约**
+## **14. UT 规约**
 
-### **14.1 AIR原则**
+### **14.1 AIR 原则**
 
-| 原则          | 解释                                                      |
-| ----------- | ------------------------------------------------------- |
-| Automatic   | 结果判断是自动的, 无需人工识别-->使用Assert                             |
-| Independent | 单元测试用例之间决不能互相调用，也不能依赖执行的先后次序. 依赖可使用@Before和@After等注解    |
-| Repeatable  | UT是植入到CI/CD里的, 每当push代码, UT会自动执行, 为保证排除环境影响, 应使用Mock或DI |
+| 原则        | 解释                                                                                         |
+| ----------- | -------------------------------------------------------------------------------------------- |
+| Automatic   | 结果判断是自动的, 无需人工识别-->使用 Assert                                                 |
+| Independent | 单元测试用例之间决不能互相调用，也不能依赖执行的先后次序. 依赖可使用@Before 和@After 等注解  |
+| Repeatable  | UT 是植入到 CI/CD 里的, 每当 push 代码, UT 会自动执行, 为保证排除环境影响, 应使用 Mock 或 DI |
 
-### **14.2 BCDE原则**
+### **14.2 BCDE 原则**
 
-| 原则      | 解释       |
-| ------- | -------- |
-| Border  | 边界值测试    |
-| Correct | 正确的输入    |
+| 原则    | 解释             |
+| ------- | ---------------- |
+| Border  | 边界值测试       |
+| Correct | 正确的输入       |
 | Design  | 与设计文档相结合 |
-| Error   | 错误信息输入   |
+| Error   | 错误信息输入     |
 
 ### **14.3 和数据库相关的单元测试，可以设定自动回滚机制，不给数据库造成脏数据。或者对单元测试产生的数据有明确的前后缀标识。**
 
-**正例**：在基础技术部的内部单元测试中，使用 FOUNDATION_UNIT_TEST_的前缀来标识单元测试相关代码。
+**正例**：在基础技术部的内部单元测试中，使用 FOUNDATION*UNIT_TEST*的前缀来标识单元测试相关代码。
 
 ---
 
@@ -1159,7 +1158,7 @@ public void do() {
 
 ### **16.6 表必备三字段：id，create_time，update_time。**
 
-**说明**：其中 id 必为主键，类型为 bigint unsigned、单表时自增、步长为 1。create_time，update_time 的类型均为datetime 类型，如果要记录时区信息，那么类型设置为 timestamp。
+**说明**：其中 id 必为主键，类型为 bigint unsigned、单表时自增、步长为 1。create_time，update_time 的类型均为 datetime 类型，如果要记录时区信息，那么类型设置为 timestamp。
 
 ### **16.7 在数据库中不能使用物理删除操作，要使用逻辑删除。**
 
@@ -1169,31 +1168,31 @@ public void do() {
 
 **说明**：如果预计三年后的数据量根本达不到这个级别，请不要在创建表时就分库分表。
 
-### **16.9 尽可能把所有列定义为not null（索引NULL列需要额外的空间来保存，所以要占用更多的空间；进行比较和计算时要对NULL值做特别的处理）**
+### **16.9 尽可能把所有列定义为 not null（索引 NULL 列需要额外的空间来保存，所以要占用更多的空间；进行比较和计算时要对 NULL 值做特别的处理）**
 
 ### **16.10 表和表之间不要添加外键联系（外键会影响父表和子表的写操作从而降低性能）**
 
 ### **16.11 索引可以增加查询效率，但同样也会降低插入和更新的效率**
 
-### **16.12 避免数据类型的隐式转换, 如WHERE从句中对列进行函数转换和计算，隐式转换会导致索引失效**
+### **16.12 避免数据类型的隐式转换, 如 WHERE 从句中对列进行函数转换和计算，隐式转换会导致索引失效**
 
-### **16.13 不要使用select *，要显示指明所有的查询列；**
+### **16.13 不要使用 select \*，要显示指明所有的查询列；**
 
-- 消耗更多的CPU和IO以网络带宽资源, 尤其是 text 类型的字段
+- 消耗更多的 CPU 和 IO 以网络带宽资源, 尤其是 text 类型的字段
 - 无法使用覆盖索引
 - 增加表结构变更带来的影响, 增减字段容易与 resultMap 配置不一致。
 
-### **16.14 禁止使用不含字段列表的INSERT语句**
+### **16.14 禁止使用不含字段列表的 INSERT 语句**
 
-### **16.15 避免使用子查询，可以把子查询优化为join操作**
+### **16.15 避免使用子查询，可以把子查询优化为 join 操作**
 
 - 子查询的结果集无法使用索引，通常子查询的结果集会被存储到临时表中，不论是内存临时表还是磁盘临时表都不会存在索引，所以查询性能会受到一定的影响；
 - 特别是对于返回结果集比较大的子查询，其对查询性能的影响也就越大；
-- 由于子查询会产生大量的临时表也没有索引，所以会消耗过多的CPU和IO资源，产生大量的慢查询。
+- 由于子查询会产生大量的临时表也没有索引，所以会消耗过多的 CPU 和 IO 资源，产生大量的慢查询。
 
 ### **16.16 减少同数据库的交互次数，尽量写成批量操作；**
 
-### **16.17 对应同一列进行or判断时，使用in代替or。in的值不要超过500可以更有效的利用索引，or大多数情况下很少能利用到索引。但in的值也不要超过1000个**
+### **16.17 对应同一列进行 or 判断时，使用 in 代替 or。in 的值不要超过 500 可以更有效的利用索引，or 大多数情况下很少能利用到索引。但 in 的值也不要超过 1000 个**
 
 ### **16.18 业务上具有唯一特性的字段，即使是组合字段，也必须建成唯一索引。**
 
@@ -1217,11 +1216,11 @@ public void do() {
 - 如果存在等值查询和排序，则在创建复合索引时，将等值查询字段放在前面，排序放在最后面
 - 如果存在等值查询、范围查询、排序。等值查询放在最前面，范围查询和排序需根据实际情况决定索引顺序
 - 如果有 order by 的场景，请注意利用索引的有序性。order by 最后的字段是组合索引的一部分，并且放在创建的索引组合顺序的最后，避免出现 filesort 的情况，影响查询性能。
-- MySQL5.6以后引入索引下推, 即使范围查询放在前面, 等值查询放后面, 也可以在范围查询时进行等值过滤, 而非先范围后回表过滤, 减少回表次数
+- MySQL5.6 以后引入索引下推, 即使范围查询放在前面, 等值查询放后面, 也可以在范围查询时进行等值过滤, 而非先范围后回表过滤, 减少回表次数
 
 ### **16.23 利用覆盖索引来进行查询操作，避免回表。**
 
-聚簇索引包含所有数据, 非聚簇索引包含非主键的索引字段和主键(用于回表), 而当sql语句的所求查询字段（select列）和查询条件字段（where子句）全都包含在一个索引中（联合索引），可以直接使用索引查询而不需要回表。即在非聚簇索引树中一次得到所有所需结果
+聚簇索引包含所有数据, 非聚簇索引包含非主键的索引字段和主键(用于回表), 而当 sql 语句的所求查询字段（select 列）和查询条件字段（where 子句）全都包含在一个索引中（联合索引），可以直接使用索引查询而不需要回表。即在非聚簇索引树中一次得到所有所需结果
 
 ### **16.24 利用延迟关联或者子查询优化超多分页场景。**
 
@@ -1235,7 +1234,7 @@ SELECT t1.* FROM 表 1 as t1
 (select id from 表 1 where 条件 LIMIT 100000 , 20) as t2 where t1.id = t2.id
 
 -- 延迟关联
-SELECT C.* FROM 表 1 as C inner join 
+SELECT C.* FROM 表 1 as C inner join
 (select id from 表 1 where 条件 > 100000 LIMIT 20) as T on C.id = T.id
 ```
 
@@ -1246,9 +1245,9 @@ SELECT C.* FROM 表 1 as C inner join
 SELECT id from 表 1 where 条件 LIMIT 100000 , 20
 ```
 
-### **16.25 不要使用 count(列名) 或 count(常量) 来替代 count(*)，count(*) 是 SQL92 定义的标准统计行数的语法，跟数据库无关，跟 NULL 和非 NULL 无关。**
+### **16.25 不要使用 count(列名) 或 count(常量) 来替代 count(_)，count(_) 是 SQL92 定义的标准统计行数的语法，跟数据库无关，跟 NULL 和非 NULL 无关。**
 
-**说明**：count(*) 会统计值为 NULL 的行，而 count(列名) 不会统计此列为 NULL 值的行。
+**说明**：count(\*) 会统计值为 NULL 的行，而 count(列名) 不会统计此列为 NULL 值的行。
 
 ### **16.26 当某一列的值全是 NULL 时，count(col) 的返回结果为 0；但 sum(col) 的返回结果为 NULL，因此使用 sum() 时需注意 NPE 问题。**
 
@@ -1268,40 +1267,40 @@ SELECT id from 表 1 where 条件 LIMIT 100000 , 20
 
 ### **16.28 不得使用物理外键与级联，一切外键概念必须在应用层逻辑解决。**
 
-**说明**：学生表中的 student_id 是主键，那么成绩表中的 student_id 则为外键。如果更新学生表中的student_id，同时触发成绩表中的 student_id 更新，即为级联更新。外键与级联更新适用于单机低并发，不适合分布式、高并发集群；级联更新是强阻塞，存在数据库更新风暴的风险；外键影响数据库的插入速度。
+**说明**：学生表中的 student_id 是主键，那么成绩表中的 student_id 则为外键。如果更新学生表中的 student_id，同时触发成绩表中的 student_id 更新，即为级联更新。外键与级联更新适用于单机低并发，不适合分布式、高并发集群；级联更新是强阻塞，存在数据库更新风暴的风险；外键影响数据库的插入速度。
 
 ### **16.29 数据订正（特别是删除或修改记录操作）时，要先 select，避免出现误删除的情况，确认无误才能执行更新语句。**
 
 **正例**:
 
 ```sql
-select * from ... where ... as t1  
+select * from ... where ... as t1
 drop from ... where ... in t1
 ```
 
 **反例**:
 
 ```sql
-concat ... as @table_name  
-prepare @table_name  
+concat ... as @table_name
+prepare @table_name
 exec @tablename
 ```
 
 ### **16.30 多表操作, 考虑日后可能的调整, 必须在字段前加表别名**
 
-### **16.31 考虑国际化需求, 所有表使用utf8mb4字符集, 可以存储emoji**
+### **16.31 考虑国际化需求, 所有表使用 utf8mb4 字符集, 可以存储 emoji**
 
-### **16.32 TRUNCATE TABLE 比 DELETE 速度快，且使用的系统和事务日志资源少，但 TRUNCATE无事务且不触发 trigger，有可能造成事故，故不建议在开发代码中使用此语句。**
+### **16.32 TRUNCATE TABLE 比 DELETE 速度快，且使用的系统和事务日志资源少，但 TRUNCATE 无事务且不触发 trigger，有可能造成事故，故不建议在开发代码中使用此语句。**
 
 **说明**：TRUNCATE TABLE 在功能上与不带 WHERE 子句的 DELETE 语句相同。
 
-### **16.33 涉及sql语句拼接场景, 也需要当作变量初始化, 并且`where`后留 `1=1`, 方便拼接`AND`和`OR`**
+### **16.33 涉及 sql 语句拼接场景, 也需要当作变量初始化, 并且`where`后留 `1=1`, 方便拼接`AND`和`OR`**
 
 ---
 
-## **17. ORM规约, 包括mybatis, JPA, hibernate, jooq**
+## **17. ORM 规约, 包括 mybatis, JPA, hibernate, jooq**
 
-### **17.1 不要用 resultClass 当返回参数, 也不要用HashMap接收结果集，即使所有类属性名与数据库字段一一对应，也需要定义`<resultMap>`；反过来，每一个表也必然有一个`<resultMap>`与之对应。**
+### **17.1 不要用 resultClass 当返回参数, 也不要用 HashMap 接收结果集，即使所有类属性名与数据库字段一一对应，也需要定义`<resultMap>`；反过来，每一个表也必然有一个`<resultMap>`与之对应。**
 
 **说明**：配置映射关系，使字段与 DO 类解耦，方便维护。
 
@@ -1311,7 +1310,7 @@ exec @tablename
 
 ### **17.3 iBATIS 自带的 `queryForList(String stmt，int start，int size)` 不推荐使用。**
 
-**说明**：其实现方式类似mysql分页, 是在数据库取到 statementName 对应的 SQL 语句的所有记录，再通过 subList 取 start，size的子集合，线上因为这个原因曾经出现过 OOM。
+**说明**：其实现方式类似 mysql 分页, 是在数据库取到 statementName 对应的 SQL 语句的所有记录，再通过 subList 取 start，size 的子集合，线上因为这个原因曾经出现过 OOM。
 
 ### **17.4 不要写一个大而全的数据更新接口。**
 
