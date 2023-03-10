@@ -7,7 +7,7 @@ date created: 2023-03-08 19:24
 ## 1. EasyMock
 
 - 先录制, 后播放
-- 无法mock静态方法, 构造器等
+- 无法 mock 静态方法, 构造器等
 - 过程随着程序逻辑变复杂
 
 ```java
@@ -32,8 +32,8 @@ public class HelloTest {
 
 ## 2. Mockito
 
-- spring默认Mock框架
-- 无法mock静态方法, 构造器等
+- spring 默认 Mock 框架
+- 无法 mock 静态方法, 构造器等
 
 ```java
 @RunWith(MockitoJUnitRunner.class)
@@ -93,10 +93,10 @@ public class HelloTest {
 
 ## 3. PowerMock
 
-- 用于在EasyMock和Mockito的基础上添加静态, 构造器等mock
-- 理论上不应该mock静态方法, 构造器等, 先调整结构
+- 用于在 EasyMock 和 Mockito 的基础上添加静态, 构造器等 mock
+- 理论上不应该 mock 静态方法, 构造器等, 先调整结构
 
-### 3.1 mock普通方法
+### 3.1 mock 普通方法
 
 ```java
 // 1.必须使用PowerMockRunner
@@ -117,7 +117,7 @@ public class CallNewHelloTest {
 
 ```
 
-### 3.2 mock静态方法
+### 3.2 mock 静态方法
 
 ```java
 @RunWith(PowerMockRunner.class)
@@ -141,7 +141,7 @@ public class HelloStaticTest {
 }
 ```
 
-### 3.3 mock单例
+### 3.3 mock 单例
 
 ```java
 @RunWith(PowerMockRunner.class)
@@ -167,7 +167,7 @@ public class HelloSingletonTest {
 }
 ```
 
-### 3.4 mock私有方法
+### 3.4 mock 私有方法
 
 ```java
 @RunWith(PowerMockRunner.class)
@@ -184,7 +184,7 @@ public class HelloPrivateTest {
 }
 ```
 
-## 4. Mock环境变量
+## 4. Mock 环境变量
 
 ### 4.1 surefire 配置静态环境变量
 
@@ -225,7 +225,7 @@ public class EnvironmentTest {
 }
 ```
 
-## 5. Mockito集成spring
+## 5. Mockito 集成 spring
 
 被测代码
 
@@ -260,7 +260,7 @@ public class HelloStatic {
 }
 ```
 
-### 5.1 拉起springTest
+### 5.1 拉起 springTest
 
 ```java
 // 这里需要使用SpringRunner
@@ -316,7 +316,7 @@ public class HelloControllerTest {
 }
 ```
 
-### 5.2 不拉起spring
+### 5.2 不拉起 spring
 
 ```java
 public class HelloControllerTest {
@@ -339,7 +339,7 @@ public class HelloControllerTest {
 }
 ```
 
-## 6. mockHttp客户端请求
+## 6. mockHttp 客户端请求
 
 ```xml
 <dependency>
@@ -387,7 +387,7 @@ public class HelloHttpTest {
 
     @Rule
     public MockServerRule server = new MockServerRule(this, PORT);
-    
+
     @Test
     public void hello() {
         MockServerClient mockClient = new MockServerClient(HOST, PORT);
@@ -399,7 +399,7 @@ public class HelloHttpTest {
 }
 ```
 
-## 7. 组件提供的原生Mock工具(zk为例)
+## 7. 组件提供的原生 Mock 工具(zk 为例)
 
 ```yaml
 spring:

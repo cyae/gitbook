@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "bb110a2d1d766cc8",
+        "id": "94c6f48e480f9b83",
         "type": "tabs",
         "children": [
           {
-            "id": "59741b6c5f5574ca",
+            "id": "916b491f124ea62e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "操作系统/现代操作系统结构.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "操作系统/现代操作系统结构.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "操作系统/现代操作系统结构.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "操作系统/现代操作系统结构.md"
-              }
+              "state": {}
             }
           },
           {
@@ -155,8 +146,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b51f0d214730f02",
+  "active": "916b491f124ea62e",
   "lastOpenFiles": [
+    "数据库/分表中间件/Sharding-JDBC实践.md",
+    "操作系统/现代操作系统结构.md",
     "数据库/分表中间件/Sharding-JDBC入门.md",
     "数据库/SQLParser.md",
     "数据库/SQL优化.md",
@@ -170,7 +163,6 @@
     "数据库/sqlDB/WAL机制.md",
     "网络协议/使用UPD实现TCP协议.md",
     "数据库/分表中间件/分库分表.md",
-    "数据库/分表中间件/Sharding-JDBC实践.md",
     "数据库/分表中间件",
     "数据库/DDIA/存储架构.md",
     "Java/Spring/Spring事务传播机制.md",
@@ -183,7 +175,6 @@
     "Java/杂记.md",
     "Java/阿里Java规范.md",
     "Java/Spring/spring体现的设计模式.md",
-    "Java/Spring/IOC.md",
     "Git/img",
     "Git/img/20221211_004638.jpg",
     "数据库/DDIA/img/Pasted image 20230212214619.png",

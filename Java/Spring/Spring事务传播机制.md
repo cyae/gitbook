@@ -148,15 +148,15 @@ public class User2ServiceImpl implements User2Service {
 ```java
 @Override
 public void notransaction_exception_required_required(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addRequired(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addRequired(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	user2Service.addRequired(user2);
+    User2 user2=new User2();
+    user2.setName("李四");
+    user2Service.addRequired(user2);
 
-	throw new RuntimeException();
+    throw new RuntimeException();
 }
 ```
 
@@ -165,13 +165,13 @@ public void notransaction_exception_required_required(){
 ```java
 @Override
 public void notransaction_required_required_exception(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addRequired(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addRequired(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	user2Service.addRequiredException(user2);
+    User2 user2=new User2();
+    user2.setName("李四");
+    user2Service.addRequiredException(user2);
 }
 ```
 
@@ -191,15 +191,15 @@ public void notransaction_required_required_exception(){
 @Override
 @Transactional(propagation = Propagation.REQUIRED)
 public void transaction_exception_required_required(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addRequired(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addRequired(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	user2Service.addRequired(user2);
+    User2 user2=new User2();
+    user2.setName("李四");
+    user2Service.addRequired(user2);
 
-	throw new RuntimeException();
+    throw new RuntimeException();
 }
 ```
 
@@ -209,13 +209,13 @@ public void transaction_exception_required_required(){
 @Override
 @Transactional(propagation = Propagation.REQUIRED)
 public void transaction_required_required_exception(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addRequired(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addRequired(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	user2Service.addRequiredException(user2);
+    User2 user2=new User2();
+    user2.setName("李四");
+    user2Service.addRequiredException(user2);
 }
 ```
 
@@ -225,17 +225,17 @@ public void transaction_required_required_exception(){
 @Transactional
 @Override
 public void transaction_required_required_exception_try(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addRequired(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addRequired(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	try {
-		user2Service.addRequiredException(user2);
-	} catch (Exception e) {
-		System.out.println("方法回滚");
-	}
+    User2 user2=new User2();
+    user2.setName("李四");
+    try {
+        user2Service.addRequiredException(user2);
+    } catch (Exception e) {
+        System.out.println("方法回滚");
+    }
 }
 ```
 
@@ -296,14 +296,14 @@ public class User2ServiceImpl implements User2Service {
 ```java
 @Override
 public void notransaction_exception_requiresNew_requiresNew(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addRequiresNew(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addRequiresNew(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	user2Service.addRequiresNew(user2);
-	throw new RuntimeException();
+    User2 user2=new User2();
+    user2.setName("李四");
+    user2Service.addRequiresNew(user2);
+    throw new RuntimeException();
 }
 ```
 
@@ -312,13 +312,13 @@ public void notransaction_exception_requiresNew_requiresNew(){
 ```java
 @Override
 public void notransaction_requiresNew_requiresNew_exception(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addRequiresNew(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addRequiresNew(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	user2Service.addRequiresNewException(user2);
+    User2 user2=new User2();
+    user2.setName("李四");
+    user2Service.addRequiresNewException(user2);
 }
 ```
 
@@ -338,18 +338,18 @@ public void notransaction_requiresNew_requiresNew_exception(){
 @Override
 @Transactional(propagation = Propagation.REQUIRED)
 public void transaction_exception_required_requiresNew_requiresNew(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addRequired(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addRequired(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	user2Service.addRequiresNew(user2);
+    User2 user2=new User2();
+    user2.setName("李四");
+    user2Service.addRequiresNew(user2);
 
-	User2 user3=new User2();
-	user3.setName("王五");
-	user2Service.addRequiresNew(user3);
-	throw new RuntimeException();
+    User2 user3=new User2();
+    user3.setName("王五");
+    user2Service.addRequiresNew(user3);
+    throw new RuntimeException();
 }
 ```
 
@@ -359,17 +359,17 @@ public void transaction_exception_required_requiresNew_requiresNew(){
 @Override
 @Transactional(propagation = Propagation.REQUIRED)
 public void transaction_required_requiresNew_requiresNew_exception(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addRequired(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addRequired(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	user2Service.addRequiresNew(user2);
+    User2 user2=new User2();
+    user2.setName("李四");
+    user2Service.addRequiresNew(user2);
 
-	User2 user3=new User2();
-	user3.setName("王五");
-	user2Service.addRequiresNewException(user3);
+    User2 user3=new User2();
+    user3.setName("王五");
+    user2Service.addRequiresNewException(user3);
 }
 ```
 
@@ -379,20 +379,20 @@ public void transaction_required_requiresNew_requiresNew_exception(){
 @Override
 @Transactional(propagation = Propagation.REQUIRED)
 public void transaction_required_requiresNew_requiresNew_exception_try(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addRequired(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addRequired(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	user2Service.addRequiresNew(user2);
-	User2 user3=new User2();
-	user3.setName("王五");
-	try {
-		user2Service.addRequiresNewException(user3);
-	} catch (Exception e) {
-		System.out.println("回滚");
-	}
+    User2 user2=new User2();
+    user2.setName("李四");
+    user2Service.addRequiresNew(user2);
+    User2 user3=new User2();
+    user3.setName("王五");
+    try {
+        user2Service.addRequiresNewException(user3);
+    } catch (Exception e) {
+        System.out.println("回滚");
+    }
 }
 ```
 
@@ -448,14 +448,14 @@ public class User2ServiceImpl implements User2Service {
 ```java
 @Override
 public void notransaction_exception_nested_nested(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addNested(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addNested(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	user2Service.addNested(user2);
-	throw new RuntimeException();
+    User2 user2=new User2();
+    user2.setName("李四");
+    user2Service.addNested(user2);
+    throw new RuntimeException();
 }
 ```
 
@@ -464,13 +464,13 @@ public void notransaction_exception_nested_nested(){
 ```java
 @Override
 public void notransaction_nested_nested_exception(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addNested(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addNested(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	user2Service.addNestedException(user2);
+    User2 user2=new User2();
+    user2.setName("李四");
+    user2Service.addNestedException(user2);
 }
 ```
 
@@ -490,14 +490,14 @@ public void notransaction_nested_nested_exception(){
 @Transactional
 @Override
 public void transaction_exception_nested_nested(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addNested(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addNested(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	user2Service.addNested(user2);
-	throw new RuntimeException();
+    User2 user2=new User2();
+    user2.setName("李四");
+    user2Service.addNested(user2);
+    throw new RuntimeException();
 }
 ```
 
@@ -523,17 +523,17 @@ public void transaction_exception_nested_nested(){
 @Transactional
 @Override
 public void transaction_nested_nested_exception_try(){
-	User1 user1=new User1();
-	user1.setName("张三");
-	user1Service.addNested(user1);
+    User1 user1=new User1();
+    user1.setName("张三");
+    user1Service.addNested(user1);
 
-	User2 user2=new User2();
-	user2.setName("李四");
-	try {
-		user2Service.addNestedException(user2);
-	} catch (Exception e) {
-		System.out.println("方法回滚");
-	}
+    User2 user2=new User2();
+    user2.setName("李四");
+    try {
+        user2Service.addNestedException(user2);
+    } catch (Exception e) {
+        System.out.println("方法回滚");
+    }
 }
 ```
 
@@ -559,17 +559,17 @@ public void transaction_nested_nested_exception_try(){
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Transactional
-	public void register(User user){
+    @Transactional
+    public void register(User user){
 
-		try {
-			membershipPointService.addPoint(Point point);
-		} catch (Exception e) {
-		   //省略...
-		}
-		//省略...
-	}
-	//省略...
+        try {
+            membershipPointService.addPoint(Point point);
+        } catch (Exception e) {
+           //省略...
+        }
+        //省略...
+    }
+    //省略...
 }
 ```
 
@@ -579,17 +579,17 @@ public class UserServiceImpl implements UserService {
 @Service
 public class MembershipPointServiceImpl implements MembershipPointService{
 
-	@Transactional(propagation = Propagation.NESTED)
-	public void addPoint(Point point){
+    @Transactional(propagation = Propagation.NESTED)
+    public void addPoint(Point point){
 
-		try {
-			recordService.addRecord(Record record);
-		} catch (Exception e) {
-		   //省略...
-		}
-		//省略...
-	}
-	//省略...
+        try {
+            recordService.addRecord(Record record);
+        } catch (Exception e) {
+           //省略...
+        }
+        //省略...
+    }
+    //省略...
 }
 ```
 
@@ -599,13 +599,13 @@ public class MembershipPointServiceImpl implements MembershipPointService{
 @Service
 public class RecordServiceImpl implements RecordService{
 
-	@Transactional(propagation = Propagation.NOT_SUPPORTED)
-	public void addRecord(Record record){
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public void addRecord(Record record){
 
 
-		//省略...
-	}
-	//省略...
+        //省略...
+    }
+    //省略...
 }
 ```
 
