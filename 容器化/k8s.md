@@ -59,23 +59,23 @@ date created: 2023-03-10 10:44
 
 ## **版本控制**
 
-- 水平拓展/收缩：kubectl scale deployment * --replicas=new val
+- 水平拓展/收缩：`kubectl scale deployment * --replicas=new val`
   - 原理：通过controll loop对比集群中pod真实状态和yaml中api对象的期望状态，不同则更改拓展数
-- 滚动更新/升级：使用kubectl edit deployment/* 或者 kubectl set image deployment/* nginx=nginx:version 编辑pod字段，自动触发滚动更新
+- 滚动更新/升级：使用`kubectl edit deployment/*` 或者 `kubectl set image deployment/* nginx=nginx:version` 编辑pod字段，自动触发滚动更新
   - 原理：生成新的空replicaSet，并交替地收缩旧replicaSet至0，拓展新replicaSet至期望值
-    - 查看实时更新状态：kubectl rollout status
-    - 若要求对更新过程进行精细控制（如灰度发布），使用updateStrategy.rollingUpdate.partition:阈值
-- 版本回滚/操作撤销：kubectl rollout undo deployment/*
+    - 查看实时更新状态：`kubectl rollout status`
+    - 若要求对更新过程进行精细控制（如灰度发布），使用`updateStrategy.rollingUpdate.partition:阈值`
+- 版本回滚/操作撤销：`kubectl rollout undo deployment/*`
   - 原理：滚动地将旧replicaSet拓展至原值，新replicaSet收缩至0
   - 回滚到指定版本：
-    - 先查找目标历史版本kubectl rollout history
-    - kubectl rollout history deployment/* --revision=目标版本
+    - 先查找目标历史版本`kubectl rollout history`
+    - `kubectl rollout history deployment/* --revision=目标版本`
 
 ## 有状态服务
 
 - 拓扑状态
   - 通过Headless Service的方式，StatefulSet为每个Pod创建了一个固定并且稳定的DNS，来作为它的访问入口
-    - Headless Service本质即无clusterIP字段的普通Service组件，它会为所有selector代理的pod创建`<pod-name>.<svc-name>.<namespace>`.svc.cluster.local格式的DNS
+    - Headless Service本质即无clusterIP字段的普通Service组件，它会为所有selector代理的pod创建`<pod-name>.<svc-name>.<namespace>.svc.cluster.local`格式的DNS
   - StatefulSet在使用Pod模板创建Pod的时候，对它们进行编号，并且按照编号顺序逐一完成创建工作
     - StatefulSet本质即有serviceName字段的Deployment，通过StatefulSet创建pod时，为每个pod指定编号`<statefulset name>-<ordinal index>`
     - 而当StatefulSet的"控制循环"发现Pod的"实际状态"与"期望状态"不一致，需要新建或者删除Pod进行"调谐"的时候，它会严格按照这些Pod编号的顺序，逐一完成这些操作。
@@ -129,16 +129,16 @@ date created: 2023-03-10 10:44
 
 ## 常用命令
 
-- 通过yaml文件创建一个api对象：kubectl create -f *.yaml
-- 获取指定api对象：kubectl get pod/svc/… -l app=*
-- 查看api对象具体信息：kubectl describe
+- 通过yaml文件创建一个api对象：`kubectl create -f *.yaml`
+- 获取指定api对象：`kubectl get pod/svc/… -l app=*`
+- 查看api对象具体信息：`kubectl describe`
   - 其中events字段显示操作日志
-- 更新对象：kubectl replace -f *.yaml
-- 创建/更新对象：kubectl apply -f *.yaml
-- 进入pod：kubectl exec -it * -- /bin/bash
-- 删除pod：kubectl delete -f *.yaml
-- 与pod文件交互: kubectl cp
-- 查看pod日志: kubectl logs
+- 更新对象：`kubectl replace -f *.yaml`
+- 创建/更新对象：`kubectl apply -f *.yaml`
+- 进入pod：`kubectl exec -it * -- /bin/bash`
+- 删除pod：`kubectl delete -f *.yaml`
+- 与pod文件交互: `kubectl cp`
+- 查看pod日志: `kubectl logs`
 
 ## K8S liveness与readiness的区别
 

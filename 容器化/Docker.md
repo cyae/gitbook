@@ -29,39 +29,24 @@ date updated: 2023-03-10 10:43
 ## 常用命令
 
 - docker pull xxx 拉取镜像
-
 - docker rmi 删除镜像
-
 - docker rm 删除容器
-
 - docker images 查看本地镜像
-
 - docker run 运行容器
   - -it 进行容器交互
   - --restart=always 容器随引擎启动
   - --rm 容器stop后立即删除
   - --add-host 注入解析
-
 - docker ps 列出所有运行中的容器
-
 - docker start 启动容器
-
 - docker restart 重启容器
-
 - docker stop 停止容器
-
 - docker kill 强制停止
-
 - docker build 构建dockerfile
-
 - docker-compose 规定多个有依赖关系容器的启停顺序
-
 - docker info 查看引擎信息
-
 - docker search 检索容器
-
 - docker stats 查看容器占用资源
-
 - docker inspect 查看容器信息
 
 ## 持久化
