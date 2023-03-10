@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "9168673daa1e4390",
+        "id": "0a7ad11e9cd436d1",
         "type": "tabs",
         "children": [
           {
-            "id": "8eb577f7f48db6fa",
+            "id": "19125cb963bb401c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "数据库/分表中间件/分库分表.md",
+                "file": "数据库/SQLParser.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -21,12 +21,25 @@
             }
           },
           {
-            "id": "d710b4a01e50ba65",
+            "id": "ba97e04797986ae8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "数据库/分表中间件/Sharding-JDBC实践.md",
+                "file": "数据库/SQL优化.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c6f15163668c7312",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "数据库/索引优化2.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -34,7 +47,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -63,7 +76,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "分库",
+                "query": "disruptor",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -100,7 +113,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据库/分表中间件/Sharding-JDBC实践.md",
+                "file": "数据库/索引优化2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,7 +130,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据库/分表中间件/Sharding-JDBC实践.md",
+                "file": "数据库/索引优化2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,7 +153,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "数据库/分表中间件/Sharding-JDBC实践.md"
+                "file": "数据库/索引优化2.md"
               }
             }
           },
@@ -169,11 +182,22 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "d710b4a01e50ba65",
+  "active": "c6f15163668c7312",
   "lastOpenFiles": [
-    "数据库/分表中间件/Sharding-JDBC入门.md",
-    "数据库/分表中间件/Sharding-JDBC实践.md",
+    "数据库/SQL优化.md",
+    "数据库/索引优化2.md",
+    "数据库/常用数据库连接池.md",
+    "数据库/SQLParser.md",
+    "数据库/DDIA/倒排索引.md",
+    "Java/Spring/AOP.md",
+    "Java/JUC/跨线程传播数据.md",
+    "Java/JUC/Disruptor.md",
+    "Java/JUC/伪共享.md",
+    "数据库/sqlDB/WAL机制.md",
+    "网络协议/使用UPD实现TCP协议.md",
     "数据库/分表中间件/分库分表.md",
+    "数据库/分表中间件/Sharding-JDBC实践.md",
+    "数据库/分表中间件/Sharding-JDBC入门.md",
     "数据库/分表中间件",
     "数据库/DDIA/存储架构.md",
     "Java/Spring/Spring事务传播机制.md",
@@ -187,17 +211,6 @@
     "Java/阿里Java规范.md",
     "Java/Spring/spring体现的设计模式.md",
     "Java/Spring/IOC.md",
-    "Java/Spring/bean生命周期.md",
-    "Java/JUC/跨线程传播数据.md",
-    "Java/JUC/多线程创建.md",
-    "Git/Github搜索.md",
-    "Git/Git命令.md",
-    "网络协议/计算机网络.md",
-    "算法/图论.md",
-    "算法/其他.md",
-    "算法/匹配算法.md",
-    "算法/排序算法.md",
-    "算法/背包问题.md",
     "Git/img",
     "Git/img/20221211_004638.jpg",
     "数据库/DDIA/img/Pasted image 20230212214619.png",
