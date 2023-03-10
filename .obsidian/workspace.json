@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "5e942e34cc350fad",
+        "id": "efd3a55255ba270c",
         "type": "tabs",
         "children": [
           {
-            "id": "fdea56fb144ab93f",
+            "id": "50ef979d3f98f3c8",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Java/JUC/乐观锁重试机制.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Java/JUC/乐观锁重试机制.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Java/JUC/乐观锁重试机制.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Java/JUC/乐观锁重试机制.md"
-              }
+              "state": {}
             }
           },
           {
@@ -155,8 +146,13 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "fdea56fb144ab93f",
+  "active": "50ef979d3f98f3c8",
   "lastOpenFiles": [
+    "分布式KV存储/分布式事务.md",
+    "分布式KV存储/img",
+    "分布式KV存储/img/Pasted image 20230311000352.png",
+    "数据库/视图.md",
+    "网络协议/序列化serial Version字段.md",
     "Java/JUC/乐观锁重试机制.md",
     "分布式KV存储/基于redis的分布式锁.md",
     "Java/JUC/volatile详解.md",
@@ -179,10 +175,6 @@
     "Java/JUC/跨线程传播数据.md",
     "Java/JUC/多线程创建.md",
     "vim.md",
-    "Kafka原理/消息中间件基础.md",
-    "Kafka原理/Kafka分区一致 & 任务流程.md",
-    "Kafka原理/Kafka基础原理.md",
-    "操作系统/现代操作系统结构.md",
     "数据库/分表中间件",
     "Git/img",
     "Git/img/20221211_004638.jpg",
@@ -195,7 +187,6 @@
     "Java/JUC",
     "测试",
     "容器化",
-    "Java/img",
     "Java/img/Pasted image 20230308191006.png",
     "数据库/miniLSM/img/Pasted image 20230204222728.png",
     "未命名.canvas"
