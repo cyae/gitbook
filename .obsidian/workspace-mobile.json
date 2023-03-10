@@ -4,15 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "c15a77a82cb650ac",
+        "id": "f8ca03638fa08206",
         "type": "tabs",
         "children": [
           {
-            "id": "e38360c79ba14c41",
+            "id": "3343b917b750e20d",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "算法/背包问题.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -40,7 +45,7 @@
         "state": {
           "type": "search",
           "state": {
-            "query": "",
+            "query": "tag:#数据存储",
             "matchingCase": false,
             "explainSearch": false,
             "collapseAll": false,
@@ -135,44 +140,46 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "c0abf3f45f2e7c58",
+  "active": "3343b917b750e20d",
   "lastOpenFiles": [
-    "vim.md",
-    "Java/Spring/IOC.md",
+    "数据库/分表中间件/Sharding-JDBC入门.md",
+    "数据库/分表中间件/分库分表.md",
+    "shard.md",
+    "数据库/SQLParser.md",
+    "Java/JUC/Disruptor.md",
+    "数据库/索引优化2.md",
+    "数据库/DDIA/倒排索引.md",
+    "Java/JUC/伪共享.md",
+    "数据库/分表中间件",
+    "数据库/分表中间件/Sharding-JDBC实践.md",
+    "网络协议/使用UPD实现TCP协议.md",
+    "数据库/sqlDB/WAL机制.md",
+    "Java/Spring/AOP.md",
+    "Java/Spring/Spring事务传播机制.md",
+    "数据库/常用数据库连接池.md",
+    "/数据库/分表中间件/Sharding-JDBC实践.md",
+    "/Java/Spring/AOP.md",
+    "/网络协议/使用UPD实现TCP协议.md",
+    "/数据库/索引优化2.md",
+    "/数据库/SQLParser.md",
+    "/函数式编程/闭包.md",
+    "/网络协议/计算机网络.md",
+    "/缓存/缓存架构.md",
+    "/算法/背包问题.md",
+    "/算法/排序算法.md",
+    "/算法/图论.md",
+    "/算法/匹配算法.md",
+    "/数据库/分表中间件",
     "数据库/Godis/img/Pasted image 20230119172727.png",
-    "容器化/k8s.md",
     "数据库/Godis/img/Pasted image 20230119183620.png",
     "数据库/Godis/img/Pasted image 20230119165429.png",
-    "数据库/Godis/Redis 1.0.md",
-    "Git/Github搜索.md",
     "数据库/Godis/img/Pasted image 20230119163048.png",
-    "缓存/缓存架构.md",
-    "数据库/SQL优化.md",
-    "算法/匹配算法.md",
-    "Java/杂记.md",
-    "数据库/DDIA/存储架构.md",
     "数据库/DDIA/img/微博架构.jpg",
-    "数据库/Godis/Redis架构.md",
-    "操作系统/Linux命令.md",
-    "数据库/幂等性.md",
     "数据库/Godis/img/Pasted image 20230119165120.png",
-    "算法/背包问题.md",
-    "Git/Git命令.md",
     "数据库/miniLSM/img/Pasted image 20230204224657.png",
-    "数据库/Godis/核心概念.md",
-    "算法/排序算法.md",
-    "网络协议/计算机网络.md",
-    "算法/图论.md",
-    "数据库/DDIA/关系型 vs 文档型.md",
     "数据库/Godis/img/Pasted image 20230120000805.png",
-    "操作系统/现代操作系统结构.md",
-    "数据库/miniLSM/LSM-Tree调优.md",
     "数据库/DDIA/img/Pasted image 20230212214957.png",
     "数据库/Godis/img/Pasted image 20230119235908.png",
-    "Java/Spring/spring体现的设计模式.md",
-    "数据库/Godis/核心流程.md",
-    "Java/阿里Java规范.md",
-    "数据库/DDIA/分库分表.md",
     "操作系统",
     "Java/JUC",
     "Java/Spring",
@@ -180,8 +187,6 @@
     "数据库",
     "网络协议",
     "测试",
-    "缓存",
-    "算法",
-    "数据库/Godis"
+    "缓存"
   ]
 }
