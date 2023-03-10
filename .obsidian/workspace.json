@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "数据库/分表中间件/Sharding-JDBC.md",
+                "file": "数据库/分表中间件/Sharding-JDBC实践.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -100,7 +100,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据库/分表中间件/Sharding-JDBC.md",
+                "file": "数据库/分表中间件/Sharding-JDBC实践.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,7 +117,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据库/分表中间件/Sharding-JDBC.md",
+                "file": "数据库/分表中间件/Sharding-JDBC实践.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,7 +140,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "数据库/分表中间件/Sharding-JDBC.md"
+                "file": "数据库/分表中间件/Sharding-JDBC实践.md"
               }
             }
           },
@@ -169,10 +169,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b51f0d214730f02",
+  "active": "d710b4a01e50ba65",
   "lastOpenFiles": [
+    "数据库/分表中间件/Sharding-JDBC入门.md",
+    "数据库/分表中间件/Sharding-JDBC实践.md",
     "数据库/分表中间件/分库分表.md",
-    "数据库/分表中间件/Sharding-JDBC.md",
     "数据库/分表中间件",
     "数据库/DDIA/存储架构.md",
     "Java/Spring/Spring事务传播机制.md",
@@ -197,7 +198,6 @@
     "算法/匹配算法.md",
     "算法/排序算法.md",
     "算法/背包问题.md",
-    "数据库/SQL优化.md",
     "Git/img",
     "Git/img/20221211_004638.jpg",
     "数据库/DDIA/img/Pasted image 20230212214619.png",

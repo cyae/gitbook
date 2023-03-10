@@ -1,3 +1,7 @@
+---
+date created: 2023-03-10 11:04
+---
+
 ## 一、Sharding-JDBC 简介
 
 最早是当当网内部使用的一款分库分表框架，到2017年的时候才开始对外开源，这几年在大量社区贡献者的不断迭代下，功能也逐渐完善，现已更名为 `ShardingSphere`，2020年416正式成为 `Apache` 软件基会的顶级项。 
@@ -518,7 +522,7 @@ SELECT * FROM t_order_n
 
 下面我们结合 `Springboot` + `mybatisplus` 快速搭建一个分库分表案例。
 
-**1、准备工作**
+### 1、准备工作
 
 先做准备工作，创建两个数据库 `ds-0`、`ds-1`，两个库中分别建表 `t_order_0`、`t_order_1`、`t_order_2`、`t_order_item_0`、`t_order_item_1`、`t_order_item_2`，`t_config`，方便后边验证广播表、绑定表的场景。
 
@@ -528,6 +532,7 @@ SELECT * FROM t_order_n
 
 `t_order_0` 订单表
 
+```sql
 CREATE TABLE `t_order_0` (  
 `order_id` bigint(200) NOT NULL,  
 `order_no` varchar(100) DEFAULT NULL,  
@@ -545,129 +550,195 @@ CREATE TABLE `t_order_item_0` (
 `price` decimal(10,2) DEFAULT NULL,  
 PRIMARY KEY (`item_id`)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+```
 
 广播表 `t_config`
 
+```sql
+CREATE TABLE `t_config` (
 `id` bigint(30) NOT NULL,  
 `remark` varchar(50) CHARACTER SET utf8 DEFAULT NULL,  
 `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  
 `last_modify_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  
 PRIMARY KEY (`id`)  
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
 
 `ShardingSphere` 提供了4种分片配置方式：
 
--   Java 代码配置
-    
--   Yaml 、properties 配置
-    
--   Spring 命名空间配置
-    
--   Spring Boot配置 
-    
+- Java 代码配置
+
+- Yaml 、properties 配置
+
+- Spring 命名空间配置
+
+- Spring Boot配置 
 
 为让代码看上去更简洁和直观，后边统一使用 `properties` 配置的方式，引入 `shardingsphere` 对应的 `sharding-jdbc-spring-boot-starter` 和 `sharding-core-common` 包，版本统一用的 4.0.0-RC1。
 
-**2、分片配置**
+### 2、分片配置
 
+```xml
 <dependency>  
 <groupId>org.apache.shardingsphere</groupId>  
 <artifactId>sharding-jdbc-spring-boot-starter</artifactId>  
 <version>4.0.0-RC1</version>  
 </dependency>  
-  
+
 <dependency>  
 <groupId>org.apache.shardingsphere</groupId>  
 <artifactId>sharding-core-common</artifactId>  
 <version>4.0.0-RC1</version>  
 </dependency>
+```
 
 准备工作做完（ mybatis 搭建就不赘述了），接下来我们逐一解读分片配置信息。 
 
 我们首先定义两个数据源 `ds-0`、`ds-1`，并分别加上数据源的基础信息。
 
-# 定义两个全局数据源spring.shardingsphere.datasource.names=ds-0,ds-1# 配置数据源 ds-0spring.shardingsphere.datasource.ds-0.type=com.alibaba.druid.pool.DruidDataSourcespring.shardingsphere.datasource.ds-0.driverClassName=com.mysql.jdbc.Driverspring.shardingsphere.datasource.ds-0.url=jdbc:mysql://127.0.0.1:3306/ds-0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMTspring.shardingsphere.datasource.ds-0.username=rootspring.shardingsphere.datasource.ds-0.password=root# 配置数据源 ds-1spring.shardingsphere.datasource.ds-1.type=com.alibaba.druid.pool.DruidDataSourcespring.shardingsphere.datasource.ds-1.driverClassName=com.mysql.jdbc.Driverspring.shardingsphere.datasource.ds-1.url=jdbc:mysql://127.0.0.1:3306/ds-1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMTspring.shardingsphere.datasource.ds-1.username=rootspring.shardingsphere.datasource.ds-1.password=root
+```yaml
+# 定义两个全局数据源
+spring.shardingsphere.datasource.names=ds-0,ds-1
+
+# 配置数据源 ds-0
+spring.shardingsphere.datasource.ds-0.type=com.alibaba.druid.pool.DruidDataSource
+
+spring.shardingsphere.datasource.ds-0.driverClassName=com.mysql.jdbc.Driver
+
+spring.shardingsphere.datasource.ds-0.url=jdbc:mysql://127.0.0.1:3306/ds-0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
+
+spring.shardingsphere.datasource.ds-0.username=rootspring.shardingsphere.datasource.ds-0.password=root
+
+# 配置数据源 ds-1
+spring.shardingsphere.datasource.ds-1.type=com.alibaba.druid.pool.DruidDataSource
+
+spring.shardingsphere.datasource.ds-1.driverClassName=com.mysql.jdbc.Driver
+
+spring.shardingsphere.datasource.ds-1.url=jdbc:mysql://127.0.0.1:3306/ds-1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
+
+spring.shardingsphere.datasource.ds-1.username=rootspring.shardingsphere.datasource.ds-1.password=root
+```
 
 配置完数据源接下来为表添加分库和分表策略，使用 `sharding-jdbc` 做分库分表需要我们为每一个表单独设置分片规则。
 
-# 配置分片表 t_order  
-# 指定真实数据节点  
+- 配置分片表 t_order
+
+- 指定真实数据节点
+
+```yaml
 spring.shardingsphere.sharding.tables.t_order.actual-data-nodes=ds-$->{0..1}.t_order_$->{0..2}
+```
 
 `actual-data-nodes` 属性指定分片的真实数据节点，`$`是一个占位符，{0..1}表示实际拆分的数据库表数量。
 
 `ds-$->{0..1}.t_order_$->{0..2}` 表达式相当于 6个数据节点
 
--   ds-0.t_order_0
-    
--   ds-0.t_order_1
-    
--   ds-0.t_order_2
-    
--   ds-1.t_order_0
-    
--   ds-1.t_order_1
-    
--   ds-1.t_order_2
-    
+- ds-0.t_order_0
 
-### 分库策略  
-# 分库分片健  
-spring.shardingsphere.sharding.tables.t_order.database-strategy.inline.sharding-column=order_id  
-# 分库分片算法  
+- ds-0.t_order_1
+
+- ds-0.t_order_2
+
+- ds-1.t_order_0
+
+- ds-1.t_order_1
+
+- ds-1.t_order_2
+
+#### 分库策略
+
+##### 分库分片健
+
+```yaml
+spring.shardingsphere.sharding.tables.t_order.database-strategy.inline.sharding-column=order_id
+```
+
+##### 分库分片算法
+
+```yaml
 spring.shardingsphere.sharding.tables.t_order.database-strategy.inline.algorithm-expression=ds-$->{order_id % 2}
+```
 
 为表设置分库策略，上边讲了 `sharding-jdbc` 它提供了四种分片策略，为快速搭建我们先以最简单的行内表达式分片策略来实现，在下一篇会介绍四种分片策略的详细用法和使用场景。`database-strategy.inline.sharding-column` 属性中 `database-strategy` 为分库策略，`inline` 为具体的分片策略，`sharding-column` 代表分片健。
 
 `database-strategy.inline.algorithm-expression` 是当前策略下具体的分片算法，`ds-$->{order_id % 2}` 表达式意思是 对 `order_id`字段进行取模分库，2 代表分片库的个数，不同的策略对应不同的算法，这里也可以是我们自定义的分片算法类。
 
-# 分表策略# 分表分片健spring.shardingsphere.sharding.tables.t_order.table-strategy.inline.sharding-column=order_id# 分表算法spring.shardingsphere.sharding.tables.t_order.table-strategy.inline.algorithm-expression=t_order_$->{order_id % 3}# 自增主键字段spring.shardingsphere.sharding.tables.t_order.key-generator.column=order_id# 自增主键ID 生成方案spring.shardingsphere.sharding.tables.t_order.key-generator.type=SNOWFLAKE
+#### 分表策略
+```yaml
+# 分表分片健
+spring.shardingsphere.sharding.tables.t_order.table-strategy.inline.sharding-column=order_id
+
+# 分表算法
+spring.shardingsphere.sharding.tables.t_order.table-strategy.inline.algorithm-expression=t_order_$->{order_id % 3}
+
+# 自增主键字段
+spring.shardingsphere.sharding.tables.t_order.key-generator.column=order_id
+
+# 自增主键ID 生成方案
+spring.shardingsphere.sharding.tables.t_order.key-generator.type=SNOWFLAKE
+```
 
 分表策略 和 分库策略 的配置比较相似，不同的是分表可以通过 `key-generator.column` 和 `key-generator.type` 设置自增主键以及指定自增主键的生成方案，目前内置了`SNOWFLAKE` 和 `UUID` 两种方式，还能自定义的主键生成算法类，后续会详细的讲解。
 
-# 绑定表关系spring.shardingsphere.sharding.binding-tables= t_order,t_order_item
-
+##### 绑定表关系
+```yaml
+spring.shardingsphere.sharding.binding-tables= t_order,t_order_item
+```
 必须按相同分片健进行分片的表才能互为成绑定表，在联合查询时就能避免出现笛卡尔积查询。
 
-# 配置广播表spring.shardingsphere.sharding.broadcast-tables=t_config
-
+##### 配置广播表
+```yaml
+spring.shardingsphere.sharding.broadcast-tables=t_config
+```
 广播表，开启 SQL解析日志，能清晰的看到 SQL分片解析的过程
 
-# 是否开启 SQL解析日志  
+##### 是否开启 SQL解析日志
+```yaml
 spring.shardingsphere.props.sql.show=true
+```
 
-**3、验证分片**
+### 3、验证分片
 
 分片配置完以后我们无需在修改业务代码了，直接执行业务逻辑的增、删、改、查即可，接下来验证一下分片的效果。
 
 我们同时向 `t_order`、`t_order_item` 表插入 5条订单记录，并不给定主键 `order_id` ，`item_id`字段值。
 
-public String insertOrder() {  
-  
-for (int i = 0; i < 4; i++) {  
-TOrder order = new TOrder();  
-order.setOrderNo("A000" + i);  
-order.setCreateName("订单 " + i);  
-order.setPrice(new BigDecimal("" + i));  
-orderRepository.insert(order);  
-  
-TOrderItem orderItem = new TOrderItem();  
-orderItem.setOrderId(order.getOrderId());  
-orderItem.setOrderNo("A000" + i);  
-orderItem.setItemName("服务项目" + i);  
-orderItem.setPrice(new BigDecimal("" + i));  
-orderItemRepository.insert(orderItem);  
-}  
-return "success";  
+```java
+public String insertOrder() {
+	for (int i = 0; i < 4; i++) {
+		TOrder order = new TOrder();
+		order.setOrderNo("A000" + i);
+		order.setCreateName("订单 " + i);
+		order.setPrice(new BigDecimal("" + i));
+		orderRepository.insert(order);
+		
+		TOrderItem orderItem = new TOrderItem();
+		orderItem.setOrderId(order.getOrderId());
+		orderItem.setOrderNo("A000" + i);
+		orderItem.setItemName("服务项目" + i);
+		orderItem.setPrice(new BigDecimal("" + i));
+		orderItemRepository.insert(orderItem);
+	}
+	return "success";
 }
+```
 
 看到订单记录被成功分散到了不同的库表中， `order_id` 字段也自动生成了主键ID，基础的分片功能就完成了。
 
  ![](https://img2022.cnblogs.com/blog/2084611/202205/2084611-20220527101148029-1396500806.png)
 
- 那向广播表 `t_config` 中插入一条数据会是什么效果呢？
+那向广播表 `t_config` 中插入一条数据会是什么效果呢？
 
-public String config() {    TConfig tConfig = new TConfig();    tConfig.setRemark("我是广播表");    tConfig.setCreateTime(new Date());    tConfig.setLastModifyTime(new Date());    configRepository.insert(tConfig);    return "success";}
+```java
+public String config() {    
+	TConfig tConfig = new TConfig();    
+	tConfig.setRemark("我是广播表");    
+	tConfig.setCreateTime(new Date());    
+	tConfig.setLastModifyTime(new Date());    
+	configRepository.insert(tConfig);    
+	return "success";
+}
+```
 
 发现所有库中 `t_config` 表都执行了这条SQL，广播表和 MQ广播订阅的模式很相似，所有订阅的客户端都会收到同一条消息。
 
@@ -687,727 +758,3 @@ public String config() {    TConfig tConfig = new TConfig();    tConfig.setRemar
 
  ![](https://img2022.cnblogs.com/blog/2084611/202205/2084611-20220527101311192-1720415929.png)
 
-### 五、总结
-
-以上对分库分表中间件 `sharding-jdbc` 的基础概念做了简单梳理，快速的搭建了一个分库分表案例，但这只是实践分库分表的第一步，下一篇我们会详细的介绍四种分片策略的具体用法和使用场景（必知必会），后边将陆续讲解自定义分布式主键、分布式数据库事务、分布式服务治理，数据脱敏等。
-
-# sharding-jdbc 分库分表的 4种分片策略
-
-这是一个比较典型的问题，我们知道分库分表是针对某些数据量持续大幅增长的表，比如用户表、订单表等，而不是一刀切将全部表都做分片。那么不分片的表和分片的表如何划分，一般有两种解决方案。
-
-严格划分功能库，分片的库与不分片的库剥离开，业务代码中按需切换数据源访问  
-设置默认数据源，以 Sharding-JDBC 为例，不给未分片表设置分片规则，它们就不会执行，因为找不到路由规则，这时我们设置一个默认数据源，在找不到规则时一律访问默认库。  
-# 配置数据源 ds-0  
-spring.shardingsphere.datasource.ds-0.type=com.alibaba.druid.pool.DruidDataSource  
-spring.shardingsphere.datasource.ds-0.driverClassName=com.mysql.jdbc.Driver  
-spring.shardingsphere.datasource.ds-0.url=jdbc:mysql://47.94.6.5:3306/ds-0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT  
-spring.shardingsphere.datasource.ds-0.username=root  
-spring.shardingsphere.datasource.ds-0.password=root
-
-# 默认数据源，未分片的表默认执行库  
-spring.shardingsphere.sharding.default-data-source-name=ds-0  
-这篇我们针对具体的SQL使用场景，实践一下4种分片策略的用法，开始前先做点准备工作。
-
-标准分片策略  
-复合分片策略  
-行表达式分片策略  
-Hint分片策略  
-准备工作  
-先创建两个数据库 ds-0、ds-1，两个库中分别建表 t_order_0、t_order_1、t_order_2 、t_order_item_0、t_order_item_1、t_order_item_2 6张表，下边实操看看如何在不同场景下应用 sharding-jdbc 的 4种分片策略。
-
-t_order_n 表结构如下：
-
-CREATE TABLE `t_order_0` (  
-`order_id` bigint(200) NOT NULL,  
-`order_no` varchar(100) DEFAULT NULL,  
-`user_id` bigint(200) NOT NULL,  
-`create_name` varchar(50) DEFAULT NULL,  
-`price` decimal(10,2) DEFAULT NULL,  
-PRIMARY KEY (`order_id`)  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;  
-  
-t_order_item_n 表结构如下：
-
-CREATE TABLE `t_order_item_0` (  
-`item_id` bigint(100) NOT NULL,  
-`order_id` bigint(200) NOT NULL,  
-`order_no` varchar(200) NOT NULL,  
-`item_name` varchar(50) DEFAULT NULL,  
-`price` decimal(10,2) DEFAULT NULL,  
-PRIMARY KEY (`item_id`)  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;  
-  
-分片策略分为分表策略和分库策略，它们实现分片算法的方式基本相同，不同是一个对库ds-0、ds-1，一个对表 t_order_0 ··· t_order_n 等做处理。
-
-标准分片策略  
-使用场景：SQL 语句中有>，>=, <=，<，=，IN 和 BETWEEN AND 操作符，都可以应用此分片策略。
-
-标准分片策略（StandardShardingStrategy），它只支持对单个分片健（字段）为依据的分库分表，并提供了两种分片算法 PreciseShardingAlgorithm（精准分片）和 RangeShardingAlgorithm（范围分片）。
-
-在使用标准分片策略时，精准分片算法是必须实现的算法，用于 SQL 含有 = 和 IN 的分片处理；范围分片算法是非必选的，用于处理含有 BETWEEN AND 的分片处理。
-
-一旦我们没配置范围分片算法，而 SQL 中又用到 BETWEEN AND 或者 like等，那么 SQL 将按全库、表路由的方式逐一执行，查询性能会很差需要特别注意。
-
-接下来自定义实现 精准分片算法 和 范围分片算法。
-
-1、精准分片算法  
-1.1 精准分库算法  
-实现自定义精准分库、分表算法的方式大致相同，都要实现 PreciseShardingAlgorithm 接口，并重写 doSharding() 方法，只是配置稍有不同，而且它只是个空方法，得我们自行处理分库、分表逻辑。其他分片策略亦如此。
-
-SELECT * FROM t_order where order_id = 1 or order_id in （1,2,3）;  
-1  
-下边我们实现精准分库策略，通过对分片健 order_id 取模的方式（怎么实现看自己喜欢）计算出 SQL 该路由到哪个库，计算出的分片库信息会存放在分片上下文中，方便后续分表中使用。
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-`/**`
-
-`* @author TianL`
-
-`* @description 自定义标准分库策略`
-
-`* @date 2020/10/30 13:48`
-
-`*/`
-
-`public` `class` `MyDBPreciseShardingAlgorithm` `implements` `PreciseShardingAlgorithm<Long> {`
-
-`@Override`
-
-`public` `String doSharding(Collection<String> databaseNames, PreciseShardingValue<Long> shardingValue) {`
-
-`/**`
-
-`* databaseNames 所有分片库的集合`
-
-`* shardingValue 为分片属性，其中 logicTableName 为逻辑表，columnName 分片健（字段），value 为从 SQL 中解析出的分片健的值`
-
-`*/`
-
-`for` `(String databaseName : databaseNames) {`
-
-`String value = shardingValue.getValue() % databaseNames.size() +` `""``;`
-
-`if` `(databaseName.endsWith(value)) {`
-
-`return` `databaseName;`
-
-`}`
-
-`}`
-
-`throw` `new` `IllegalArgumentException();`
-
-`}`
-
-`}`
-
-其中 Collection<String> 参数在几种分片策略中使用一致，在分库时值为所有分片库的集合 databaseNames，分表时为对应分片库中所有分片表的集合 tablesNames；PreciseShardingValue 为分片属性，其中 logicTableName 为逻辑表，columnName 分片健（字段），value 为从 SQL 中解析出的分片健的值。
-
-而 application.properties 配置文件中只需修改分库策略名 database-strategy 为标准模式 standard，分片算法 standard.precise-algorithm-class-name 为自定义的精准分库算法类路径。
-
-### 分库策略  
-# 分库分片健  
-spring.shardingsphere.sharding.tables.t_order.database-strategy.standard.sharding-column=order_id  
-# 分库分片算法  
-spring.shardingsphere.sharding.tables.t_order.database-strategy.standard.precise-algorithm-class-name=com.xiaofu.sharding.algorithm.dbAlgorithm.MyDBPreciseShardingAlgorithm  
-  
-1.2 精准分表算法  
-精准分表算法同样实现 PreciseShardingAlgorithm 接口，并重写 doSharding() 方法。
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-26
-
-`/**`
-
-`* @author TianL`
-
-`* @description 自定义标准分表策略`
-
-`* @date 2020/10/30 13:48`
-
-`*/`
-
-`public` `class` `MyTablePreciseShardingAlgorithm` `implements` `PreciseShardingAlgorithm<Long> {`
-
-`@Override`
-
-`public` `String doSharding(Collection<String> tableNames, PreciseShardingValue<Long> shardingValue) {`
-
-`/**`
-
-`* tableNames 对应分片库中所有分片表的集合`
-
-`* shardingValue 为分片属性，其中 logicTableName 为逻辑表，columnName 分片健（字段），value 为从 SQL 中解析出的分片健的值`
-
-`*/`
-
-`for` `(String tableName : tableNames) {`
-
-`/**`
-
-`* 取模算法，分片健 % 表数量`
-
-`*/`
-
-`String value = shardingValue.getValue() % tableNames.size() +` `""``;`
-
-`if` `(tableName.endsWith(value)) {`
-
-`return` `tableName;`
-
-`}`
-
-`}`
-
-`throw` `new` `IllegalArgumentException();`
-
-`}`
-
-`}`
-
-分表时 Collection<String> 参数为上边计算出的分片库，对应的所有分片表的集合 tablesNames；PreciseShardingValue 为分片属性，其中 logicTableName 为逻辑表，columnName 分片健（字段），value 为从 SQL 中解析出的分片健的值。
-
-application.properties 配置文件也只需修改分表策略名 database-strategy 为标准模式 standard，分片算法 standard.precise-algorithm-class-name 为自定义的精准分表算法类路径。
-
-# 分表策略  
-# 分表分片健  
-spring.shardingsphere.sharding.tables.t_order.table-strategy.standard.sharding-column=order_id  
-# 分表算法  
-spring.shardingsphere.sharding.tables.t_order.table-strategy.standard.precise-algorithm-class-name=com.xiaofu.sharding.algorithm.tableAlgorithm.MyTablePreciseShardingAlgorithm  
-  
-看到这不难发现，自定义分库和分表算法的实现基本是一样的，所以后边我们只演示分库即可
-
-2、范围分片算法  
-使用场景：当我们 SQL中的分片健字段用到 BETWEEN AND操作符会使用到此算法，会根据 SQL中给出的分片健值范围值处理分库、分表逻辑。
-
-SELECT * FROM t_order where order_id BETWEEN 1 AND 100;  
-1  
-自定义范围分片算法需实现 RangeShardingAlgorithm 接口，重写 doSharding() 方法，下边我通过遍历分片健值区间，计算每一个分库、分表逻辑。
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-`/**`
-
-`* @author TianL`
-
-`* @description 范围分库算法`
-
-`* @date 2020/11/2 12:06`
-
-`*/`
-
-`public` `class` `MyDBRangeShardingAlgorithm` `implements` `RangeShardingAlgorithm<Integer> {`
-
-`@Override`
-
-`public` `Collection<String> doSharding(Collection<String> databaseNames, RangeShardingValue<Integer> rangeShardingValue) {`
-
-`Set<String> result =` `new` `LinkedHashSet<>();`
-
-`// between and 的起始值`
-
-`int` `lower = rangeShardingValue.getValueRange().lowerEndpoint();`
-
-`int` `upper = rangeShardingValue.getValueRange().upperEndpoint();`
-
-`// 循环范围计算分库逻辑`
-
-`for` `(``int` `i = lower; i <= upper; i++) {`
-
-`for` `(String databaseName : databaseNames) {`
-
-`if` `(databaseName.endsWith(i % databaseNames.size() +` `""``)) {`
-
-`result.add(databaseName);`
-
-`}`
-
-`}`
-
-`}`
-
-`return` `result;`
-
-`}`
-
-`}`
-
-和上边的一样 Collection<String> 在分库、分表时分别代表分片库名和表名集合，RangeShardingValue 这里取值方式稍有不同， lowerEndpoint 表示起始值， upperEndpoint 表示截止值。
-
-在配置上由于范围分片算法和精准分片算法，同在标准分片策略下使用，所以只需添加上 range-algorithm-class-name 自定义范围分片算法类路径即可。
-
-# 精准分片算法  
-spring.shardingsphere.sharding.tables.t_order.database-strategy.standard.precise-algorithm-class-name=com.xiaofu.sharding.algorithm.dbAlgorithm.MyDBPreciseShardingAlgorithm  
-# 范围分片算法  
-spring.shardingsphere.sharding.tables.t_order.database-strategy.standard.range-algorithm-class-name=com.xiaofu.sharding.algorithm.dbAlgorithm.MyDBRangeShardingAlgorithm  
-  
-复合分片策略  
-使用场景：SQL 语句中有>，>=, <=，<，=，IN 和 BETWEEN AND 等操作符，不同的是复合分片策略支持对多个分片健操作。
-
-下面我们实现同时以 order_id、user_id 两个字段作为分片健，自定义复合分片策略。
-
-SELECT * FROM t_order where user_id =0 and order_id = 1;  
-1  
-我们先修改一下原配置，complex.sharding-column 切换成 complex.sharding-columns 复数，分片健上再加一个 user_id ，分片策略名变更为 complex ，complex.algorithm-class-name 替换成我们自定义的复合分片算法。
-
-### 分库策略  
-# order_id,user_id 同时作为分库分片健  
-spring.shardingsphere.sharding.tables.t_order.database-strategy.complex.sharding-column=order_id,user_id  
-# 复合分片算法  
-spring.shardingsphere.sharding.tables.t_order.database-strategy.complex.algorithm-class-name=com.xiaofu.sharding.algorithm.dbAlgorithm.MyDBComplexKeysShardingAlgorithm  
-  
-自定义复合分片策略要实现 ComplexKeysShardingAlgorithm 接口，重新 doSharding()方法。
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-26
-
-27
-
-28
-
-29
-
-30
-
-31
-
-32
-
-33
-
-34
-
-35
-
-36
-
-37
-
-38
-
-39
-
-`/**`
-
-`* @author xiaofu TianL`
-
-`* @description 自定义复合分库策略`
-
-`* @date 2020/10/30 13:48`
-
-`*/`
-
-`public` `class` `MyDBComplexKeysShardingAlgorithm` `implements` `ComplexKeysShardingAlgorithm<Integer> {`
-
-`@Override`
-
-`public` `Collection<String> doSharding(Collection<String> databaseNames, ComplexKeysShardingValue<Integer> complexKeysShardingValue) {`
-
-`// 得到每个分片健对应的值`
-
-`Collection<Integer> orderIdValues =` `this``.getShardingValue(complexKeysShardingValue,` `"order_id"``);`
-
-`Collection<Integer> userIdValues =` `this``.getShardingValue(complexKeysShardingValue,` `"user_id"``);`
-
-`List<String> shardingSuffix =` `new` `ArrayList<>();`
-
-`// 对两个分片健同时取模的方式分库`
-
-`for` `(Integer userId : userIdValues) {`
-
-`for` `(Integer orderId : orderIdValues) {`
-
-`String suffix = userId %` `2` `+` `"_"` `+ orderId %` `2``;`
-
-`for` `(String databaseName : databaseNames) {`
-
-`if` `(databaseName.endsWith(suffix)) {`
-
-`shardingSuffix.add(databaseName);`
-
-`}`
-
-`}`
-
-`}`
-
-`}`
-
-`return` `shardingSuffix;`
-
-`}`
-
-`private` `Collection<Integer> getShardingValue(ComplexKeysShardingValue<Integer> shardingValues,` `final` `String key) {`
-
-`Collection<Integer> valueSet =` `new` `ArrayList<>();`
-
-`Map<String, Collection<Integer>> columnNameAndShardingValuesMap = shardingValues.getColumnNameAndShardingValuesMap();`
-
-`if` `(columnNameAndShardingValuesMap.containsKey(key)) {`
-
-`valueSet.addAll(columnNameAndShardingValuesMap.get(key));`
-
-`}`
-
-`return` `valueSet;`
-
-`}`
-
-`}`
-
-Collection<String> 用法还是老样子，由于支持多分片健 ComplexKeysShardingValue 分片属性内用一个分片健为 key，分片健值为 value 的 map来存储分片键属性。
-
-行表达式分片策略  
-行表达式分片策略（InlineShardingStrategy），在配置中使用 Groovy 表达式，提供对 SQL语句中的 = 和 IN 的分片操作支持，它只支持单分片健。
-
-行表达式分片策略适用于做简单的分片算法，无需自定义分片算法，省去了繁琐的代码开发，是几种分片策略中最为简单的。
-
-它的配置相当简洁，这种分片策略利用inline.algorithm-expression书写表达式。
-
-比如：ds-$->{order_id % 2} 表示对 order_id 做取模计算，$ 是个通配符用来承接取模结果，最终计算出分库ds-0 ··· ds-n，整体来说比较简单。
-
-# 行表达式分片键  
-sharding.jdbc.config.sharding.tables.t_order.database-strategy.inline.sharding-column=order_id  
-# 表达式算法  
-sharding.jdbc.config.sharding.tables.t_order.database-strategy.inline.algorithm-expression=ds-$->{order_id % 2}  
-  
-Hint分片策略  
-Hint分片策略（HintShardingStrategy）相比于上面几种分片策略稍有不同，这种分片策略无需配置分片健，分片健值也不再从 SQL中解析，而是由外部指定分片信息，让 SQL在指定的分库、分表中执行。ShardingSphere 通过 Hint API实现指定操作，实际上就是把分片规则tablerule 、databaserule由集中配置变成了个性化配置。
-
-举个例子，如果我们希望订单表t_order用 user_id 做分片健进行分库分表，但是 t_order 表中却没有 user_id 这个字段，这时可以通过 Hint API 在外部手动指定分片健或分片库。
-
-下边我们这边给一条无分片条件的SQL，看如何指定分片健让它路由到指定库表。
-
-SELECT * FROM t_order;  
-1  
-使用 Hint分片策略同样需要自定义，实现 HintShardingAlgorithm 接口并重写 doSharding()方法。
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-`/**`
-
-`* @author xinzhifu`
-
-`* @description hit分表算法`
-
-`* @date 2020/11/2 12:06`
-
-`*/`
-
-`public` `class` `MyTableHintShardingAlgorithm` `implements` `HintShardingAlgorithm<String> {`
-
-`@Override`
-
-`public` `Collection<String> doSharding(Collection<String> tableNames, HintShardingValue<String> hintShardingValue) {`
-
-`Collection<String> result =` `new` `ArrayList<>();`
-
-`for` `(String tableName : tableNames) {`
-
-`for` `(String shardingValue : hintShardingValue.getValues()) {`
-
-`if` `(tableName.endsWith(String.valueOf(Long.valueOf(shardingValue) % tableNames.size()))) {`
-
-`result.add(tableName);`
-
-`}`
-
-`}`
-
-`}`
-
-`return` `result;`
-
-`}`
-
-`}`
-
-自定义完算法只实现了一部分，还需要在调用 SQL 前通过 HintManager 指定分库、分表信息。由于每次添加的规则都放在 ThreadLocal 内，所以要先执行 clear() 清除掉上一次的规则，否则会报错；addDatabaseShardingValue 设置分库分片健键值，addTableShardingValue设置分表分片健键值。setMasterRouteOnly 读写分离强制读主库，避免造成主从复制导致的延迟。
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-`/ 清除掉上一次的规则，否则会报错`
-
-`HintManager.clear();`
-
-`// HintManager API 工具类实例`
-
-`HintManager hintManager = HintManager.getInstance();`
-
-`// 直接指定对应具体的数据库`
-
-`hintManager.addDatabaseShardingValue(``"ds"``,``0``);`
-
-`// 设置表的分片健`
-
-`hintManager.addTableShardingValue(``"t_order"` `,` `0``);`
-
-`hintManager.addTableShardingValue(``"t_order"` `,` `1``);`
-
-`hintManager.addTableShardingValue(``"t_order"` `,` `2``);`
-
-`// 在读写分离数据库中，Hint 可以强制读主库`
-
-`hintManager.setMasterRouteOnly();`
-
-debug 调试看到，我们对 t_order 表设置分表分片健键值，可以在自定义的算法 HintShardingValue 参数中成功拿到。
-
-properties 文件中配置无需再指定分片健，只需自定义的 Hint分片算法类路径即可。
-
-# Hint分片算法  
-spring.shardingsphere.sharding.tables.t_order.table-strategy.hint.algorithm-class-name=com.xiaofu.sharding.algorithm.tableAlgorithm.MyTableHintShardingAlgorithm
