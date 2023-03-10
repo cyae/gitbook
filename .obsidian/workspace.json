@@ -11,8 +11,13 @@
             "id": "0a3de84bfe8fbbfb",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "分布式KV存储/分布式事务.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "分布式KV存储/分布式事务.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "分布式KV存储/分布式事务.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "分布式KV存储/分布式事务.md"
+              }
             }
           },
           {
@@ -146,15 +155,15 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2354696360fce6b1",
+  "active": "0a3de84bfe8fbbfb",
   "lastOpenFiles": [
+    "分布式KV存储/img/Pasted image 20230311000352.png",
+    "Pasted image 20230311001205.png",
     "数据库/Godis/哨兵模式.md",
     "分布式KV存储/SEATA.md",
     "数据库/DDIA/事务.md",
     "分布式KV存储/分布式事务.md",
-    "Pasted image 20230311001205.png",
     "分布式KV存储/img",
-    "分布式KV存储/img/Pasted image 20230311000352.png",
     "数据库/视图.md",
     "网络协议/序列化serial Version字段.md",
     "Java/JUC/乐观锁重试机制.md",
@@ -176,7 +185,6 @@
     "Java/Spring/bean生命周期.md",
     "Java/JUC/伪共享.md",
     "Java/JUC/Disruptor.md",
-    "Java/JUC/跨线程传播数据.md",
     "数据库/分表中间件",
     "Git/img",
     "Git/img/20221211_004638.jpg",
