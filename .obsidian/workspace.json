@@ -4,15 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "d6dea4c519120613",
+        "id": "5e942e34cc350fad",
         "type": "tabs",
         "children": [
           {
-            "id": "1fd0a5bee472c03e",
+            "id": "fdea56fb144ab93f",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Java/JUC/乐观锁重试机制.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -44,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "disruptor",
+                "query": "倒排",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Java/JUC/乐观锁重试机制.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Java/JUC/乐观锁重试机制.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Java/JUC/乐观锁重试机制.md"
+              }
             }
           },
           {
@@ -130,7 +139,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -146,8 +155,13 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "1fd0a5bee472c03e",
+  "active": "fdea56fb144ab93f",
   "lastOpenFiles": [
+    "Java/JUC/乐观锁重试机制.md",
+    "分布式KV存储/基于redis的分布式锁.md",
+    "Java/JUC/volatile详解.md",
+    "未命名.md",
+    "数据库/DDIA/倒排索引.md",
     "算法/背包问题.md",
     "数据库/分表中间件/Sharding-JDBC实践.md",
     "操作系统/Linux命令.md",
@@ -169,11 +183,6 @@
     "Kafka原理/Kafka分区一致 & 任务流程.md",
     "Kafka原理/Kafka基础原理.md",
     "操作系统/现代操作系统结构.md",
-    "数据库/分表中间件/Sharding-JDBC入门.md",
-    "数据库/SQLParser.md",
-    "数据库/SQL优化.md",
-    "数据库/索引优化2.md",
-    "数据库/常用数据库连接池.md",
     "数据库/分表中间件",
     "Git/img",
     "Git/img/20221211_004638.jpg",
