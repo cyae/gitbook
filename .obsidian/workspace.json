@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "70eb56d7547f02f4",
+        "id": "5847523c50de31a8",
         "type": "tabs",
         "children": [
           {
-            "id": "172f7a3043ea3a80",
+            "id": "4356658ee3b81e33",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "算法/背包问题.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "算法/背包问题.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "算法/背包问题.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "算法/背包问题.md"
-              }
+              "state": {}
             }
           },
           {
@@ -139,7 +130,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -155,14 +146,26 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "172f7a3043ea3a80",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
+    "Java/Sealed类.md",
+    "Java/杂记.md",
+    "Java/Record类.md",
+    "Java/JUC/volatile详解.md",
+    "操作系统/Linux命令.md",
+    "Java/JUC/多线程创建.md",
+    "Java/Spring/AOP.md",
+    "Java/Spring/bean生命周期.md",
+    "工具/latex.md",
+    "工具",
+    "算法/背包问题.md",
+    "[.md",
     "网络协议/RPC演进.md",
     "算法/判断坐标点是否在多边形内部.md",
     "算法/切钢条.md",
     "数据库/SQL优化.md",
     "数据库/DDIA/索引优化.md",
-    "Git/Git命令.md",
+    "工具/Git/Git命令.md",
     "容器化/版本发布.md",
     "数据库/幂等性.md",
     "分布式KV存储/分布式事务.md",
@@ -175,29 +178,17 @@
     "数据库/视图.md",
     "网络协议/序列化serial Version字段.md",
     "Java/JUC/乐观锁重试机制.md",
-    "分布式KV存储/基于redis的分布式锁.md",
-    "Java/JUC/volatile详解.md",
-    "未命名.md",
-    "数据库/DDIA/倒排索引.md",
-    "算法/背包问题.md",
-    "数据库/分表中间件/Sharding-JDBC实践.md",
-    "操作系统/Linux命令.md",
-    "网络协议/使用UPD实现TCP协议.md",
-    "网络协议/计算机网络.md",
-    "Git/Github搜索.md",
-    "Java/Spring/Spring事务传播机制.md",
     "数据库/分表中间件",
-    "Git/img",
-    "Git/img/20221211_004638.jpg",
+    "工具/Git/img",
+    "工具/Git/img/20221211_004638.jpg",
     "数据库/DDIA/img/Pasted image 20230212214619.png",
     "数据库/DDIA/img/微博架构.jpg",
     "缓存",
     "操作系统",
-    "Git",
+    "工具/Git",
     "Java/Spring",
     "Java/JUC",
     "测试",
-    "容器化",
     "Java/img/Pasted image 20230308191006.png",
     "数据库/miniLSM/img/Pasted image 20230204222728.png",
     "未命名.canvas"

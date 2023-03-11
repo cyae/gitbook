@@ -93,7 +93,60 @@ java 内存模型为了实现`volatile`可见性和**禁止指令重排**两个�
 
 读`volatile`时，会在其后插入两条指令防止`volatile`读操作与其后的读写操作重排序。
 
-## 二、原子性的问题
+## 二、解决重排问题
+
+> 如果操作 X happens-before 操作 Y，那么 X 的结果对于 Y 可见。
+
+- happens-before 模型包括如下几种:
+
+  - 线程内部字节码顺序, 注意如果操作没有依赖关系, jvm 在编译阶段可能已将字节码重排
+  - unlock -> lock
+  - volatile 写 -> volatile 读
+  - Thread.start() -> run()的首个操作操作
+  - run()的末尾操作 -> Thread.isAlive()/Thread.join()
+  - Thread.interrupt() -> catch InterruptedException/Thread.interrupted()
+  - 构造器的末尾操作 -> finalizer 的首个操作
+
+- 如下示例代码, 由于方法局部变量之间没有依赖性, 所以在多线程情况下的重排可能引发意外结果
+
+```java
+int a=0, b=0;
+
+public void method1() {
+  int r2 = a;
+  b = 1;
+}
+
+public void method2() {
+  int r1 = b;
+  a = 2;
+}
+```
+
+- 使用 volatile 修饰 b, 强制规定 b 的写操作 先于 b 的读操作, 结果一定为 r1 = 1, r2 = 0;
+  - 本质上是利用 happens-before 规定了多线程的运行顺序
+
+```java
+int a=0;
+volatile int b=0;
+
+public void method1() {
+  int r2 = a; // 1. read a
+  b = 1; // 2. write b
+}
+
+public void method2() {
+  int r1 = b; // 3. read b
+  a = 2; // 4. write a
+}
+```
+
+- happens-before 底层实现原理: 内存屏障
+- 比如规则: volatile 写 -> volatile 读, 那么 volatile 写读之间的内存访问应该被屏蔽, 即禁止 jvm 将 访问内存字节码 重排到 volatile 写读之间
+  - 实现上, 并没有真正禁止重排, 而是遇到 volatile 写就**强制刷新缓存**, 将当前 volatile 值刷回内存, 同时使其他线程持有的同一缓存行失效(类似于先写 DB 后删 redis 缓存的强一致性策略), 保证了即使重排字节码, 也能去内存读到最新值的效果
+  - volatile 缺点: 不保证原子性, 如果频繁刷新缓存性能会退化(伪共享问题), 因此只适用于读多写少, 单线程写场景
+
+## 三、原子性的问题
 
 虽然 Volatile 关键字可以让变量在多个线程之间可见，但是 Volatile**不具备**原子性。
 
@@ -232,7 +285,7 @@ public class Demo3Volatile {
 
 结果：50000
 
-## 三、Volatile 适合使用场景
+## 四、Volatile 适合使用场景
 
 a）对变量的写入操作不依赖其当前值
 
@@ -246,7 +299,7 @@ b）该变量没有包含在具有其他变量的不变式中
 
 总结：变量真正独立于其他变量和自己以前的值，在单独使用的时候，适合用 volatile
 
-## 四、synchronized 和 volatile 比较
+## 五、synchronized 和 volatile 比较
 
 - volatile 不需要加锁，比 synchronized 更轻便，不会阻塞线程
 - synchronized 既能保证可见性，又能保证原子性，而 volatile 只能保证可见性，无法保证原子性
@@ -263,4 +316,24 @@ b）该变量没有包含在具有其他变量的不变式中
 
 如果是 count ++操作，使用如下类实现：AtomicInteger count = new AtomicInteger(); count . addAndGet( 1 );
 
-如果是 JDK 8，推荐使用 LongAdder 对象，比 AtomicLong 性能更好 （ 减少乐观锁的重试次数 ） 。
+如果是 JDK 8，推荐使用 LongAdder 对象，比 AtomicLong 性能更好 （ 减少乐观锁的重试次数 ）。
+
+## synchronized 锁升级
+
+> 每个对象都拥有字段: markword 对象头, 其末尾 3 位标识该对象的锁状态
+
+- 无锁(001)表示所有线程都能访问
+- 偏向锁(101, 默认)针对的是锁仅会被同一线程持有的情况
+  - 只会在第一次请求时采用 CAS 操作，在锁对象的 markword 记录下当前线程的地址
+  - 即使持有线程已经结束访问, 也不会主动清除标记, 方便这个线程重复加锁时直接放行
+  - 如果其他线程申请加锁, 则判断 markword 记录的当前持有线程是否存活
+    - 如果持有线程已终止, 则改线程地址为新的申请线程
+    - 否则, 表明出现了多线程竞争, 针对单线程的偏向锁已经不能满足, 升级为轻量级锁
+- 轻量级锁/自旋锁(00)针对的是多个线程在不同时间段申请同一把锁, 且每个线程持有时间较短的情况
+  - 为了减少阻塞操作带来的上下文切换, 竞争线程通过自旋操作保持在用户态, 并不断 CAS 尝试修改标志为 00
+  - 这在持有时间较短的情况下是可以接受的(比如本地加锁), 但如果持有时间很长(比如加锁后 RPC), 空转自旋会消耗 CPU, 影响吞吐
+  - 因此, 当竞争线程自旋超过一定次数(根据历史自旋次数决定), 或竞争线程很多时, 表示持有时间会较长, 让竞争者都阻塞, 减少 CPU 消耗, 升级为重量级锁
+- 重量级锁(10)会阻塞、唤醒请求加锁的线程。它针对的是多个线程同时竞争同一把锁的情况。
+  - 类似 threadlocal, 每个对象都拥有字段: 锁计数器, 持有者指针, 阻塞队列
+  - 当进入 monitorEnter, 如果计数器=0, 表明可以加锁; 如果计数器>0, 则继续判断锁持有者是否就是访问者(可重入锁), 如果是则可以加锁, 否则进入阻塞队列
+  - 当进入 monitorExit, 计数器--, 如果计数器减到 0, 表示锁释放了, 从阻塞队列中取出线程尝试加锁
