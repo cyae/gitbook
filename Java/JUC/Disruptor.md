@@ -105,13 +105,13 @@ public class Sequence extends RhsPadding {
     }
 
 
-public Sequence() {
-    this(INITIAL_VALUE);
-}
-
-public Sequence(final long initialValue) {
-    UNSAFE.putOrderedLong(this, VALUE_OFFSET, initialValue);
-}
+	public Sequence() {
+	    this(INITIAL_VALUE);
+	}
+	
+	public Sequence(final long initialValue) {
+	    UNSAFE.putOrderedLong(this, VALUE_OFFSET, initialValue);
+	}
 
 }
 ```
@@ -131,7 +131,6 @@ Disruptor 它可以用来作为高性能的有界内存队列， 适用于两大
 
 当前业界开源组件使用 Disruptor 的包括 Log4j2、Apache Storm 等，
 
-> 说明：本文会以 pdf 格式持续更新，更多最新尼恩 3 高 pdf 笔记，请从下面的链接获取：[语雀](https://www.yuque.com/crazymakercircle/gkkw8s/khigna)  或者  [码云](https://gitee.com/crazymaker/SimpleCrayIM/blob/master/%E7%96%AF%E7%8B%82%E5%88%9B%E5%AE%A2%E5%9C%88%E6%80%BB%E7%9B%AE%E5%BD%95.md)
 
 ## 实战：Disruptor 的 使用实例
 
