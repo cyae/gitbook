@@ -13,3 +13,11 @@
 10. 如果有和加载这个 Bean 的 Spring 容器相关的 BeanPostProcessor 对象，执行 postProcessAfterInitialization() 方法
 11. 当要销毁 Bean 的时候，如果 Bean 实现了 DisposableBean 接口，执行 destroy() 方法。
 12. 当要销毁 Bean 的时候，如果 Bean 在配置文件中的定义包含 destroy-method 属性，执行指定的方法。
+
+## spring 中如何有两个相同 beanId 的 bean 声明，哪个生效？
+
+- bean 不存在覆盖一说，发现有重复 beanId 的 bean 时则不加载
+- 如果明确要做 spring bean 覆盖，则应该使用 spring 父子容器, 这时应考虑加载顺序
+  - spring bean 的加载顺序首先是根据依赖关系，生成 DAG（有向无环图），然后依次加载。
+  - 通过指定`@Order`/`@Primary`来主动干涉 spring bean 的创建优先级。
+  - 无任何扰动的情况下，spring 加载路径中，越靠后的越先加载

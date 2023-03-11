@@ -228,3 +228,27 @@ loop23           0.00    0.00      0.00      0.00     0.00     0.00   0.00   0.0
 - jstack
 - jvisualvm
 - jconsole
+
+## 解决 `tail -f` 碰到日志绕接时，停止工作的问题
+
+> 日志绕接: 将零散日志整合, 重命名的过程
+
+- 为啥会停止工作：
+
+- `tail -f`是以**文件描述符**为标志来监测文件变化，当出现日志绕接时，会有重命名、创建文件的动作，这会促使文件描述符发生变化，至此`tail -f` 工作失效。
+
+- 解决办法：
+
+> 使用`tail -F`命令，该模式是以**文件名**来监测日志，而且文件不可访问时，还会重试，正好满足日志绕接的场景。
+
+## curl 命令
+
+在 linux 命令行, 使用 curl 命令调试某接口, 需要将 url 用引号包装, 防止 linux 将路径参数中的&解释为命令串行
+
+```bash
+# 错误, 会解释为
+# curl -X POST http://localhost:3306/book?name=somebook和price=10两条命令
+curl -X POST http://localhost:3306/book?name=somebook&price=10
+# 正确
+curl -X POST 'http://localhost:3306/book?name=somebook&price=10'
+```
