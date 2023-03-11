@@ -130,7 +130,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -146,7 +146,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2354696360fce6b1",
+  "active": "1d28292f34e8f58f",
   "lastOpenFiles": [
     "Java/Sealed类.md",
     "Java/杂记.md",
