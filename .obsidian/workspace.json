@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "5876aec495394d34",
+        "id": "219ecdb1d1532325",
         "type": "tabs",
         "children": [
           {
-            "id": "0a3de84bfe8fbbfb",
+            "id": "f610b74f7477fbd5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "分布式KV存储/分布式事务.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "分布式KV存储/分布式事务.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "分布式KV存储/分布式事务.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "分布式KV存储/分布式事务.md"
-              }
+              "state": {}
             }
           },
           {
@@ -155,14 +146,14 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "0a3de84bfe8fbbfb",
+  "active": "9b51f0d214730f02",
   "lastOpenFiles": [
+    "分布式KV存储/分布式事务.md",
     "分布式KV存储/img/Pasted image 20230311000352.png",
     "Pasted image 20230311001205.png",
     "数据库/Godis/哨兵模式.md",
     "分布式KV存储/SEATA.md",
     "数据库/DDIA/事务.md",
-    "分布式KV存储/分布式事务.md",
     "分布式KV存储/img",
     "数据库/视图.md",
     "网络协议/序列化serial Version字段.md",
