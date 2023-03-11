@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "219ecdb1d1532325",
+        "id": "38aa092cba88a11f",
         "type": "tabs",
         "children": [
           {
-            "id": "f610b74f7477fbd5",
+            "id": "78802fccde080c93",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "数据库/幂等性.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -66,13 +61,11 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "c617cbd17e3b9b56",
@@ -88,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据库/幂等性.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据库/幂等性.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "数据库/幂等性.md"
-              }
+              "state": {}
             }
           },
           {
@@ -157,8 +146,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "f610b74f7477fbd5",
+  "active": "78802fccde080c93",
   "lastOpenFiles": [
+    "容器化/版本发布.md",
+    "数据库/幂等性.md",
     "分布式KV存储/分布式事务.md",
     "分布式KV存储/img/Pasted image 20230311000352.png",
     "Pasted image 20230311001205.png",
@@ -186,7 +177,6 @@
     "Java/Spring/AOP.md",
     "Java/Spring/bean生命周期.md",
     "Java/JUC/伪共享.md",
-    "Java/JUC/Disruptor.md",
     "数据库/分表中间件",
     "Git/img",
     "Git/img/20221211_004638.jpg",
