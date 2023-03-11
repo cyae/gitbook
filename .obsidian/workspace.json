@@ -19,8 +19,22 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "ec998a6224937ff2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "算法/切钢条.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -86,7 +100,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "算法/判断坐标点是否在多边形内部.md",
+                "file": "算法/切钢条.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +117,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "算法/判断坐标点是否在多边形内部.md",
+                "file": "算法/切钢条.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +140,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "算法/判断坐标点是否在多边形内部.md"
+                "file": "算法/切钢条.md"
               }
             }
           },
@@ -155,9 +169,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "79ffe79a001c1ee1",
+  "active": "ec998a6224937ff2",
   "lastOpenFiles": [
     "算法/判断坐标点是否在多边形内部.md",
+    "算法/切钢条.md",
     "数据库/SQL优化.md",
     "数据库/DDIA/索引优化.md",
     "Git/Git命令.md",
@@ -185,7 +200,6 @@
     "Git/Github搜索.md",
     "Java/Spring/Spring事务传播机制.md",
     "Java/Spring/spring体现的设计模式.md",
-    "Java/Spring/IOC.md",
     "数据库/分表中间件",
     "Git/img",
     "Git/img/20221211_004638.jpg",
