@@ -13,6 +13,9 @@
 - 创建节点 git init
   - 设置个人信息标识 git config --global user.name/email
 - 绑定远程库 git remote add \[url.git\]
+
+---
+
 - 将工作区提交到暂存区 git add .
 - 将暂存区提交到本地库 git commit -am "msg"
   - "msg"需符合提交规范
@@ -20,13 +23,27 @@
 - 拉取远程库到本地库，且合并本地分支 git pull
 - 拉取远程库到本地库，但不合并，作为新分支 git fetch
 - 克隆远程库到工作区 git clone
-- 工作区内容回退 git checkoutb \<file-name\> | .
-- 暂存区删除文件 git rm --cache
-- **本地库回退 git reset \[commit ID\] | \[HEAD^^^\]**
+
+---
+
+- 工作区内容回退 git checkoutb \<file-name\>/.
+- 删除暂存区文件 git rm --cache
+- 删除暂存区和工作区文件 git rm -f
+- **版本库回退 git reset \[commit ID\]/\[HEAD^^^\]**
+  - 回退版本库，保留暂存区和工作区 git reset --soft
+  - 回退版本库和暂存区，保留工作区 git reset --mixed
+  - 回退所有库 git reset --hard
+  - **选择标准**：
+    - 若提交错误 commit 后，本地无新增修改，使用--soft
+    - 若本地有新增修改，且需要保留，使用--mixed
+    - 若本地有新增修改，但无需保留，使用--hard
+
+---
+
 - 合并分支的三种方式
   - 三方非线性合并，产生菱形路径 git merge
-    - 三方线性变基 git rebase，用之前应与协作者商量
-    - **合并节点 git cherry-pick \[commit ID\]**
+  - 三方线性变基 git rebase，用之前应与协作者商量
+  - **合并节点 git cherry-pick \[commit ID\]**
 - 冲突处理
   - 冲突是由于不同分支在同一文件同一行产生了不同提交内容
   - 产生冲突后，先商量好最终留存版本，再 commit

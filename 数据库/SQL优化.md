@@ -270,6 +270,15 @@ in (1,2,3...200);
 >
 > 默认是`200`，即`in`条件超过了 200 个数据，会导致`in`的代价计算存在问题，可能会导致 Mysql 选择的索引不准确。
 
+即使不使用子查询，即可选集是确定之时，也应尽量使用OR代替IN
+
+```sql
+# 将
+SELECT * FROM user WHERE uid IN (2,3,5)
+# 改为
+SELECT * FROM user WHERE (uid=2 OR uid=3 OR uid=5)
+```
+
 ### 5. order by 走 filesort 导致的慢查询
 
 我们来看下下面这个 SQL：
