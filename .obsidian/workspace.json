@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "0feb7e80bccee135",
+        "id": "b0c51b192f5ae003",
         "type": "tabs",
         "children": [
           {
-            "id": "e1aa814060b64cf2",
+            "id": "c83034440748a092",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -146,8 +146,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b51f0d214730f02",
+  "active": "c83034440748a092",
   "lastOpenFiles": [
+    "工具/latex.md",
     "Java/Spring/bean.md",
     "Java/Spring/AOP.md",
     "Java/Spring/IOC.md",
@@ -180,7 +181,6 @@
     "Java/Record类.md",
     "操作系统/Linux命令.md",
     "Java/JUC/多线程创建.md",
-    "工具/latex.md",
     "工具",
     "算法/背包问题.md",
     "[.md",
