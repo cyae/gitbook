@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "1758d5a2483e79d6",
+        "id": "d6c703589cb7866d",
         "type": "tabs",
         "children": [
           {
-            "id": "77efe507bdef82cf",
+            "id": "de710aec674b9740",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -130,7 +130,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -146,8 +146,12 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "1d28292f34e8f58f",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
+    "分布式KV存储/一致性协议.md",
+    "分布式KV存储/分布式事务.md",
+    "分布式KV存储/未命名",
+    "Java/JUC/JUC框架 源码解析系列.md",
     "架构 & 系统设计/系统设计答题规则.md",
     "__生活/语言/英语/FefnQWJaYAAG4Ul.png",
     "__生活/语言/英语/颜色/Untitled8.jpeg",
@@ -180,7 +184,6 @@
     "工具/Git/Github搜索.md",
     "工具/Git/Git.md",
     "__img",
-    "数据结构/img",
     "工具/latex.md",
     "网络编程/Socket网络编程.md",
     "操作系统/Linux命令.md",
@@ -191,9 +194,6 @@
     "Java/JUC/Fork-Join Poll.md",
     "Java/JUC/多线程创建.md",
     "Java/Spring/bean.md",
-    "Java/Spring/AOP.md",
-    "Java/Spring/IOC.md",
-    "数据库/分表中间件/分库分表.md",
     "未命名.canvas"
   ]
 }
