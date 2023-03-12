@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "3d49c5f243eba63a",
+        "id": "0d9e0f3dc6f46390",
         "type": "tabs",
         "children": [
           {
-            "id": "e7b12a111bbd10dc",
+            "id": "bc07f1a7e6dbed76",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "数据结构/红黑树.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据结构/红黑树.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据结构/红黑树.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "数据结构/红黑树.md"
-              }
+              "state": {}
             }
           },
           {
@@ -155,20 +146,22 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "e7b12a111bbd10dc",
+  "active": "bc07f1a7e6dbed76",
   "lastOpenFiles": [
+    "算法/位运算.md",
+    "数据结构/跳表.md",
+    "算法/其他.md",
+    "数据结构/红黑树.md",
+    "img/Pasted image 20230312182042.png",
+    "img/Pasted image 20230312182037.png",
+    "img/Pasted image 20230312182030.png",
+    "img/Pasted image 20230312182019.png",
     "img/Pasted image 20230312181956.png",
     "img/Pasted image 20230312181946.png",
     "img/Pasted image 20230312181940.png",
     "img/Pasted image 20230312181934.png",
     "img/Pasted image 20230312181917.png",
     "img/Pasted image 20230312181912.png",
-    "img/Pasted image 20230312181846.png",
-    "img/Pasted image 20230312181841.png",
-    "img/Pasted image 20230312181832.png",
-    "img/Pasted image 20230312181816.png",
-    "img/Pasted image 20230312181809.png",
-    "数据结构/红黑树.md",
     "数据结构/树状数组.md",
     "算法/背包问题.md",
     "数据结构/布隆过滤器.md",
@@ -196,9 +189,7 @@
     "Java/引用类型.md",
     "Java/JVM/多态实现原理.md",
     "Java/JVM/类加载机制.md",
-    "Java/JVM/字节码增强技术.md",
     "Java/JVM",
-    "网络编程/手写Tomcat.md",
     "Java/Spring/img",
     "工具",
     "分布式KV存储/img",
