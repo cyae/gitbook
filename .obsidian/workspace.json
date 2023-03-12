@@ -4,15 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "e0e3f9143928ce21",
+        "id": "3cfe139a66039644",
         "type": "tabs",
         "children": [
           {
-            "id": "a52f8d5153b0c256",
+            "id": "34645bcf60d75b56",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "随笔.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "随笔.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "随笔.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "随笔.md"
+              }
             }
           },
           {
@@ -146,8 +155,24 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b51f0d214730f02",
+  "active": "34645bcf60d75b56",
   "lastOpenFiles": [
+    "生活/健康/2018-01-21 182148.png",
+    "img/Screenshot_2022-08-27-00-21-42-881_com.kiwibrowser.browser.jpg",
+    "img/Screenshot_2022-08-30-13-38-05-584_com.taou.maimai.jpg",
+    "img/Screenshot_2022-08-09-01-37-06-725_com.kiwibrowser.browser.jpg",
+    "随笔.md",
+    "生活/语言/英语/1637254433678.jpg",
+    "生活/健康/Screenshot_2022-01-10-22-18-56-816_com.reddit.frontpage.jpg",
+    "生活/健康/Screenshot_2020-05-29-01-47-04-604_com.huanchengfly.tieba.post.jpg",
+    "img/IMG_20220830_133613.jpg",
+    "Java/日志等级.jpeg",
+    "生活/健康/d2e6862cd42a2834d6b1054c4cb5c9ea14cebfa7.jpg",
+    "生活/健康",
+    "生活",
+    "生活/药理学",
+    "生活/语言/英语",
+    "生活/语言",
     "架构 & 系统设计/各大互联网公司架构演进之路汇总.md",
     "架构 & 系统设计",
     "缓存/Facebook基于Memcache的缓存.md",
@@ -156,15 +181,6 @@
     "算法/其他.md",
     "数据结构/红黑树.md",
     "img/Pasted image 20230312182042.png",
-    "img/Pasted image 20230312182037.png",
-    "img/Pasted image 20230312182030.png",
-    "img/Pasted image 20230312182019.png",
-    "img/Pasted image 20230312181956.png",
-    "img/Pasted image 20230312181946.png",
-    "img/Pasted image 20230312181940.png",
-    "img/Pasted image 20230312181934.png",
-    "img/Pasted image 20230312181917.png",
-    "img/Pasted image 20230312181912.png",
     "数据结构/树状数组.md",
     "算法/背包问题.md",
     "数据结构/布隆过滤器.md",
@@ -175,7 +191,6 @@
     "工具/latex.md",
     "网络编程/Socket网络编程.md",
     "网络编程/img",
-    "随笔.md",
     "操作系统/Linux命令.md",
     "函数式编程/Java 函数式接口.md",
     "网络编程/攻防/爬虫突破封禁的6种常见方法.md",
@@ -188,12 +203,6 @@
     "Java/Spring/AOP.md",
     "Java/Spring/IOC.md",
     "数据库/分表中间件/分库分表.md",
-    "数据库/img",
-    "Java/引用类型.md",
-    "Java/JVM",
-    "Java/Spring/img",
-    "工具",
-    "分布式KV存储/img",
     "未命名.canvas"
   ]
 }
