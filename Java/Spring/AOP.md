@@ -4,7 +4,6 @@
 
 比如 spring 的事务是基于 aop 来实现的, 如果不能深入的研究, 可能很多知识点, 只知其然而不知其所以然.  
 　　
-本文将简单地讲述如何指定 AspectJ 的织入顺序, 以及如何指定通知参数.
 
 ## AspectJ 的博文
 
@@ -15,7 +14,7 @@
 以下博文是本文参考的文章(强烈推荐):  
 1. [AspectJ 切入点语法详解](http://jinnianshilongnian.iteye.com/blog/1415606)
 
-## spring aop 针对同一个方法有多个切面，默认优先级是怎么样的？
+## 同一方法有多切面，默认优先级
 
 - 在同一切面类内, 按照切入点的定义顺序来织入
 - 在不同的切面类内, 都实现了`Ordered`接口, 按切入点的 Order 数值从小到达织入.
@@ -27,7 +26,7 @@
 
 AspectJ 类指定顺序的方式有两种.
 
-### 1. 引入注解@Order\*\*
+### 1. 引入注解@Order
 
 ```java
 import org.springframework.core.annotation.Order;
@@ -42,7 +41,7 @@ public class MyAdvice1 {
 }
 ```
 
-### 2. 实现 Ordered 接口\*\*
+### 2. 实现 Ordered 接口
 
 ```java
 import org.springframework.core.Ordered;
