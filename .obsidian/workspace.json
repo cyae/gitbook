@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "0d9e0f3dc6f46390",
+        "id": "e0e3f9143928ce21",
         "type": "tabs",
         "children": [
           {
-            "id": "bc07f1a7e6dbed76",
+            "id": "a52f8d5153b0c256",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -146,8 +146,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "bc07f1a7e6dbed76",
+  "active": "9b51f0d214730f02",
   "lastOpenFiles": [
+    "架构 & 系统设计/各大互联网公司架构演进之路汇总.md",
+    "架构 & 系统设计",
+    "缓存/Facebook基于Memcache的缓存.md",
     "算法/位运算.md",
     "数据结构/跳表.md",
     "算法/其他.md",
@@ -187,13 +190,10 @@
     "数据库/分表中间件/分库分表.md",
     "数据库/img",
     "Java/引用类型.md",
-    "Java/JVM/多态实现原理.md",
-    "Java/JVM/类加载机制.md",
     "Java/JVM",
     "Java/Spring/img",
     "工具",
     "分布式KV存储/img",
-    "数据库/分表中间件",
     "未命名.canvas"
   ]
 }
