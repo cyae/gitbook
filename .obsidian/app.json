@@ -11,5 +11,9 @@
   "autoPairMarkdown": false,
   "autoPairBrackets": false,
   "trashOption": "local",
-  "newFileLocation": "root"
+  "newFileLocation": "root",
+  "attachmentFolderPath": "img",
+  "userIgnoreFilters": [
+    "img/"
+  ]
 }
