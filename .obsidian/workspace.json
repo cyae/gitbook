@@ -4,19 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "3cfe139a66039644",
+        "id": "b2dc247f2d69e5a2",
         "type": "tabs",
         "children": [
           {
-            "id": "34645bcf60d75b56",
+            "id": "316042b905259f0d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "随笔.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "__生活/语言/英语/高级词汇/Untitled (1).jpeg"
               }
             }
           }
@@ -86,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "随笔.md",
+                "file": "__生活/语言/英语/高级词汇/Untitled (1).jpeg",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +100,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "随笔.md",
+                "file": "__生活/语言/英语/高级词汇/Untitled (1).jpeg",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +123,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "随笔.md"
+                "file": "__生活/语言/英语/高级词汇/Untitled (1).jpeg"
               }
             }
           },
@@ -155,24 +152,26 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "34645bcf60d75b56",
+  "active": "9b51f0d214730f02",
   "lastOpenFiles": [
-    "生活/健康/2018-01-21 182148.png",
-    "img/Screenshot_2022-08-27-00-21-42-881_com.kiwibrowser.browser.jpg",
-    "img/Screenshot_2022-08-30-13-38-05-584_com.taou.maimai.jpg",
-    "img/Screenshot_2022-08-09-01-37-06-725_com.kiwibrowser.browser.jpg",
+    "__生活/语言/英语/1637254433678.jpg",
+    "__生活/语言/英语/高级词汇",
+    "__生活/语言/英语/高级词汇/Untitled (8).jpeg",
+    "__生活/语言/英语/高级词汇/Untitled (7).jpeg",
+    "__生活/语言/英语/高级词汇/Untitled (6).jpeg",
+    "__生活/语言/英语/高级词汇/Untitled (5).jpeg",
+    "__生活/语言/英语/高级词汇/Untitled (4).jpeg",
+    "__生活/语言/英语/高级词汇/Untitled (3).jpeg",
+    "__生活/语言/英语/高级词汇/Untitled (2).jpeg",
+    "__生活/语言/英语/高级词汇/Untitled (1).jpeg",
+    "__生活/健康/Screenshot_2022-01-10-22-18-56-816_com.reddit.frontpage.jpg",
+    "__生活/健康/Screenshot_2020-05-29-01-47-04-604_com.huanchengfly.tieba.post.jpg",
     "随笔.md",
-    "生活/语言/英语/1637254433678.jpg",
-    "生活/健康/Screenshot_2022-01-10-22-18-56-816_com.reddit.frontpage.jpg",
-    "生活/健康/Screenshot_2020-05-29-01-47-04-604_com.huanchengfly.tieba.post.jpg",
-    "img/IMG_20220830_133613.jpg",
-    "Java/日志等级.jpeg",
-    "生活/健康/d2e6862cd42a2834d6b1054c4cb5c9ea14cebfa7.jpg",
-    "生活/健康",
-    "生活",
-    "生活/药理学",
-    "生活/语言/英语",
-    "生活/语言",
+    "__生活/健康",
+    "__生活",
+    "__生活/药理学",
+    "__生活/语言/英语",
+    "__生活/语言",
     "架构 & 系统设计/各大互联网公司架构演进之路汇总.md",
     "架构 & 系统设计",
     "缓存/Facebook基于Memcache的缓存.md",
@@ -180,13 +179,12 @@
     "数据结构/跳表.md",
     "算法/其他.md",
     "数据结构/红黑树.md",
-    "img/Pasted image 20230312182042.png",
     "数据结构/树状数组.md",
     "算法/背包问题.md",
     "数据结构/布隆过滤器.md",
     "工具/Git/Github搜索.md",
     "工具/Git/Git.md",
-    "img",
+    "__img",
     "数据结构/img",
     "工具/latex.md",
     "网络编程/Socket网络编程.md",
@@ -194,7 +192,6 @@
     "操作系统/Linux命令.md",
     "函数式编程/Java 函数式接口.md",
     "网络编程/攻防/爬虫突破封禁的6种常见方法.md",
-    "网络编程/攻防",
     "Java/JUC/邮戳锁.md",
     "Java/JUC/Fork-Join Pool.md",
     "Java/JUC/Fork-Join Poll.md",
