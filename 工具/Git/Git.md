@@ -18,7 +18,6 @@
 
 - 将工作区提交到暂存区 git add .
 - 将暂存区提交到本地库 git commit -am "msg"
-  - "msg"需符合提交规范
 - 推送本地库到远程库 git push origin master **--force(慎用)**
 - 拉取远程库到本地库，且合并本地分支 git pull
 - 拉取远程库到本地库，但不合并，作为新分支 git fetch
@@ -111,3 +110,8 @@ git push origin master
 - git merge tmp //合并 temp 分支到本地的 master 分支
 
 - git branch -d tmp //如果不想保留 temp 分支 可以用这步删除
+
+## git 代理
+
+- 先执行git config --global -l命令 查看git代理设置
+- 继续在终端执行git config --global -e进入编辑状态，然后删掉7891端口有关的那条设置
