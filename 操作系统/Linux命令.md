@@ -255,3 +255,12 @@ curl -X POST 'http://localhost:3306/book?name=somebook&price=10'
 
 ## tar命令
 
+- Windows 压缩文件到tar.gz格式
+```shell
+tar -cvzf archive name.tar [path to folder to compress]
+```
+
+- Windows 解压缩tar.gz 文件
+```shell
+tar -zxvf archive name.tar -C [path to extraction location]
+```

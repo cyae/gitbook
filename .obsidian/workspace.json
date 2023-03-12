@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "d1ba9f784e593770",
+        "id": "c7a2576159898635",
         "type": "tabs",
         "children": [
           {
-            "id": "da8241d841e8ef8f",
+            "id": "9ab5afec1e3b74a3",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "操作系统/Linux命令.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "操作系统/Linux命令.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "操作系统/Linux命令.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "操作系统/Linux命令.md"
-              }
+              "state": {}
             }
           },
           {
@@ -155,8 +146,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b51f0d214730f02",
+  "active": "9ab5afec1e3b74a3",
   "lastOpenFiles": [
+    "随笔.md",
+    "操作系统/Linux命令.md",
     "工具/Git/Git.md",
     "函数式编程/Java 函数式接口.md",
     "网络编程/攻防/爬虫突破封禁的6种常见方法.md",
@@ -195,9 +188,7 @@
     "Java/Sealed类.md",
     "Java/杂记.md",
     "Java/Record类.md",
-    "操作系统/Linux命令.md",
     "工具",
-    "算法/背包问题.md",
     "分布式KV存储/img",
     "数据库/分表中间件",
     "工具/Git/img",
