@@ -4,17 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "b2dc247f2d69e5a2",
+        "id": "1758d5a2483e79d6",
         "type": "tabs",
         "children": [
           {
-            "id": "316042b905259f0d",
+            "id": "77efe507bdef82cf",
             "type": "leaf",
             "state": {
-              "type": "image",
-              "state": {
-                "file": "__生活/语言/英语/高级词汇/Untitled (1).jpeg"
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -67,7 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 285.5
   },
   "right": {
     "id": "c617cbd17e3b9b56",
@@ -83,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "__生活/语言/英语/高级词汇/Untitled (1).jpeg",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "__生活/语言/英语/高级词汇/Untitled (1).jpeg",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -122,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "__生活/语言/英语/高级词汇/Untitled (1).jpeg"
-              }
+              "state": {}
             }
           },
           {
@@ -136,7 +130,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -152,20 +146,21 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b51f0d214730f02",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
-    "__生活/语言/英语/1637254433678.jpg",
+    "架构 & 系统设计/系统设计答题规则.md",
+    "__生活/语言/英语/FefnQWJaYAAG4Ul.png",
+    "__生活/语言/英语/颜色/Untitled8.jpeg",
+    "__生活/语言/英语/颜色/Untitled (7).jpeg",
+    "__生活/语言/英语/颜色/Untitled (6).jpeg",
+    "__生活/语言/英语/颜色/Untitled (5).jpeg",
+    "__生活/语言/英语/颜色/Untitled (4).jpeg",
+    "__生活/语言/英语/颜色/Untitled (3).jpeg",
+    "__生活/语言/英语/颜色/Untitled (2).jpeg",
+    "__生活/语言/英语/颜色/Untitled (1).jpeg",
+    "__生活/语言/英语/颜色/Untitled.jpeg",
+    "__生活/语言/英语/颜色",
     "__生活/语言/英语/高级词汇",
-    "__生活/语言/英语/高级词汇/Untitled (8).jpeg",
-    "__生活/语言/英语/高级词汇/Untitled (7).jpeg",
-    "__生活/语言/英语/高级词汇/Untitled (6).jpeg",
-    "__生活/语言/英语/高级词汇/Untitled (5).jpeg",
-    "__生活/语言/英语/高级词汇/Untitled (4).jpeg",
-    "__生活/语言/英语/高级词汇/Untitled (3).jpeg",
-    "__生活/语言/英语/高级词汇/Untitled (2).jpeg",
-    "__生活/语言/英语/高级词汇/Untitled (1).jpeg",
-    "__生活/健康/Screenshot_2022-01-10-22-18-56-816_com.reddit.frontpage.jpg",
-    "__生活/健康/Screenshot_2020-05-29-01-47-04-604_com.huanchengfly.tieba.post.jpg",
     "随笔.md",
     "__生活/健康",
     "__生活",
@@ -188,7 +183,6 @@
     "数据结构/img",
     "工具/latex.md",
     "网络编程/Socket网络编程.md",
-    "网络编程/img",
     "操作系统/Linux命令.md",
     "函数式编程/Java 函数式接口.md",
     "网络编程/攻防/爬虫突破封禁的6种常见方法.md",
