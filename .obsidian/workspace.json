@@ -4,15 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "d6c703589cb7866d",
+        "id": "2539a270b143e20a",
         "type": "tabs",
         "children": [
           {
-            "id": "de710aec674b9740",
+            "id": "7c650d51fb482e21",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "架构 & 系统设计/实例/亿级流量的IM架构.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -65,7 +70,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 285.5
+    "width": 285.5,
+    "collapsed": true
   },
   "right": {
     "id": "c617cbd17e3b9b56",
@@ -81,6 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "架构 & 系统设计/实例/亿级流量的IM架构.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "架构 & 系统设计/实例/亿级流量的IM架构.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +126,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "架构 & 系统设计/实例/亿级流量的IM架构.md"
+              }
             }
           },
           {
@@ -130,7 +140,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -146,23 +156,29 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2354696360fce6b1",
+  "active": "9b51f0d214730f02",
   "lastOpenFiles": [
+    "image (1).png",
+    "image.png",
+    "架构 & 系统设计/实例/短域名系统.md",
+    "架构 & 系统设计/实例/亿级流量的IM架构.md",
+    "UML 图 (1).jpg",
+    "UML 图.jpg",
+    "流程图.jpg",
+    "架构 & 系统设计/实例/Code Deployment System.md",
+    "架构 & 系统设计/实例/Proximity Service.md",
+    "架构 & 系统设计/系统设计答题规则.md",
+    "架构 & 系统设计/实例",
     "分布式KV存储/一致性协议.md",
     "分布式KV存储/分布式事务.md",
     "分布式KV存储/未命名",
     "Java/JUC/JUC框架 源码解析系列.md",
-    "架构 & 系统设计/系统设计答题规则.md",
     "__生活/语言/英语/FefnQWJaYAAG4Ul.png",
     "__生活/语言/英语/颜色/Untitled8.jpeg",
     "__生活/语言/英语/颜色/Untitled (7).jpeg",
     "__生活/语言/英语/颜色/Untitled (6).jpeg",
     "__生活/语言/英语/颜色/Untitled (5).jpeg",
     "__生活/语言/英语/颜色/Untitled (4).jpeg",
-    "__生活/语言/英语/颜色/Untitled (3).jpeg",
-    "__生活/语言/英语/颜色/Untitled (2).jpeg",
-    "__生活/语言/英语/颜色/Untitled (1).jpeg",
-    "__生活/语言/英语/颜色/Untitled.jpeg",
     "__生活/语言/英语/颜色",
     "__生活/语言/英语/高级词汇",
     "随笔.md",
@@ -183,17 +199,11 @@
     "数据结构/布隆过滤器.md",
     "工具/Git/Github搜索.md",
     "工具/Git/Git.md",
-    "__img",
     "工具/latex.md",
     "网络编程/Socket网络编程.md",
     "操作系统/Linux命令.md",
     "函数式编程/Java 函数式接口.md",
     "网络编程/攻防/爬虫突破封禁的6种常见方法.md",
-    "Java/JUC/邮戳锁.md",
-    "Java/JUC/Fork-Join Pool.md",
-    "Java/JUC/Fork-Join Poll.md",
-    "Java/JUC/多线程创建.md",
-    "Java/Spring/bean.md",
     "未命名.canvas"
   ]
 }
