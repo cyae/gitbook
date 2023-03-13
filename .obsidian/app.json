@@ -15,5 +15,7 @@
   "attachmentFolderPath": "__img",
   "userIgnoreFilters": [
     "__img/"
-  ]
+  ],
+  "useTab": false,
+  "tabSize": 4
 }
