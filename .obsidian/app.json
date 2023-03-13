@@ -12,8 +12,8 @@
   "autoPairBrackets": false,
   "trashOption": "local",
   "newFileLocation": "root",
-  "attachmentFolderPath": "img",
+  "attachmentFolderPath": "__img",
   "userIgnoreFilters": [
-    "img/"
+    "__img/"
   ]
 }

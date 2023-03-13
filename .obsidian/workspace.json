@@ -11,8 +11,13 @@
             "id": "8c30cf6845682163",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "架构 & 系统设计/MapReduce.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "架构 & 系统设计/MapReduce.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "架构 & 系统设计/MapReduce.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "架构 & 系统设计/MapReduce.md"
+              }
             }
           },
           {
@@ -130,7 +139,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -146,8 +155,14 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2354696360fce6b1",
+  "active": "8c30cf6845682163",
   "lastOpenFiles": [
+    "__img/017c01be-993b-4227-899c-2cd88cc47f2c.png",
+    "017c01be-993b-4227-899c-2cd88cc47f2c.png",
+    "Java/JVM/深入理解Java虚拟机2.md",
+    "Java/JVM/深入理解Java虚拟机1.md",
+    "分布式KV存储/RAFT.md",
+    "架构 & 系统设计/MapReduce.md",
     "数据结构/常见Hash函数性能.md",
     "架构 & 系统设计/实例/亿级流量的IM架构.md",
     "数据结构/布隆过滤器.md",
@@ -161,7 +176,6 @@
     "__img/Pasted image 20230313124312.png",
     "__img/image (5).png",
     "__img/Pasted image 20230313124202.png",
-    "__img/Pasted image 20230313123242.png",
     "架构 & 系统设计/实例/短域名系统.md",
     "架构 & 系统设计/实例/Code Deployment System.md",
     "架构 & 系统设计/实例/Proximity Service.md",
@@ -189,10 +203,6 @@
     "算法/背包问题.md",
     "工具/Git/Github搜索.md",
     "工具/Git/Git.md",
-    "工具/latex.md",
-    "网络编程/Socket网络编程.md",
-    "操作系统/Linux命令.md",
-    "函数式编程/Java 函数式接口.md",
     "未命名.canvas"
   ]
 }
