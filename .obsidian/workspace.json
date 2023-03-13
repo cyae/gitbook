@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "5c485375ab3b99ce",
+        "id": "f6d61759016d25ff",
         "type": "tabs",
         "children": [
           {
-            "id": "3be7a3eade9f9ea7",
+            "id": "8c30cf6845682163",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "架构 & 系统设计/实例/亿级流量的IM架构.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "架构 & 系统设计/实例/亿级流量的IM架构.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "架构 & 系统设计/实例/亿级流量的IM架构.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "架构 & 系统设计/实例/亿级流量的IM架构.md"
-              }
+              "state": {}
             }
           },
           {
@@ -139,7 +130,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -155,9 +146,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "3be7a3eade9f9ea7",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
     "数据结构/常见Hash函数性能.md",
+    "架构 & 系统设计/实例/亿级流量的IM架构.md",
     "数据结构/布隆过滤器.md",
     "__img/image.png",
     "__img/流程图.jpg",
@@ -169,7 +161,6 @@
     "__img/Pasted image 20230313124312.png",
     "__img/image (5).png",
     "__img/Pasted image 20230313124202.png",
-    "架构 & 系统设计/实例/亿级流量的IM架构.md",
     "__img/Pasted image 20230313123242.png",
     "架构 & 系统设计/实例/短域名系统.md",
     "架构 & 系统设计/实例/Code Deployment System.md",
