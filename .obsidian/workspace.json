@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "76c71e3d35119e0c",
+        "id": "d862b3dfa2619afa",
         "type": "tabs",
         "children": [
           {
-            "id": "05d89ea354759e01",
+            "id": "22cd2c5b870cabd8",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Java/JVM/深入理解Java虚拟机.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Java/JVM/深入理解Java虚拟机.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Java/JVM/深入理解Java虚拟机.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Java/JVM/深入理解Java虚拟机.md"
-              }
+              "state": {}
             }
           },
           {
@@ -139,7 +130,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -155,21 +146,20 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "05d89ea354759e01",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
-    "__img/Pasted image 20230313224020.png",
-    "__img/Pasted image 20230313224003.png",
-    "__img/Pasted image 20230313224000.png",
-    "__img/Pasted image 20230313223956.png",
-    "__img/Pasted image 20230313223951.png",
-    "__img/Pasted image 20230313223940.png",
-    "__img/Pasted image 20230313223933.png",
-    "__img/Pasted image 20230313223915.png",
-    "__img/Pasted image 20230313223908.png",
-    "__img/Pasted image 20230313223854.png",
-    "__img/Pasted image 20230313223847.png",
-    "Java/JVM/深入理解Java虚拟机2.md",
     "Java/JVM/深入理解Java虚拟机.md",
+    "__img/Pasted image 20230313230016.png",
+    "__img/Pasted image 20230313230010.png",
+    "__img/Pasted image 20230313230006.png",
+    "__img/Pasted image 20230313230001.png",
+    "__img/Pasted image 20230313225956.png",
+    "__img/Pasted image 20230313225952.png",
+    "__img/Pasted image 20230313225946.png",
+    "__img/Pasted image 20230313225941.png",
+    "__img/Pasted image 20230313225928.png",
+    "__img/Pasted image 20230313225843.png",
+    "Java/JVM/深入理解Java虚拟机2.md",
     "分布式KV存储/RAFT.md",
     "架构 & 系统设计/MapReduce.md",
     "数据结构/常见Hash函数性能.md",
