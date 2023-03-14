@@ -311,3 +311,41 @@ raft 简化了 paxos，易于实现，功能性能接近
 | 结果 | 解程                                       |
 | ---- | ------------------------------------------ |
 | term | 当前任期号(currentTerm),便于领导人更新自己 |
+
+﻿---
+ 
+1. 如果term < currentTerm就立即拒绝
+2. 如果是第一个分块（offset为0）就创建一个新的快照
+3. 在指定偏移量写入数据
+4. 如果done是false,则继续等待更多的数据ack
+5. 保存快照文件，丢弃具有较小索引的任何现有或部分快照
+6. 如果现存的日志条目与快照中最后包含的日志条目具有相同的索引值和任期覆，则保留箕后的日志条目并
+7. 否则丢弃整个日志
+8. 使用快照重普状态机（并加载快照的集群配置）
+
+- 快照何时创建？过于频繁会浪费性能，过于低频日志占用磁盘的量更大，重建时间更长。
+>限定日志文件大小到达某一个阈值后立刻生成快照
+- 写入快照花费的时间昂贵如何处理?如何保证不影响节点的正常工作？
+>使用写时复制技术，状态机的函数式顺序性天然支持
+
+#### 调节参数
+ 1. 心跳的随机时间，过快会增加网络负载，过慢则会导致感知领导者崩溃的时间更长
+ 2. 选举的随机时间，如果大部分跟随者同时变为候选人则会导致选票被瓜分         日
+#### 流批结合
+首先可以做的就是batch,大家知道，在很多情况下面，使用batch能明显提升性能，警如对 于RocksDB的写入来说，我们通常不会每次写入一个值，而是会用一个WriteBatch缓存一批修改，然后在整个写入。对于Raft来说，Leader可以一次收集多个requests,然后一批发送给 Follower.当然，我们也需要有一个最大发送size来限制每次最多可以发送多少数据。
+   
+如果只是用batch, Leader还是需要等待Follower返回才能继续后面的流程，我们这里还可以 使用Pipeline来进行加速。大家知道，Leader会维护一个Nextindex的变量来表示下一个给 Follower发送的log位置，通常情况下面，只要Leader跟Follower建立起了连接，我们都会认为 网络是稳定互通的。所以当Leader给Follower发送了一批log之后，它可以直接更新 Nextindex,并且立刻发送后面的log,不需要等待Follower的返回。如果网络出现了错误，或者 Follower返回一些错误，Leader就需要重新调整Nextindex,然后重新发送log 了。
+
+4 .并行追加
+    对于上面提到的一次request简易Raft流程来说，Leader可以先并行的将log发送给 Followers,然后再将log append。为什么可以这么做，主要是因为在Raft里面，如果一"Nog被 大多数的节点append,我们就可以认为这个log是被8mmitted 了，所以即使Leade「再给 Follower发送log之后，自己append log失败panic 了，只要N / 2 + 1个Followe「能接收到 这个log并成功append,我们仍然可以认为这个log是被committed 了，被committed的log后 续就一定能被成功apply.
+    那为什么我们要这么做呢？主要是因为叩pend log会涉及到落盘，有开销，所以我们完全可以 在Leader落盘的同时让Follower也尽快的收到log并append。
+ 这里我们还需要注意，虽然Leader能在append log之前给Follower发log,但是Follower却不能 在append log之前告诉Leader已经成功append这个log。如果Follower提前告诉Leader说已 经成功叩pend,但实际后面append log的时候失败了，Leader仍然会认为这个log是被 committed T,这样系统就有丢失数据的风险了。
+5 .异步应用
+    上面提到，当一个log被大部分节点append之后，我们就可以认为这个log被8mmitted 了，被8mmitted的log在什么时候被叩ply都不会再影响数据的一致性。所以当一个log被 committed之后，我们可以用另一个线程去异步的apply这个log。
+ 所以整个Raft流程就可以变成：
+ 1. Leader 接受一个 client 发送的 request。
+ 2. Leader将对应的log发送给其他follower并本地append。
+ 3. Leade「继续接受其他client的requests,持续进行步骤2。
+ 4. Leader发现log已经被committed,在另一个线程apply。
+ 5. Leade「异步叩ply log之后，返回结果给对应的dient。
+    使用asychronous apply的好处在于我们现在可以完全的并行处理append log和apply log, 虽然对于一个client来说，它的一次request仍然要走完完整的Raft流程，但对于多个clients求 说，整体的并发和吞吐量是上去了。
