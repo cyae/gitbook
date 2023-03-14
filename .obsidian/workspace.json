@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "f7160aeb2b2553c6",
+        "id": "eb98d61e1e8c16f7",
         "type": "tabs",
         "children": [
           {
-            "id": "78c21b33823c1edc",
+            "id": "50f28abb1dc0eeff",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "分布式KV存储/RAFT.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "分布式KV存储/RAFT.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "分布式KV存储/RAFT.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "分布式KV存储/RAFT.md"
-              }
+              "state": {}
             }
           },
           {
@@ -155,8 +146,14 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b51f0d214730f02",
+  "active": "50f28abb1dc0eeff",
   "lastOpenFiles": [
+    "分布式KV存储/RAFT.md",
+    "分布式KV存储/raft在etcd上的应用.md",
+    "分布式KV存储/一致性协议.md",
+    "__img/Pasted image 20230314213611.png",
+    "__img/Pasted image 20230314213456.png",
+    "__img/Pasted image 20230314213441.png",
     "网络编程/攻防/RST攻击.md",
     "__img/640 (11).png",
     "__img/640 (10).png",
@@ -166,16 +163,12 @@
     "__img/640 (7).png",
     "__img/640 (6).png",
     "__img/640 (5).png",
-    "__img/640 (2).gif",
-    "__img/640 (4).png",
-    "__img/640 (3) 1.png",
     "数据结构/持久性数据结构.md",
     "算法/限流算法.md",
     "网络编程/攻防/RST攻击,md",
     "网络编程/攻防/RST攻击",
     "Java/JVM/深入理解Java虚拟机.md",
     "Java/JVM/深入理解Java虚拟机2.md",
-    "分布式KV存储/RAFT.md",
     "架构 & 系统设计/MapReduce.md",
     "数据结构/常见Hash函数性能.md",
     "架构 & 系统设计/实例/亿级流量的IM架构.md",
@@ -186,7 +179,6 @@
     "架构 & 系统设计/实例/Proximity Service.md",
     "架构 & 系统设计/系统设计答题规则.md",
     "架构 & 系统设计/实例",
-    "分布式KV存储/一致性协议.md",
     "分布式KV存储/分布式事务.md",
     "分布式KV存储/未命名",
     "Java/JUC/JUC框架 源码解析系列.md",
