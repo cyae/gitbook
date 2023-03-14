@@ -4,15 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "d862b3dfa2619afa",
+        "id": "f7160aeb2b2553c6",
         "type": "tabs",
         "children": [
           {
-            "id": "22cd2c5b870cabd8",
+            "id": "78c21b33823c1edc",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "分布式KV存储/RAFT.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "分布式KV存储/RAFT.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "分布式KV存储/RAFT.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "分布式KV存储/RAFT.md"
+              }
             }
           },
           {
@@ -130,7 +139,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -146,19 +155,25 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2354696360fce6b1",
+  "active": "9b51f0d214730f02",
   "lastOpenFiles": [
+    "网络编程/攻防/RST攻击.md",
+    "__img/640 (11).png",
+    "__img/640 (10).png",
+    "__img/640 (9).png",
+    "网络编程/Reset包.md",
+    "__img/640 (8).png",
+    "__img/640 (7).png",
+    "__img/640 (6).png",
+    "__img/640 (5).png",
+    "__img/640 (2).gif",
+    "__img/640 (4).png",
+    "__img/640 (3) 1.png",
+    "数据结构/持久性数据结构.md",
+    "算法/限流算法.md",
+    "网络编程/攻防/RST攻击,md",
+    "网络编程/攻防/RST攻击",
     "Java/JVM/深入理解Java虚拟机.md",
-    "__img/Pasted image 20230313230016.png",
-    "__img/Pasted image 20230313230010.png",
-    "__img/Pasted image 20230313230006.png",
-    "__img/Pasted image 20230313230001.png",
-    "__img/Pasted image 20230313225956.png",
-    "__img/Pasted image 20230313225952.png",
-    "__img/Pasted image 20230313225946.png",
-    "__img/Pasted image 20230313225941.png",
-    "__img/Pasted image 20230313225928.png",
-    "__img/Pasted image 20230313225843.png",
     "Java/JVM/深入理解Java虚拟机2.md",
     "分布式KV存储/RAFT.md",
     "架构 & 系统设计/MapReduce.md",
@@ -181,18 +196,12 @@
     "__生活",
     "__生活/药理学",
     "__生活/语言/英语",
-    "__生活/语言",
     "架构 & 系统设计/各大互联网公司架构演进之路汇总.md",
-    "架构 & 系统设计",
     "缓存/Facebook基于Memcache的缓存.md",
     "算法/位运算.md",
     "数据结构/跳表.md",
     "算法/其他.md",
     "数据结构/红黑树.md",
-    "数据结构/树状数组.md",
-    "算法/背包问题.md",
-    "工具/Git/Github搜索.md",
-    "工具/Git/Git.md",
     "未命名.canvas"
   ]
 }
