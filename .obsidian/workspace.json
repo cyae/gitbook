@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "eb98d61e1e8c16f7",
+        "id": "064d3a3d995bfc8e",
         "type": "tabs",
         "children": [
           {
-            "id": "50f28abb1dc0eeff",
+            "id": "08aca706f286dd55",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -130,7 +130,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -146,8 +146,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "50f28abb1dc0eeff",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
+    "缓存/Facebook基于Memcache的缓存.md",
     "分布式KV存储/RAFT.md",
     "分布式KV存储/raft在etcd上的应用.md",
     "分布式KV存储/一致性协议.md",
@@ -189,7 +190,6 @@
     "__生活/药理学",
     "__生活/语言/英语",
     "架构 & 系统设计/各大互联网公司架构演进之路汇总.md",
-    "缓存/Facebook基于Memcache的缓存.md",
     "算法/位运算.md",
     "数据结构/跳表.md",
     "算法/其他.md",
