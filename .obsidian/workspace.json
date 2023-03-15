@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "064d3a3d995bfc8e",
+        "id": "a8a113c6529a56c0",
         "type": "tabs",
         "children": [
           {
-            "id": "08aca706f286dd55",
+            "id": "9395f986eeb5b5b8",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -148,6 +148,14 @@
   },
   "active": "2354696360fce6b1",
   "lastOpenFiles": [
+    "网络编程/高性能IO模型.md",
+    "__img/v2-a9da26b83eb1011b230647977d16c8f7_720w.webp",
+    "__img/Pasted image 20230315235843.jpg",
+    "__img/Pasted image 20230315235835.jpg",
+    "__img/v2-fba6c2868dc5d8e1f369c09e785ace61_720w.webp",
+    "__img/Pasted image 20230315235820.jpg",
+    "网络编程/Redis 多线程网络模型.md",
+    "网络编程/计算机网络.md",
     "缓存/Facebook基于Memcache的缓存.md",
     "分布式KV存储/RAFT.md",
     "分布式KV存储/raft在etcd上的应用.md",
@@ -158,12 +166,7 @@
     "网络编程/攻防/RST攻击.md",
     "__img/640 (11).png",
     "__img/640 (10).png",
-    "__img/640 (9).png",
     "网络编程/Reset包.md",
-    "__img/640 (8).png",
-    "__img/640 (7).png",
-    "__img/640 (6).png",
-    "__img/640 (5).png",
     "数据结构/持久性数据结构.md",
     "算法/限流算法.md",
     "网络编程/攻防/RST攻击,md",
@@ -190,10 +193,6 @@
     "__生活/药理学",
     "__生活/语言/英语",
     "架构 & 系统设计/各大互联网公司架构演进之路汇总.md",
-    "算法/位运算.md",
-    "数据结构/跳表.md",
-    "算法/其他.md",
-    "数据结构/红黑树.md",
     "未命名.canvas"
   ]
 }

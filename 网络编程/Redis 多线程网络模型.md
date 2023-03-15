@@ -1,5 +1,3 @@
-# Redis 多线程网络模型
-
 ## 导言
 
 Redis 从本质上来讲是一个网络服务器，而对于一个网络服务器来说，网络模型是它的精华，搞懂了一个网络服务器的网络模型，你也就搞懂了它的本质。
@@ -66,7 +64,7 @@ Redis 的作者 Salvatore Sanfilippo (别称 antirez) 对 Redis 的设计和代�
 
 我们首先来剖析一下 Redis 的核心网络模型，从 Redis 的 v1.0 到 v6.0 版本之前，Redis 的核心网络模型一直是一个典型的单 Reactor 模型：利用 epoll/select/kqueue 等多路复用技术，在单线程的事件循环中不断去处理事件（客户端请求），最后回写响应数据到客户端：
 
-https://img.taohuawu.club/gallery/single-threaded-redis.png
+![](https://img.taohuawu.club/gallery/single-threaded-redis.png)
 
 这里有几个核心的概念需要学习：
 
@@ -103,7 +101,7 @@ Redis 的作者 antirez 为了解决这个问题进行了很多思考，一开�
 
 于是，在 Redis v4.0 之后增加了一些的非阻塞命令如 UNLINK、FLUSHALL ASYNC、FLUSHDB ASYNC。
 
-https://img.taohuawu.club/gallery/redis-async-commands.png
+![](https://img.taohuawu.club/gallery/redis-async-commands.png)
 
 UNLINK 命令其实就是 DEL 的异步版本，它不会同步删除数据，而只是把 key 从 keyspace 中暂时移除掉，然后将任务添加到一个异步队列，最后由后台线程去删除，不过这里需要考虑一种情况是如果用 UNLINK 去删除一个很小的 key，用异步的方式去做反而开销更大，所以它会先计算一个开销的阀值，只有当这个值大于 64 才会使用异步的方式去删除 key，对于基本的数据类型如 List、Set、Hash 这些，阀值就是其中存储的对象数量。
 
@@ -127,7 +125,7 @@ UNLINK 命令其实就是 DEL 的异步版本，它不会同步删除数据，�
 
 6.0 版本之后，Redis 正式在核心网络模型中引入了多线程，也就是所谓的 I/O threading，至此 Redis 真正拥有了多线程模型。前一小节，我们了解了 Redis 在 6.0 版本之前的单线程事件循环模型，实际上就是一个非常经典的 Reactor 模型：
 
-https://img.taohuawu.club/gallery/single-reactor.png
+![](https://img.taohuawu.club/gallery/single-reactor.png)
 
 目前 Linux 平台上主流的高性能网络库/框架中，大都采用 Reactor 模式，比如 netty、libevent、libuv、POE(Perl)、Twisted(Python)等。
 
@@ -139,7 +137,7 @@ Redis 的核心网络模型在 6.0 版本之前，一直是单 Reactor 模式：
 
 通常来说，单 Reactor 模式，引入多线程之后会进化为 Multi-Reactors 模式，基本工作模式如下：
 
-https://img.taohuawu.club/gallery/multi-reactors.png
+![](https://img.taohuawu.club/gallery/multi-reactors.png)
 
 区别于单 Reactor 模式，这种模式不再是单线程的事件循环，而是有多个线程（Sub Reactors）各自维护一个独立的事件循环，由 Main Reactor 负责接收新连接并分发给 Sub Reactors 去独立处理，最后 Sub Reactors 回写响应给客户端。
 
@@ -149,16 +147,16 @@ Multiple Reactors 模式通常也可以等同于 Master-Workers 模式，比如 
 
 Redis 虽然也实现了多线程，但是却不是标准的 Multi-Reactors/Master-Workers 模式，这其中的缘由我们后面会分析，现在我们先看一下 Redis 多线程网络模型的总体设计：
 
-https://img.taohuawu.club/gallery/multiple-threaded-redis.png
+![](https://img.taohuawu.club/gallery/multiple-threaded-redis.png)
 
 1. Redis 服务器启动，开启主线程事件循环（Event Loop），注册 acceptTcpHandler 连接应答处理器到用户配置的监听端口对应的文件描述符，等待新连接到来；
 2. 客户端和服务端建立网络连接；
 3. acceptTcpHandler 被调用，主线程使用 AE 的 API 将 readQueryFromClient 命令读取处理器绑定到新连接对应的文件描述符上，并初始化一个 client 绑定这个客户端连接；
 4. 客户端发送请求命令，触发读就绪事件，服务端主线程不会通过 socket 去读取客户端的请求命令，而是先将 client 放入一个 LIFO 队列 clients_pending_read；
-5. 在事件循环（Event Loop）中，主线程执行 beforeSleep -->handleClientsWithPendingReadsUsingThreads，利用 Round-Robin 轮询负载均衡策略，把 clients_pending_read 队列中的连接均匀地分配给 I/O 线程各自的本地 FIFO 任务队列 io_threads_list[id] 和主线程自己，I/O 线程通过 socket 读取客户端的请求命令，存入 client->querybuf 并解析第一个命令，但不执行命令，主线程忙轮询，等待所有 I/O 线程完成读取任务；
+5. 在事件循环（Event Loop）中，主线程执行 beforeSleep -->handleClientsWithPendingReadsUsingThreads，利用 Round-Robin 轮询负载均衡策略，把 clients_pending_read 队列中的连接均匀地分配给 I/O 线程各自的本地 FIFO 任务队列 io_threads_list\[id] 和主线程自己，I/O 线程通过 socket 读取客户端的请求命令，存入 client->querybuf 并解析第一个命令，但不执行命令，主线程忙轮询，等待所有 I/O 线程完成读取任务；
 6. 主线程和所有 I/O 线程都完成了读取任务，主线程结束忙轮询，遍历 clients_pending_read 队列，执行所有客户端连接的请求命令，先调用 processCommandAndResetClient 执行第一条已经解析好的命令，然后调用 processInputBuffer 解析并执行客户端连接的所有命令，在其中使用 processInlineBuffer 或者 processMultibulkBuffer 根据 Redis 协议解析命令，最后调用 processCommand 执行命令；
 7. 根据请求命令的类型（SET, GET, DEL, EXEC 等），分配相应的命令执行器去执行，最后调用 addReply 函数族的一系列函数将响应数据写入到对应 client 的写出缓冲区：client->buf 或者 client->reply ，client->buf 是首选的写出缓冲区，固定大小 16KB，一般来说可以缓冲足够多的响应数据，但是如果客户端在时间窗口内需要响应的数据非常大，那么则会自动切换到 client->reply 链表上去，使用链表理论上能够保存无限大的数据（受限于机器的物理内存），最后把 client 添加进一个 LIFO 队列 clients_pending_write；
-8. 在事件循环（Event Loop）中，主线程执行 beforeSleep --> handleClientsWithPendingWritesUsingThreads，利用 Round-Robin 轮询负载均衡策略，把 clients_pending_write 队列中的连接均匀地分配给 I/O 线程各自的本地 FIFO 任务队列 io_threads_list[id] 和主线程自己，I/O 线程通过调用 writeToClient 把 client 的写出缓冲区里的数据回写到客户端，主线程忙轮询，等待所有 I/O 线程完成写出任务；
+8. 在事件循环（Event Loop）中，主线程执行 beforeSleep --> handleClientsWithPendingWritesUsingThreads，利用 Round-Robin 轮询负载均衡策略，把 clients_pending_write 队列中的连接均匀地分配给 I/O 线程各自的本地 FIFO 任务队列 io_threads_list\[id] 和主线程自己，I/O 线程通过调用 writeToClient 把 client 的写出缓冲区里的数据回写到客户端，主线程忙轮询，等待所有 I/O 线程完成写出任务；
 9. 主线程和所有 I/O 线程都完成了写出任务， 主线程结束忙轮询，遍历 clients_pending_write 队列，如果 client 的写出缓冲区还有数据遗留，则注册 sendReplyToClient 到该连接的写就绪事件，等待客户端可写时在事件循环中再继续回写残余的响应数据。
 
 这里大部分逻辑和之前的单线程模型是一致的，变动的地方仅仅是把读取客户端请求命令和回写响应数据的逻辑异步化了，交给 I/O 线程去完成，这里需要特别注意的一点是：I/O 线程仅仅是读取和解析客户端命令而不会真正去执行命令，客户端命令的执行最终还是要在主线程上完成。
@@ -501,7 +499,7 @@ void *IOThreadMain(void *myid) {
 
 I/O 线程启动之后，会先进入忙轮询，判断原子计数器中的任务数量，如果是非 0 则表示主线程已经给它分配了任务，开始执行任务，否则就一直忙轮询一百万次等待，忙轮询结束之后再查看计数器，如果还是 0，则尝试加本地锁，因为主线程在启动 I/O 线程之时就已经提前锁住了所有 I/O 线程的本地锁，因此 I/O 线程会进行休眠，等待主线程唤醒。
 
-主线程会在每次事件循环中尝试调用 startThreadedIO 唤醒 I/O 线程去执行任务，如果接收到客户端请求命令，则 I/O 线程会被唤醒开始工作，根据主线程设置的 io_threads_op 标识去执行命令读取和解析或者回写响应数据的任务，I/O 线程在收到主线程通知之后，会遍历自己的本地任务队列 io_threads_list[id]，取出一个个 client 执行任务：
+主线程会在每次事件循环中尝试调用 startThreadedIO 唤醒 I/O 线程去执行任务，如果接收到客户端请求命令，则 I/O 线程会被唤醒开始工作，根据主线程设置的 io_threads_op 标识去执行命令读取和解析或者回写响应数据的任务，I/O 线程在收到主线程通知之后，会遍历自己的本地任务队列 io_threads_list\[id]，取出一个个 client 执行任务：
 
 - 如果当前是写出操作，则调用 writeToClient，通过 socket 把 client->buf 或者 client->reply 里的响应数据回写到客户端。
 - 如果当前是读取操作，则调用 readQueryFromClient，通过 socket 读取客户端命令，存入 client->querybuf，然后调用 processInputBuffer 去解析命令，这里最终只会解析到第一条命令，然后就结束，不会去执行命令。
@@ -552,13 +550,13 @@ void processInputBuffer(client *c) {
 
 首先是 CPU 高速缓存（这里讨论的是 L1 Cache 和 L2 Cache 都集成在 CPU 中的硬件架构），这里想象一种场景：Redis 主进程正在 CPU-1 上运行，给客户端提供数据服务，此时 Redis 启动了子进程进行数据持久化（BGSAVE 或者 AOF），系统调度之后子进程抢占了主进程的 CPU-1，主进程被调度到 CPU-2 上去运行，导致之前 CPU-1 的高速缓存里的相关指令和数据被汰换掉，CPU-2 需要重新加载指令和数据到自己的本地高速缓存里，浪费 CPU 资源，降低性能。
 
-https://img.taohuawu.club/gallery/cpu-cache-levels.png
+![](https://img.taohuawu.club/gallery/cpu-cache-levels.png)
 
 因此，Redis 通过设置 CPU 亲和性，可以将主进程/线程和子进程/线程绑定到不同的核隔离开来，使之互不干扰，能有效地提升系统性能。
 
 其次是基于 NUMA 架构的考虑，在 NUMA 体系下，内存控制器芯片被集成到处理器内部，形成 CPU 本地内存，访问本地内存只需通过内存通道而无需经过系统总线，访问时延大大降低，而多个处理器之间通过 QPI 数据链路互联，跨 NUMA 节点的内存访问开销远大于本地内存的访问：
 
-https://img.taohuawu.club/gallery/02-04-QPI-Architecture-750x406.png
+![](https://img.taohuawu.club/gallery/02-04-QPI-Architecture-750x406.png)
 
 因此，Redis 通过设置 CPU 亲和性，让主进程/线程尽可能在固定的 NUMA 节点上的 CPU 上运行，更多地使用本地内存而不需要跨节点访问数据，同样也能大大地提升性能。
 
@@ -566,23 +564,23 @@ https://img.taohuawu.club/gallery/02-04-QPI-Architecture-750x406.png
 
 最后还有一点，阅读过源码的读者可能会有疑问，Redis 的多线程模式下，似乎并没有对数据进行锁保护，事实上 Redis 的多线程模型是全程无锁（Lock-free）的，这是通过原子操作+交错访问来实现的，主线程和 I/O 线程之间共享的变量有三个：io_threads_pending 计数器、io_threads_op I/O 标识符和 io_threads_list 线程本地任务队列。
 
-io_threads_pending 是原子变量，不需要加锁保护，io_threads_op 和 io_threads_list 这两个变量则是通过控制主线程和 I/O 线程交错访问来规避共享数据竞争问题：I/O 线程启动之后会通过忙轮询和锁休眠等待主线程的信号，在这之前它不会去访问自己的本地任务队列 io_threads_list[id]，而主线程会在分配完所有任务到各个 I/O 线程的本地队列之后才去唤醒 I/O 线程开始工作，并且主线程之后在 I/O 线程运行期间只会访问自己的本地任务队列 io_threads_list[0] 而不会再去访问 I/O 线程的本地队列，这也就保证了主线程永远会在 I/O 线程之前访问 io_threads_list 并且之后不再访问，保证了交错访问。io_threads_op 同理，主线程会在唤醒 I/O 线程之前先设置好 io_threads_op 的值，并且在 I/O 线程运行期间不会再去访问这个变量。
+io_threads_pending 是原子变量，不需要加锁保护，io_threads_op 和 io_threads_list 这两个变量则是通过控制主线程和 I/O 线程交错访问来规避共享数据竞争问题：I/O 线程启动之后会通过忙轮询和锁休眠等待主线程的信号，在这之前它不会去访问自己的本地任务队列 io_threads_list\[id]，而主线程会在分配完所有任务到各个 I/O 线程的本地队列之后才去唤醒 I/O 线程开始工作，并且主线程之后在 I/O 线程运行期间只会访问自己的本地任务队列 io_threads_list\[0] 而不会再去访问 I/O 线程的本地队列，这也就保证了主线程永远会在 I/O 线程之前访问 io_threads_list 并且之后不再访问，保证了交错访问。io_threads_op 同理，主线程会在唤醒 I/O 线程之前先设置好 io_threads_op 的值，并且在 I/O 线程运行期间不会再去访问这个变量。
 
-https://img.taohuawu.club/gallery/lock-free-during-multi-threads-in-redis.png
+![](https://img.taohuawu.club/gallery/lock-free-during-multi-threads-in-redis.png)
 
 ### 性能提升
 
 Redis 将核心网络模型改造成多线程模式追求的当然是最终性能上的提升，所以最终还是要以 benchmark 数据见真章：
 
-https://img.taohuawu.club/gallery/redis6-benchmark-no-pipeline.png
+![](https://img.taohuawu.club/gallery/redis6-benchmark-no-pipeline.png)
 
 测试数据表明，Redis 在使用多线程模式之后性能大幅提升，达到了一倍。更详细的性能压测数据可以参阅这篇文章：Benchmarking the experimental Redis Multi-Threaded I/O。
 
 以下是美图技术团队实测的新旧 Redis 版本性能对比图，仅供参考：
 
-https://pic4.zhimg.com/80/v2-5fc23efb73e636b4cbb8fcc31c1996cb_1440w.jpg
+![](https://pic4.zhimg.com/80/v2-5fc23efb73e636b4cbb8fcc31c1996cb_1440w.jpg)
 
-https://pic1.zhimg.com/80/v2-3dce301a6402226f551527cd2f2d4e10_1440w.jpg
+![](https://pic1.zhimg.com/80/v2-3dce301a6402226f551527cd2f2d4e10_1440w.jpg)
 
 ### 模型缺陷
 
