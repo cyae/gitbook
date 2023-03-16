@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "370e512068010f48",
+        "id": "55aefb620551dd9c",
         "type": "tabs",
         "children": [
           {
-            "id": "c9a2dca6c79f0453",
+            "id": "1de35ca842d8063f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Java/杂记.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Java/杂记.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Java/杂记.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Java/杂记.md"
-              }
+              "state": {}
             }
           },
           {
@@ -139,7 +130,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -155,8 +146,12 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "c9a2dca6c79f0453",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
+    "网络编程/高性能IO模型.md",
+    "__img/aHR0cHM6Ly9z.png",
+    "网络编程/Socket网络编程.md",
+    "Java/杂记.md",
     "__img/Pasted image 20230316224559.png",
     "Java/JVM/对象的创建过程.md",
     "__img/v2-ed45fff063164e49b9ad0a9a91dabd90_720w.webp",
@@ -167,9 +162,6 @@
     "__img/v2-34b32035bfb283ae41d0a758c95f9c7d_720w.webp",
     "__img/v2-ad579dcd3ccda458007a62a6b6957755_720w.webp",
     "__img/v2-9302116ac83a156973747a62cdfc20db_720w 1.webp",
-    "__img/v2-9302116ac83a156973747a62cdfc20db_720w.webp",
-    "__img/Pasted image 20230316224325.png",
-    "网络编程/高性能IO模型.md",
     "网络编程/Redis 多线程网络模型.md",
     "网络编程/计算机网络.md",
     "缓存/Facebook基于Memcache的缓存.md",
@@ -194,9 +186,7 @@
     "架构 & 系统设计/实例/Proximity Service.md",
     "架构 & 系统设计/系统设计答题规则.md",
     "架构 & 系统设计/实例",
-    "分布式KV存储/分布式事务.md",
     "分布式KV存储/未命名",
-    "Java/JUC/JUC框架 源码解析系列.md",
     "__生活/语言/英语/颜色",
     "__生活/语言/英语/高级词汇",
     "__生活/健康",
