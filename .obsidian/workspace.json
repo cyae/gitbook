@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "55aefb620551dd9c",
+        "id": "c66471462f2ff7aa",
         "type": "tabs",
         "children": [
           {
-            "id": "1de35ca842d8063f",
+            "id": "95db2ce457a4eff1",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -44,7 +44,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "棍",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -61,7 +61,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -146,8 +147,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2354696360fce6b1",
+  "active": "6baa11eaf3b32539",
   "lastOpenFiles": [
+    "设计模式/网关模式.md",
     "网络编程/高性能IO模型.md",
     "__img/aHR0cHM6Ly9z.png",
     "网络编程/Socket网络编程.md",
