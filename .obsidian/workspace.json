@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "c66471462f2ff7aa",
+        "id": "cb42c6dfe514b130",
         "type": "tabs",
         "children": [
           {
-            "id": "95db2ce457a4eff1",
+            "id": "87a21610de437712",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -44,7 +44,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "棍",
+                "query": "rod",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -61,8 +61,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -147,8 +146,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "6baa11eaf3b32539",
+  "active": "87a21610de437712",
   "lastOpenFiles": [
+    "算法/切钢条.md",
     "设计模式/网关模式.md",
     "网络编程/高性能IO模型.md",
     "__img/aHR0cHM6Ly9z.png",
@@ -186,7 +186,6 @@
     "架构 & 系统设计/实例/短域名系统.md",
     "架构 & 系统设计/实例/Code Deployment System.md",
     "架构 & 系统设计/实例/Proximity Service.md",
-    "架构 & 系统设计/系统设计答题规则.md",
     "架构 & 系统设计/实例",
     "分布式KV存储/未命名",
     "__生活/语言/英语/颜色",
