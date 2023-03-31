@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "86bf77d4987e166f",
+        "id": "07b694cca60f16e7",
         "type": "tabs",
         "children": [
           {
-            "id": "f333c2b26dc64bd9",
+            "id": "9269fa445555d146",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Java/Spring/IOC.md",
+                "file": "测试/混沌工程.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Java/Spring/IOC.md",
+                "file": "测试/混沌工程.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Java/Spring/IOC.md",
+                "file": "测试/混沌工程.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Java/Spring/IOC.md"
+                "file": "测试/混沌工程.md"
               }
             }
           },
@@ -155,8 +155,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "f333c2b26dc64bd9",
+  "active": "9269fa445555d146",
   "lastOpenFiles": [
+    "测试/混沌工程.md",
     "Java/Spring/IOC.md",
     "算法/切钢条.md",
     "设计模式/网关模式.md",
@@ -194,7 +195,6 @@
     "数据结构/布隆过滤器.md",
     "随笔.md",
     "架构 & 系统设计/实例/短域名系统.md",
-    "架构 & 系统设计/实例/Code Deployment System.md",
     "架构 & 系统设计/实例",
     "分布式KV存储/未命名",
     "__生活/语言/英语/颜色",
