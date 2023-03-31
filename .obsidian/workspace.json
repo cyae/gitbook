@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "cb42c6dfe514b130",
+        "id": "86bf77d4987e166f",
         "type": "tabs",
         "children": [
           {
-            "id": "87a21610de437712",
+            "id": "f333c2b26dc64bd9",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -155,8 +155,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b51f0d214730f02",
+  "active": "f333c2b26dc64bd9",
   "lastOpenFiles": [
+    "Java/Spring/IOC.md",
     "算法/切钢条.md",
     "设计模式/网关模式.md",
     "网络编程/高性能IO模型.md",
@@ -194,7 +195,6 @@
     "随笔.md",
     "架构 & 系统设计/实例/短域名系统.md",
     "架构 & 系统设计/实例/Code Deployment System.md",
-    "架构 & 系统设计/实例/Proximity Service.md",
     "架构 & 系统设计/实例",
     "分布式KV存储/未命名",
     "__生活/语言/英语/颜色",
