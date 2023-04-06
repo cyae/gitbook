@@ -11,8 +11,13 @@
             "id": "4c7230c7817967c1",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "操作系统/现代操作系统结构.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "操作系统/现代操作系统结构.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "操作系统/现代操作系统结构.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "操作系统/现代操作系统结构.md"
+              }
             }
           },
           {
@@ -130,11 +139,11 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 236.5
+    "width": 308.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -146,7 +155,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2354696360fce6b1",
+  "active": "1d28292f34e8f58f",
   "lastOpenFiles": [
     "网络编程/高性能IO模型.md",
     "__img/Pasted image 20230401014011.png",
