@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "数据库/sqlDB/MySQL45讲.md",
+                "file": "数据库/Godis/Redis架构.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据库/sqlDB/MySQL45讲.md",
+                "file": "数据库/Godis/Redis架构.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据库/sqlDB/MySQL45讲.md",
+                "file": "数据库/Godis/Redis架构.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "数据库/sqlDB/MySQL45讲.md"
+                "file": "数据库/Godis/Redis架构.md"
               }
             }
           },
@@ -157,8 +157,11 @@
   },
   "active": "c0fccac515e4ab88",
   "lastOpenFiles": [
-    "网络编程/高性能IO模型.md",
+    "数据库/Godis/哨兵模式.md",
+    "数据库/Godis/核心流程.md",
+    "数据库/Godis/核心概念.md",
     "数据库/sqlDB/MySQL45讲.md",
+    "网络编程/高性能IO模型.md",
     "数据库/DDIA/索引优化.md",
     "数据库/DDIA/事务.md",
     "数据库/DDIA/存储架构.md",
@@ -191,9 +194,6 @@
     "测试/压力测试.md",
     "算法/切钢条.md",
     "设计模式/网关模式.md",
-    "网络编程/Socket网络编程.md",
-    "Java/杂记.md",
-    "Java/JVM/对象的创建过程.md",
     "网络编程/攻防/RST攻击,md",
     "网络编程/攻防/RST攻击",
     "架构 & 系统设计/实例",
