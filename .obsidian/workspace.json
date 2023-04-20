@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "网络编程/高性能IO模型.md",
+                "file": "数据库/sqlDB/MySQL45讲.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "网络编程/高性能IO模型.md",
+                "file": "数据库/sqlDB/MySQL45讲.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "网络编程/高性能IO模型.md",
+                "file": "数据库/sqlDB/MySQL45讲.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "网络编程/高性能IO模型.md"
+                "file": "数据库/sqlDB/MySQL45讲.md"
               }
             }
           },
@@ -157,8 +157,11 @@
   },
   "active": "c0fccac515e4ab88",
   "lastOpenFiles": [
-    "数据库/SQLParser.md",
+    "数据库/DDIA/索引优化.md",
+    "数据库/DDIA/事务.md",
+    "数据库/DDIA/存储架构.md",
     "网络编程/高性能IO模型.md",
+    "数据库/SQLParser.md",
     "Java/Spring/Spring事务传播机制.md",
     "Java/Spring/IOC.md",
     "Java/Spring/AOP.md",
@@ -191,9 +194,6 @@
     "Java/杂记.md",
     "Java/JVM/对象的创建过程.md",
     "网络编程/Redis 多线程网络模型.md",
-    "网络编程/计算机网络.md",
-    "缓存/Facebook基于Memcache的缓存.md",
-    "分布式KV存储/RAFT.md",
     "网络编程/攻防/RST攻击,md",
     "网络编程/攻防/RST攻击",
     "架构 & 系统设计/实例",
