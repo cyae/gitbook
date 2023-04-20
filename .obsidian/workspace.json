@@ -143,7 +143,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 224.5
+    "width": 356.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -157,10 +157,11 @@
   },
   "active": "c0fccac515e4ab88",
   "lastOpenFiles": [
+    "网络编程/高性能IO模型.md",
+    "数据库/sqlDB/MySQL45讲.md",
     "数据库/DDIA/索引优化.md",
     "数据库/DDIA/事务.md",
     "数据库/DDIA/存储架构.md",
-    "网络编程/高性能IO模型.md",
     "数据库/SQLParser.md",
     "Java/Spring/Spring事务传播机制.md",
     "Java/Spring/IOC.md",
@@ -193,7 +194,6 @@
     "网络编程/Socket网络编程.md",
     "Java/杂记.md",
     "Java/JVM/对象的创建过程.md",
-    "网络编程/Redis 多线程网络模型.md",
     "网络编程/攻防/RST攻击,md",
     "网络编程/攻防/RST攻击",
     "架构 & 系统设计/实例",
