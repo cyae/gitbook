@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "数据库/Godis/Redis架构.md",
-                "mode": "source",
+                "file": "数据库/DDIA/事务.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "隔离级别",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -66,7 +66,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -86,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据库/Godis/Redis架构.md",
+                "file": "数据库/DDIA/事务.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据库/Godis/Redis架构.md",
+                "file": "数据库/DDIA/事务.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "数据库/Godis/Redis架构.md"
+                "file": "数据库/DDIA/事务.md"
               }
             }
           },
@@ -157,6 +158,7 @@
   },
   "active": "c0fccac515e4ab88",
   "lastOpenFiles": [
+    "数据库/Godis/Redis架构.md",
     "数据库/Godis/哨兵模式.md",
     "数据库/Godis/核心流程.md",
     "数据库/Godis/核心概念.md",
@@ -193,7 +195,6 @@
     "__img/1233356-a967adc2fe732a5a.webp",
     "测试/压力测试.md",
     "算法/切钢条.md",
-    "设计模式/网关模式.md",
     "网络编程/攻防/RST攻击,md",
     "网络编程/攻防/RST攻击",
     "架构 & 系统设计/实例",
