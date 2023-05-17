@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "5e731e0bf24a6f4b",
+        "id": "f6bf787c3e3ff483",
         "type": "tabs",
         "children": [
           {
-            "id": "c0fccac515e4ab88",
+            "id": "d4818cf77feeb6dd",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "数据库/DDIA/事务.md",
-                "mode": "preview",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -49,7 +44,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "隔离级别",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -66,8 +61,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -87,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据库/DDIA/事务.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据库/DDIA/事务.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "数据库/DDIA/事务.md"
-              }
+              "state": {}
             }
           },
           {
@@ -156,8 +146,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "c0fccac515e4ab88",
+  "active": "9b51f0d214730f02",
   "lastOpenFiles": [
+    "Chrome Clippings/Build an Image Search Engine.md",
+    "数据库/DDIA/事务.md",
     "数据库/Godis/Redis架构.md",
     "数据库/Godis/哨兵模式.md",
     "数据库/Godis/核心流程.md",
@@ -165,7 +157,6 @@
     "数据库/sqlDB/MySQL45讲.md",
     "网络编程/高性能IO模型.md",
     "数据库/DDIA/索引优化.md",
-    "数据库/DDIA/事务.md",
     "数据库/DDIA/存储架构.md",
     "数据库/SQLParser.md",
     "Java/Spring/Spring事务传播机制.md",
@@ -194,7 +185,6 @@
     "__img/1233356-a32b0ea7656c9c76.webp",
     "__img/1233356-a967adc2fe732a5a.webp",
     "测试/压力测试.md",
-    "算法/切钢条.md",
     "网络编程/攻防/RST攻击,md",
     "网络编程/攻防/RST攻击",
     "架构 & 系统设计/实例",
