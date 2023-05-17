@@ -11,8 +11,13 @@
             "id": "d4818cf77feeb6dd",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "数据库/PostgreSQL MVCC实现机制.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "数据库/PostgreSQL MVCC实现机制.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "数据库/PostgreSQL MVCC实现机制.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "数据库/PostgreSQL MVCC实现机制.md"
+              }
             }
           },
           {
@@ -146,8 +155,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b51f0d214730f02",
+  "active": "d4818cf77feeb6dd",
   "lastOpenFiles": [
+    "数据库/PostgreSQL MVCC实现机制.md",
     "Chrome Clippings/Build an Image Search Engine.md",
     "数据库/DDIA/事务.md",
     "数据库/Godis/Redis架构.md",
@@ -184,7 +194,6 @@
     "__img/1233356-dcea9e0a74bf81da.gif",
     "__img/1233356-a32b0ea7656c9c76.webp",
     "__img/1233356-a967adc2fe732a5a.webp",
-    "测试/压力测试.md",
     "网络编程/攻防/RST攻击,md",
     "网络编程/攻防/RST攻击",
     "架构 & 系统设计/实例",
