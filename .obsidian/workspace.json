@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "77c3dce5b1af2cc6",
+        "id": "af9acf559cca6ca4",
         "type": "tabs",
         "children": [
           {
-            "id": "ff54701181cee6d1",
+            "id": "6c02b61e220e2915",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "数据库/PostgreSQL MVCC实现机制.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据库/PostgreSQL MVCC实现机制.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据库/PostgreSQL MVCC实现机制.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "数据库/PostgreSQL MVCC实现机制.md"
-              }
+              "state": {}
             }
           },
           {
@@ -139,11 +130,11 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 356.5
+    "width": 273.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -155,11 +146,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "ff54701181cee6d1",
+  "active": "6c02b61e220e2915",
   "lastOpenFiles": [
+    "数据库/PostgreSQL's MVCC.md",
     "Java/JVM/深入理解Java虚拟机.md",
     "Java/JVM/对象的创建过程.md",
-    "数据库/PostgreSQL MVCC实现机制.md",
     "Chrome Clippings/Build an Image Search Engine.md",
     "数据库/DDIA/事务.md",
     "数据库/Godis/Redis架构.md",
