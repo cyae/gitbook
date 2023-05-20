@@ -4,23 +4,29 @@
     "type": "split",
     "children": [
       {
-        "id": "af9acf559cca6ca4",
+        "id": "03c97db8c4c61519",
         "type": "tabs",
         "children": [
           {
-            "id": "6c02b61e220e2915",
+            "id": "b2b254beb37371f2",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "714e9e6e7350fd9d",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
               "state": {
-                "file": "数据库/PostgreSQL's MVCC.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "currentVersion": "1.2.8"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -65,6 +71,14 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "98beec2ae1e39839",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ]
       }
@@ -86,7 +100,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据库/PostgreSQL's MVCC.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +116,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据库/PostgreSQL's MVCC.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +137,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "数据库/PostgreSQL's MVCC.md"
-              }
+              "state": {}
             }
           },
           {
@@ -155,7 +165,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "6c02b61e220e2915",
+  "active": "714e9e6e7350fd9d",
   "lastOpenFiles": [
     "数据库/PostgreSQL's MVCC.md",
     "Java/JVM/深入理解Java虚拟机.md",
