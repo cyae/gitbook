@@ -4,29 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "03c97db8c4c61519",
+        "id": "4e70f4f57edcef0f",
         "type": "tabs",
         "children": [
           {
-            "id": "b2b254beb37371f2",
+            "id": "c47e001f963c2423",
             "type": "leaf",
             "state": {
               "type": "empty",
               "state": {}
             }
-          },
-          {
-            "id": "714e9e6e7350fd9d",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.2.8"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -165,7 +154,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "714e9e6e7350fd9d",
+  "active": "9b51f0d214730f02",
   "lastOpenFiles": [
     "数据库/PostgreSQL's MVCC.md",
     "Java/JVM/深入理解Java虚拟机.md",
