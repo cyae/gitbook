@@ -11,8 +11,13 @@
             "id": "c47e001f963c2423",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "网络编程/Nginx.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -89,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "网络编程/Nginx.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,6 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "网络编程/Nginx.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +133,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "网络编程/Nginx.md"
+              }
             }
           },
           {
@@ -138,7 +147,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -154,8 +163,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b51f0d214730f02",
+  "active": "c47e001f963c2423",
   "lastOpenFiles": [
+    "网络编程/Nginx.md",
     "数据库/PostgreSQL's MVCC.md",
     "Java/JVM/深入理解Java虚拟机.md",
     "Java/JVM/对象的创建过程.md",
@@ -187,7 +197,6 @@
     "__img/Pasted image 20230401013734.png",
     "__img/Pasted image 20230401013717.png",
     "__img/Pasted image 20230401010304.png",
-    "网络编程/序列化.md",
     "__img/807144-b561d8fc7d009318.webp",
     "__img/807144-e7fd70fa145eb1eb.webp",
     "__img/1233356-dcea9e0a74bf81da.gif",
