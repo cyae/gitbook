@@ -19,8 +19,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "e7d1680b24eda1f0",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.3.4"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -163,7 +174,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "c47e001f963c2423",
+  "active": "e7d1680b24eda1f0",
   "lastOpenFiles": [
     "网络编程/Nginx.md",
     "数据库/PostgreSQL's MVCC.md",
