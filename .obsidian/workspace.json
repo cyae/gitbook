@@ -4,15 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "8962d160d3447433",
+        "id": "dd5752c70ee3520a",
         "type": "tabs",
         "children": [
           {
-            "id": "06457d3f45244d7a",
+            "id": "a2fa2c6e7d776723",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Java/Spring/bean.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -44,10 +49,10 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "latex",
+                "query": "spring",
                 "matchingCase": false,
                 "explainSearch": false,
-                "collapseAll": false,
+                "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               }
@@ -69,7 +74,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -89,6 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Java/Spring/bean.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,6 +112,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Java/Spring/bean.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +134,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Java/Spring/bean.md"
+              }
             }
           },
           {
@@ -154,8 +164,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "06457d3f45244d7a",
+  "active": "a2fa2c6e7d776723",
   "lastOpenFiles": [
+    "测试/单元测试.md",
     "数据库/PostgreSQL 9 tips.md",
     "工具/latex.md",
     "网络编程/Nginx.md",
@@ -181,7 +192,6 @@
     "Kafka原理/消息中间件基础.md",
     "Kafka原理/Kafka分区一致 & 任务流程.md",
     "Chrome Clippings/The Long, Slow Death of Global Development - American Affairs Journal-2023-04-13.md",
-    "Chrome Clippings/Obsidian Clipper-2023-04-11.md",
     "Chrome Clippings",
     "__img/Pasted image 20230401014011.png",
     "__img/Pasted image 20230401013920.png",

@@ -123,3 +123,10 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 在调用populateBean方法时，会去为每个属性赋值，以上面的TestA,TestB为例，当testA发现依赖testB，接着就会去getBean(testB)，testB的创建流程跟testA一样。首先会先去set集合中获取当前beanName是否正在创建当中，如果没有，会进行set操作，保存到当前线程变量中。然后继续进行bean的创建。当调用到populateBean方法时，testB会发现依赖testA，那么转过身又会回去创建testA，当调用到isPrototypeCurrentlyInCreation方法时，此时的testA由于还在进行属性赋值，并没有完全的创建成功，那么理所当然他会在set集合当中，此时程序会直接抛出异常，告知当前的bean正在创建当中。
 
 那么问题来了，如果不抛异常，会怎么样呢？没有这么一个set集合又会怎么样呢？大家可以试想一下。如果没有这么一个标记，testA在进行属性赋值时，发现依赖testB，马上又去创建testB，到testB进行属性赋值时，又发现依赖了testA，转过头又去创建testA，而testA依赖了testB，则又会去创建testB。循环往复，形成了一个死循环，永远都出不来了。所以Spring为了避免这种现象，索性直接抛出异常，因为在Spring看来，它也不知道如何来解决这种情况。
+
+## Bean加载时间优化
+### 检测耗时
+1. 实现spring bean的前后置接口BeanPostProcessor，打印时间
+2. arthas trace命令查看调用链路耗时
+### 解决思路
+- 
