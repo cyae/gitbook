@@ -125,8 +125,14 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 那么问题来了，如果不抛异常，会怎么样呢？没有这么一个set集合又会怎么样呢？大家可以试想一下。如果没有这么一个标记，testA在进行属性赋值时，发现依赖testB，马上又去创建testB，到testB进行属性赋值时，又发现依赖了testA，转过头又去创建testA，而testA依赖了testB，则又会去创建testB。循环往复，形成了一个死循环，永远都出不来了。所以Spring为了避免这种现象，索性直接抛出异常，因为在Spring看来，它也不知道如何来解决这种情况。
 
 ## Bean加载时间优化
-### 检测耗时
+### 检测load耗时
 1. 实现spring bean的前后置接口BeanPostProcessor，打印时间
 2. arthas trace命令查看调用链路耗时
 ### 解决思路
-- 
+- 如果发现是连接DB时的DataSource bean加载耗时大，可以考虑
+    1. 懒加载：Druid可以用反射设置Datasource的AsyncInit=true
+    2. 分库分表metadata（col+index）读取耗时大：本地缓存成Json，避免每次拉起IOC都连接DB的schema表读取；注意执行DDL后需要重新缓存
+
+
+## bean环境隔离
+有的Bean只需要本地测试加载，线上环境不需要，那么可以使用@Conditional（class implements Condition overriding matches）决定加载一个bean的环境

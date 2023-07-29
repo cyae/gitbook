@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "dd5752c70ee3520a",
+        "id": "bed4b9ddbfc01517",
         "type": "tabs",
         "children": [
           {
-            "id": "a2fa2c6e7d776723",
+            "id": "4f540ca4dcfc17d0",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Java/Spring/bean.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -49,7 +44,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "spring",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": true,
@@ -74,12 +69,11 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 245.5
   },
   "right": {
     "id": "c617cbd17e3b9b56",
@@ -95,7 +89,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Java/Spring/bean.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,7 +105,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Java/Spring/bean.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,9 +126,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Java/Spring/bean.md"
-              }
+              "state": {}
             }
           },
           {
@@ -148,11 +138,11 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 273.5
+    "width": 330.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -164,8 +154,19 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "a2fa2c6e7d776723",
+  "active": "2354696360fce6b1",
   "lastOpenFiles": [
+    "Java/Spring/bean.md",
+    "Java/JVM/类加载机制.md",
+    "Java/Spring/IOC.md",
+    "Java/Spring/Netty.md",
+    "随笔.md",
+    "__生活/健康/d2e6862cd42a2834d6b1054c4cb5c9ea14cebfa7.jpg",
+    "__生活/健康/Screenshot_2020-05-29-01-47-04-604_com.huanchengfly.tieba.post.jpg",
+    "__生活/健康/Screenshot_2022-01-10-22-18-56-816_com.reddit.frontpage.jpg",
+    "__生活/健康/2018-01-21 182148.png",
+    "未命名 1.canvas",
+    "未命名.canvas",
     "测试/单元测试.md",
     "数据库/PostgreSQL 9 tips.md",
     "工具/latex.md",
@@ -185,13 +186,8 @@
     "数据库/DDIA/存储架构.md",
     "数据库/SQLParser.md",
     "Java/Spring/Spring事务传播机制.md",
-    "Java/Spring/IOC.md",
     "Java/Spring/AOP.md",
-    "Java/Spring/Netty.md",
     "Kafka原理/Kafka基础原理.md",
-    "Kafka原理/消息中间件基础.md",
-    "Kafka原理/Kafka分区一致 & 任务流程.md",
-    "Chrome Clippings/The Long, Slow Death of Global Development - American Affairs Journal-2023-04-13.md",
     "Chrome Clippings",
     "__img/Pasted image 20230401014011.png",
     "__img/Pasted image 20230401013920.png",
@@ -199,10 +195,6 @@
     "__img/Pasted image 20230401013717.png",
     "__img/Pasted image 20230401010304.png",
     "__img/807144-b561d8fc7d009318.webp",
-    "__img/807144-e7fd70fa145eb1eb.webp",
-    "__img/1233356-dcea9e0a74bf81da.gif",
-    "__img/1233356-a32b0ea7656c9c76.webp",
-    "__img/1233356-a967adc2fe732a5a.webp",
     "网络编程/攻防/RST攻击,md",
     "网络编程/攻防/RST攻击",
     "架构 & 系统设计/实例",
@@ -211,7 +203,6 @@
     "__生活/语言/英语/高级词汇",
     "__生活/健康",
     "__生活",
-    "__生活/药理学",
-    "未命名.canvas"
+    "__生活/药理学"
   ]
 }
