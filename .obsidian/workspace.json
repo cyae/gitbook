@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "198d346b745b79d1",
+        "id": "8962d160d3447433",
         "type": "tabs",
         "children": [
           {
-            "id": "fd5edb0a389faaae",
+            "id": "06457d3f45244d7a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "数据库/PostgreSQL 9 tips.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -94,7 +89,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据库/PostgreSQL 9 tips.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +105,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据库/PostgreSQL 9 tips.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,9 +126,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "数据库/PostgreSQL 9 tips.md"
-              }
+              "state": {}
             }
           },
           {
@@ -163,7 +154,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "fd5edb0a389faaae",
+  "active": "06457d3f45244d7a",
   "lastOpenFiles": [
     "数据库/PostgreSQL 9 tips.md",
     "工具/latex.md",

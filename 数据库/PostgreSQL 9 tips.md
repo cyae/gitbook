@@ -141,6 +141,6 @@ OR bar = baz;
 
 - You can speed up, by a huge margin, big string indices with md5/hash index (only relevant for exact match)
 
-- Postgres as a queue is definitely working and scales pretty far
+- Postgres as a queue is definitely working and scales pretty far, see [details](https://www.crunchydata.com/blog/message-queuing-using-native-postgresql)
 
 - Related: be sure to understand the difference between transaction vs explicit locking, a lot of people assume too much from transaction and it will eventually breaks in prod.
