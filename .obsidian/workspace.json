@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "工具/Git/Git.md",
+                "file": "工具/Git/Git进阶.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "工具/Git/Git.md",
+                "file": "工具/Git/Git进阶.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "工具/Git/Git.md",
+                "file": "工具/Git/Git进阶.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "工具/Git/Git.md"
+                "file": "工具/Git/Git进阶.md"
               }
             }
           },
@@ -186,6 +186,8 @@
   },
   "active": "bee5b34b2380e566",
   "lastOpenFiles": [
+    "工具/Git/Git.md",
+    "工具/Git/Git进阶.md",
     "设计模式/image-3.png",
     "设计模式/image-2.png",
     "设计模式/image-1.png",
@@ -215,7 +217,6 @@
     "__生活/健康/d2e6862cd42a2834d6b1054c4cb5c9ea14cebfa7.jpg",
     "__生活/健康/Screenshot_2020-05-29-01-47-04-604_com.huanchengfly.tieba.post.jpg",
     "__生活/健康/Screenshot_2022-01-10-22-18-56-816_com.reddit.frontpage.jpg",
-    "__生活/健康/2018-01-21 182148.png",
     "未命名 1.canvas",
     "数据库/PostgreSQL 9 tips.md",
     "工具/latex.md",
@@ -225,7 +226,6 @@
     "Java/JVM/对象的创建过程.md",
     "Chrome Clippings/Build an Image Search Engine.md",
     "数据库/DDIA/事务.md",
-    "数据库/Godis/Redis架构.md",
     "Chrome Clippings",
     "网络编程/攻防/RST攻击,md",
     "网络编程/攻防/RST攻击",
