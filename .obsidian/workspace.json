@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "794712094f1178d6",
+        "id": "eba05a317382d6f0",
         "type": "tabs",
         "children": [
           {
-            "id": "a654594ccdaf3c7b",
+            "id": "bee5b34b2380e566",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -160,8 +160,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 301.5,
-    "collapsed": true
+    "width": 301.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -176,7 +175,7 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "9b51f0d214730f02",
+  "active": "bee5b34b2380e566",
   "lastOpenFiles": [
     "设计模式/SPI模式.md",
     "template/系分.md",
