@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "多线程",
+                "query": "XXX",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": true,
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "c617cbd17e3b9b56",
@@ -188,6 +187,9 @@
   },
   "active": "87917075fa5cc593",
   "lastOpenFiles": [
+    "__img/Pasted image 20230917182222.png",
+    "__img/Pasted image 20230917182056.png",
+    "__img/Pasted image 20230917181925.png",
     "template/XXX系分.md",
     "template",
     "Excalidraw/Drawing 2023-09-17 17.24.04.excalidraw.md",
@@ -221,14 +223,11 @@
     "数据库/Godis/Redis架构.md",
     "数据库/Godis/哨兵模式.md",
     "数据库/Godis/核心流程.md",
-    "数据库/Godis/核心概念.md",
     "Chrome Clippings",
     "__img/Pasted image 20230401014011.png",
     "__img/Pasted image 20230401013920.png",
     "__img/Pasted image 20230401013734.png",
     "__img/Pasted image 20230401013717.png",
-    "__img/Pasted image 20230401010304.png",
-    "__img/807144-b561d8fc7d009318.webp",
     "网络编程/攻防/RST攻击,md",
     "网络编程/攻防/RST攻击",
     "架构 & 系统设计/实例",
