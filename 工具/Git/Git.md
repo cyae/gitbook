@@ -4,6 +4,8 @@
 
 ## 命令
 
+> [练习网站](https://learngitbranching.js.org/)
+
 - 查看历史命令 git reflog
 - 查看提交历史 git log
 - 查看当前分支状态 git status
@@ -35,7 +37,6 @@
 
 ![[Pasted image 20230312000406.png]]
 
-
 - **版本库回退 git reset \[commit ID\]/\[HEAD^^^\]**
   - 回退版本库，保留暂存区和工作区 git reset --soft
   - 回退版本库和暂存区，保留工作区 git reset --mixed
@@ -45,6 +46,7 @@
     - 若本地有新增修改，且需要保留，使用--mixed
     - 若本地有新增修改，但无需保留，使用--hard
 - 版本库反做（思想类似tombstone标志删除） git revert -n \[commit ID\]
+
 ---
 
 - 合并分支的三种方式
