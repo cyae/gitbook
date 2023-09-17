@@ -11,8 +11,13 @@
             "id": "bee5b34b2380e566",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "工具/Git/Git.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -89,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "工具/Git/Git.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,6 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "工具/Git/Git.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +133,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "工具/Git/Git.md"
+              }
             }
           },
           {
@@ -175,7 +184,7 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "2354696360fce6b1",
+  "active": "bee5b34b2380e566",
   "lastOpenFiles": [
     "设计模式/image-3.png",
     "设计模式/image-2.png",
