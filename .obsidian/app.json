@@ -8,7 +8,7 @@
   "foldHeading": true,
   "rightToLeft": false,
   "spellcheck": true,
-  "autoPairMarkdown": false,
+  "autoPairMarkdown": true,
   "autoPairBrackets": false,
   "trashOption": "local",
   "newFileLocation": "root",
@@ -17,5 +17,8 @@
     "__img/"
   ],
   "useTab": false,
-  "tabSize": 4
+  "tabSize": 4,
+  "showInlineTitle": true,
+  "alwaysUpdateLinks": true,
+  "useMarkdownLinks": true
 }

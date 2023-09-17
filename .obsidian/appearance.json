@@ -1,11 +1,11 @@
 {
   "accentColor": "",
-  "theme": "moonstone",
+  "theme": "obsidian",
   "cssTheme": "Minimal",
   "monospaceFontFamily": "CaskaydiaCove Nerd Font",
   "translucency": false,
   "nativeMenus": false,
-  "baseFontSize": 18,
+  "baseFontSize": 16,
   "interfaceFontFamily": "更纱黑体 UI SC",
   "textFontFamily": "等距更纱黑体 SC",
   "showViewHeader": true,

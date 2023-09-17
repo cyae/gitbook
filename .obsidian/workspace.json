@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "3140417f47ae0baa",
+        "id": "ff590c25a3b67c3b",
         "type": "tabs",
         "children": [
           {
-            "id": "98cf2cd9eb9493d3",
+            "id": "87917075fa5cc593",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -136,6 +136,16 @@
               "type": "git-view",
               "state": {}
             }
+          },
+          {
+            "id": "02f883b1ab0dc884",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency"
+              }
+            }
           }
         ],
         "currentTab": 4
@@ -154,10 +164,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "98cf2cd9eb9493d3",
+  "active": "87917075fa5cc593",
   "lastOpenFiles": [
-    "Java/JUC/跨线程传播数据.md",
+    "测试/单元测试.md",
     "Java/JUC/多线程创建.md",
+    "Java/JUC/跨线程传播数据.md",
     "Java/JUC/JUC框架 源码解析系列.md",
     "未命名.canvas",
     "函数式编程/未命名.md",
@@ -172,7 +183,6 @@
     "__生活/健康/Screenshot_2022-01-10-22-18-56-816_com.reddit.frontpage.jpg",
     "__生活/健康/2018-01-21 182148.png",
     "未命名 1.canvas",
-    "测试/单元测试.md",
     "数据库/PostgreSQL 9 tips.md",
     "工具/latex.md",
     "网络编程/Nginx.md",
