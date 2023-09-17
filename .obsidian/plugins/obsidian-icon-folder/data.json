@@ -1,0 +1,51 @@
+{
+  "settings": {
+    "migrated": 2,
+    "iconPacksPath": ".obsidian/plugins/obsidian-icon-folder/icons",
+    "fontSize": 16,
+    "emojiStyle": "none",
+    "iconColor": null,
+    "recentlyUsedIcons": [
+      "TiTemplate",
+      "FabPaintbrush",
+      "RiFolder3Fill"
+    ],
+    "recentlyUsedIconsSize": 5,
+    "rules": [],
+    "extraMargin": {
+      "top": 0,
+      "right": 4,
+      "bottom": 0,
+      "left": 0
+    },
+    "iconInTabsEnabled": false
+  },
+  "操作系统": "RiFolder3Fill",
+  "测试": "RiFolder3Fill",
+  "分布式KV存储": "RiFolder3Fill",
+  "工具": "RiFolder3Fill",
+  "函数式编程": "RiFolder3Fill",
+  "缓存": "RiFolder3Fill",
+  "架构 & 系统设计": "RiFolder3Fill",
+  "容器化": "RiFolder3Fill",
+  "设计模式": "RiFolder3Fill",
+  "数据结构": "RiFolder3Fill",
+  "数据库": "RiFolder3Fill",
+  "算法": "RiFolder3Fill",
+  "网络编程": "RiFolder3Fill",
+  "Java": "RiFolder3Fill",
+  "Kafka原理": "RiFolder3Fill",
+  "工具/Git": "RiFolder3Fill",
+  "架构 & 系统设计/实例": "RiFolder3Fill",
+  "数据库/分表中间件": "RiFolder3Fill",
+  "数据库/DDIA": "RiFolder3Fill",
+  "数据库/Godis": "RiFolder3Fill",
+  "数据库/miniLSM": "RiFolder3Fill",
+  "数据库/sqlDB": "RiFolder3Fill",
+  "网络编程/攻防": "RiFolder3Fill",
+  "Java/JUC": "RiFolder3Fill",
+  "Java/JVM": "RiFolder3Fill",
+  "Java/Spring": "RiFolder3Fill",
+  "Excalidraw": "FabPaintbrush",
+  "template": "TiTemplate"
+}

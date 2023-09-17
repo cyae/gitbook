@@ -2,7 +2,7 @@
   "vimMode": true,
   "showLineNumber": true,
   "promptDelete": false,
-  "readableLineLength": true,
+  "readableLineLength": false,
   "strictLineBreaks": false,
   "showFrontmatter": false,
   "foldHeading": true,

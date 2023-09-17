@@ -11,8 +11,13 @@
             "id": "87917075fa5cc593",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "template/XXX系分.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -73,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "c617cbd17e3b9b56",
@@ -89,6 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "template/XXX系分.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,6 +112,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "template/XXX系分.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +134,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "template/XXX系分.md"
+              }
             }
           },
           {
@@ -146,13 +156,22 @@
                 "sortOrder": "frequency"
               }
             }
+          },
+          {
+            "id": "60f643e5a4600cca",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
         ],
         "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 309.5
+    "width": 301.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -161,11 +180,19 @@
       "graph:查看关系图谱": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "command-palette:打开命令面板": false,
+      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
   "active": "87917075fa5cc593",
   "lastOpenFiles": [
+    "template/XXX系分.md",
+    "template",
+    "Excalidraw/Drawing 2023-09-17 17.24.04.excalidraw.md",
+    "Excalidraw/Drawing 2023-09-17 17.24.12.excalidraw.md",
+    "Excalidraw",
     "测试/单元测试.md",
     "Java/JUC/多线程创建.md",
     "Java/JUC/跨线程传播数据.md",
@@ -195,9 +222,6 @@
     "数据库/Godis/哨兵模式.md",
     "数据库/Godis/核心流程.md",
     "数据库/Godis/核心概念.md",
-    "数据库/sqlDB/MySQL45讲.md",
-    "网络编程/高性能IO模型.md",
-    "数据库/DDIA/索引优化.md",
     "Chrome Clippings",
     "__img/Pasted image 20230401014011.png",
     "__img/Pasted image 20230401013920.png",
@@ -211,8 +235,6 @@
     "分布式KV存储/未命名",
     "__生活/语言/英语/颜色",
     "__生活/语言/英语/高级词汇",
-    "__生活/健康",
-    "__生活",
-    "__生活/药理学"
+    "__生活/健康"
   ]
 }

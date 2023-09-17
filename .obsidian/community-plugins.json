@@ -1,4 +1,11 @@
 [
   "obsidian-minimal-settings",
-  "obsidian-git"
+  "obsidian-git",
+  "obsidian-icon-folder",
+  "obsidian-plantuml",
+  "obsidian-mind-map",
+  "obsidian-excalidraw-plugin",
+  "dataview",
+  "table-editor-obsidian",
+  "obsidian-advanced-slides"
 ]
