@@ -9,7 +9,7 @@
   "rightToLeft": false,
   "spellcheck": true,
   "autoPairMarkdown": true,
-  "autoPairBrackets": false,
+  "autoPairBrackets": true,
   "trashOption": "local",
   "newFileLocation": "root",
   "attachmentFolderPath": "__img",
