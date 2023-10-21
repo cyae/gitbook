@@ -1,6 +1,6 @@
 {
   "settings": {
-    "migrated": 2,
+    "migrated": 3,
     "iconPacksPath": ".obsidian/plugins/obsidian-icon-folder/icons",
     "fontSize": 16,
     "emojiStyle": "none",
@@ -18,7 +18,9 @@
       "bottom": 0,
       "left": 0
     },
-    "iconInTabsEnabled": false
+    "iconInTabsEnabled": false,
+    "iconInTitleEnabled": false,
+    "iconsBackgroundCheckEnabled": false
   },
   "操作系统": "RiFolder3Fill",
   "测试": "RiFolder3Fill",

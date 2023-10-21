@@ -4,15 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "4912b39dd0583428",
+        "id": "57a38a61e1ea18d8",
         "type": "tabs",
         "children": [
           {
-            "id": "2d915bd31b3a7a54",
+            "id": "589b660b92e9192b",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "canvas",
+              "state": {
+                "file": "未命名.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
+              }
             }
           }
         ]
@@ -44,7 +51,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "XXX",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": true,
@@ -69,7 +76,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -89,6 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "未命名.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,6 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "未命名.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +136,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "未命名.canvas"
+              }
             }
           },
           {
@@ -170,28 +182,30 @@
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-advanced-slides:Show Slide Preview": false,
+      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "2d915bd31b3a7a54",
+  "active": "589b660b92e9192b",
   "lastOpenFiles": [
-    "Java/JUC/CompletableFuture.md",
     "未命名.canvas",
+    "网络编程/Okhttp.md",
+    "__img/Pasted image 20231021154556.png",
+    "__img/Pasted image 20231021154551.png",
+    "__img/Pasted image 20231021154543.png",
+    "__img/Pasted image 20231021154537.png",
+    "__img/Pasted image 20231021154530.png",
+    "__img/Pasted image 20231021154526.png",
+    "__img/Pasted image 20231021154522.png",
+    "__img/Pasted image 20231021154514.png",
+    "Java/JUC/CompletableFuture.md",
     "工具/Git/git_rebase.md",
     "__img/Pasted image 20230917231518.png",
     "__img/Pasted image 20230917230742.png",
-    "__img/Pasted image 20230917230556.png",
-    "__img/Pasted image 20230917224649.png",
-    "__img/Pasted image 20230917224434.png",
-    "__img/Pasted image 20230917224217.png",
-    "__img/Pasted image 20230917224019.png",
     "设计模式/定时器模式.md",
-    "__img/image-1.png",
     "工具/Git/Git进阶.md",
-    "__img/image-4.png",
     "工具/Git/Git.md",
-    "__img/image-3.png",
     "设计模式/SPI模式.md",
     "template/系分.md",
     "template",
@@ -214,8 +228,6 @@
     "工具/latex.md",
     "网络编程/Nginx.md",
     "数据库/PostgreSQL's MVCC.md",
-    "Java/JVM/深入理解Java虚拟机.md",
-    "Java/JVM/对象的创建过程.md",
     "Chrome Clippings",
     "网络编程/攻防/RST攻击,md",
     "网络编程/攻防/RST攻击",
