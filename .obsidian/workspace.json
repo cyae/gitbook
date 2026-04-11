@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "db5f5791c3bb5933",
+        "id": "1e50a4e2fa1e59e0",
         "type": "tabs",
         "children": [
           {
-            "id": "1113d2414c68b307",
+            "id": "ea9ccdb0b529940a",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -36,7 +36,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -146,17 +147,24 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:创建新数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "mermaid-tools:Open Mermaid Toolbar": false
     }
   },
-  "active": "1113d2414c68b307",
+  "active": "ea9ccdb0b529940a",
   "lastOpenFiles": [
+    "未命名.base",
+    "未命名 1.base",
+    "未命名.md",
+    "ANTLR.md",
     "分布式KV存储/RAFT.md",
     "分布式KV存储/分布式事务.md"
   ]

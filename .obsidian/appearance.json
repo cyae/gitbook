@@ -1,5 +1,7 @@
 {
   "enabledCssSnippets": [
     "obsidian"
-  ]
+  ],
+  "cssTheme": "Atom",
+  "monospaceFontFamily": "Cascadia Code"
 }
